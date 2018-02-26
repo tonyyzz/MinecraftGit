@@ -30,8 +30,11 @@ namespace Minecraft.ServerHall.Cmd.Test
         {
             Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
 
+            Console.WriteLine($"是否登陆：{session.IsLogin}");
+
             session.Send(mainCommand, secondCommand,   
                 requestInfo.Body + " --by yzz Minecraft");
+            //session.Close( SuperSocket.SocketBase.CloseReason.ServerClosing);
         }
     }
 }

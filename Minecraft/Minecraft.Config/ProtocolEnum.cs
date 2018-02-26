@@ -28,6 +28,7 @@ namespace Minecraft.Config
 
         //连接
         Conn_Success = 2001,
+        Conn_Close ,
 
         //错误
         Error_ApplicationErrot = 3001,

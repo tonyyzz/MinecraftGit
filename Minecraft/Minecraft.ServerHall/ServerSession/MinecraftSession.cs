@@ -34,8 +34,8 @@ namespace Minecraft.ServerHall
             //Console.WriteLine($"开始时间：{this.StartTime.ToString("yyyy-MM-dd HH:mm:ss")}");
             //Console.WriteLine($"安全协议：{this.SecureProtocol.ToString()}");
 
-            // var sessions = this.AppServer.GetAllSessions().ToList();
-            //Console.WriteLine($"当前连接数量：{sessions.Count()}");
+             var sessions = this.AppServer.GetAllSessions().ToList();
+            Console.WriteLine($"当前连接数量：{sessions.Count()}");
 
             //ip,address,sessionID
             // this.SessionID
@@ -46,7 +46,11 @@ namespace Minecraft.ServerHall
         {
             //断开连接
             //add you logics which will be executed after the session is closed
-            base.OnSessionClosed(reason);
+            //base.OnSessionClosed(reason);
+            this.Send(MainCommand.Conn, SecondCommand.Conn_Close,
+                "断开连接");
+            var sessions = this.AppServer.GetAllSessions().ToList();
+            Console.WriteLine($"当前连接数量：{sessions.Count()}");
             //Console.WriteLine("");
             //Console.WriteLine($"远程客户端{this.RemoteEndPoint.Address.ToString()}:{this.RemoteEndPoint.Port}断开连接");
         }

@@ -22,6 +22,19 @@ namespace Minecraft.ConnTest
             //进行连接
             socketClient.Connect(point);
 
+            ThreadPool.QueueUserWorkItem(o =>
+            {
+                while (true)
+                {
+                    Console.WriteLine("是否链接：" + socketClient.Connected);
+                    Thread.Sleep(1000);
+
+                }
+                
+            });
+
+
+
             //不停的接收服务器端发送的消息
             Thread thread = new Thread(Recive)
             {
