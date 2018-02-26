@@ -12,7 +12,8 @@ namespace Minecraft.Common
     {
       private  static string encryptKey = "Oyea";    //定义密钥  
         #region 加密字符串  
-        /// <summary> /// 加密字符串   
+        /// <summary> 
+        /// 加密字符串   
         /// </summary>  
         /// <param name="str">要加密的字符串</param>  
         /// <returns>加密后的字符串</returns>  
