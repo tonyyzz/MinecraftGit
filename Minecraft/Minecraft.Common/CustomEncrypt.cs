@@ -56,7 +56,7 @@ namespace Minecraft.Common
             //使用内存流实例化解密流对象       
             CryptoStream CStream = new CryptoStream(MStream, descsp.CreateDecryptor(key, key), CryptoStreamMode.Write);
 
-            CStream.Write(data, 0, data.Length);      //向解密流中写入数据     
+            CStream.Write(data, 0, data.Length);       //向解密流中写入数据     
 
             CStream.FlushFinalBlock();               //释放解密流      
 
