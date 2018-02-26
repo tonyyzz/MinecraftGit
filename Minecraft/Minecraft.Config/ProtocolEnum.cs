@@ -6,18 +6,29 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Config
 {
-    public static class ProtocolLen {
+    public static class ProtocolLen
+    {
         public const int Main = 3;
         public const int Second = 5;
     }
 
     public enum MainCommand
     {
-        TestCmd = 1,
+        Test = 1, //测试
+        Conn = 2, //连接
+        Error = 3,
     }
 
     public enum SecondCommand
     {
-        TestCmd_Test = 1,
+        //测试
+        Test_Test = 1001,
+
+        //连接
+        Conn_Success = 2001,
+
+        //错误
+        Error_ApplicationErrot = 3001,
+        Error_UnknowRequest,
     }
 }

@@ -7,7 +7,7 @@ using SuperSocket.SocketBase.Config;
 using SuperSocket.SocketBase.Protocol;
 using SuperSocket.Facility.Protocol;
 
-namespace SuperSocketSdy.ConsoleTest.Telnet
+namespace Minecraft.ServerHall
 {
 	public class MinecraftServer : AppServer<MinecraftSession>
 	{

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SuperSocketSdy.ConsoleTest.Telnet
+namespace Minecraft.ServerHall
 {
 	public class MinecraftServerStart
 	{

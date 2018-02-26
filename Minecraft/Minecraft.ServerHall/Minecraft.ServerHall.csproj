@@ -58,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cmd\Test\TestCmd.cs" />
+    <Compile Include="Helper\ProtocolHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerSession\MinecraftServer.cs" />
     <Compile Include="ServerSession\MinecraftServerStart.cs" />
     <Compile Include="ServerSession\MinecraftSession.cs" />
+    <Compile Include="Helper\MinecraftSessionExt.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
