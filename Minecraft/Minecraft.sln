@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft.ServerHall", "Minecraft.ServerHall\Minecraft.ServerHall.csproj", "{F716882E-7043-4BAC-BBBF-66B4D821CD7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft.BLL", "Minecraft.BLL\Minecraft.BLL.csproj", "{B6D99A0E-5AEB-42C1-98B4-BE32BB16CAA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft.CacheRedis", "Minecraft.CacheRedis\Minecraft.CacheRedis.csproj", "{78C39217-0E3A-4E93-9F58-0108EFE5639F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft.DALMongoDb", "Minecraft.DALMongoDb\Minecraft.DALMongoDb.csproj", "{F22FC0E3-8064-427B-8437-38CC996DE567}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft.DALMySql", "Minecraft.DALMySql\Minecraft.DALMySql.csproj", "{D55CEBF6-D7A9-4F05-9F3C-91C113F9F1E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft.Model", "Minecraft.Model\Minecraft.Model.csproj", "{D89518F5-88E7-4B0E-AB9D-86589F429176}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F716882E-7043-4BAC-BBBF-66B4D821CD7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F716882E-7043-4BAC-BBBF-66B4D821CD7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F716882E-7043-4BAC-BBBF-66B4D821CD7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F716882E-7043-4BAC-BBBF-66B4D821CD7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6D99A0E-5AEB-42C1-98B4-BE32BB16CAA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6D99A0E-5AEB-42C1-98B4-BE32BB16CAA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6D99A0E-5AEB-42C1-98B4-BE32BB16CAA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6D99A0E-5AEB-42C1-98B4-BE32BB16CAA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C39217-0E3A-4E93-9F58-0108EFE5639F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78C39217-0E3A-4E93-9F58-0108EFE5639F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78C39217-0E3A-4E93-9F58-0108EFE5639F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78C39217-0E3A-4E93-9F58-0108EFE5639F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F22FC0E3-8064-427B-8437-38CC996DE567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F22FC0E3-8064-427B-8437-38CC996DE567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F22FC0E3-8064-427B-8437-38CC996DE567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F22FC0E3-8064-427B-8437-38CC996DE567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D55CEBF6-D7A9-4F05-9F3C-91C113F9F1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55CEBF6-D7A9-4F05-9F3C-91C113F9F1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55CEBF6-D7A9-4F05-9F3C-91C113F9F1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55CEBF6-D7A9-4F05-9F3C-91C113F9F1E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D89518F5-88E7-4B0E-AB9D-86589F429176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D89518F5-88E7-4B0E-AB9D-86589F429176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D89518F5-88E7-4B0E-AB9D-86589F429176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D89518F5-88E7-4B0E-AB9D-86589F429176}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C8DAD07-DF2D-4D74-82FF-6E9AAC89AC0B}
+	EndGlobalSection
+EndGlobal
