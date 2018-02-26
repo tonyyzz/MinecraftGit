@@ -14,7 +14,6 @@ namespace Minecraft.ServerHall.Cmd.Player
     {
         private MainCommand mainCommand = MainCommand.Player;
         private SecondCommand secondCommand = SecondCommand.Player_Login;
-
         public override string Name
         {
             get
@@ -25,6 +24,8 @@ namespace Minecraft.ServerHall.Cmd.Player
         public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
         {
             Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
+
+            session.IsLogin = true;
 
             session.Send(mainCommand, secondCommand,
                 requestInfo.Body + " --by yzz Minecraft");

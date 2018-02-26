@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Model
 {
-    public class Class1
+    public class PlayerModel
     {
+        //public string SessionID { get; set; }
+        //public string IP { get; set; }
+        //public int Port { get; set; }
+
     }
 }

@@ -11,29 +11,15 @@ namespace Minecraft.ServerHall
 {
     public class MinecraftSession : AppSession<MinecraftSession>
     {
-        protected override void HandleException(Exception e)
-        {
-            this.Send(MainCommand.Error, SecondCommand.Error_ApplicationErrot,
-                "Application error: " + e.Message);
-        }
-
-        protected override void HandleUnknownRequest(StringRequestInfo requestInfo)
-        {
-            this.Send(MainCommand.Error, SecondCommand.Error_UnknowRequest,
-                "Unknow request");
-        }
-
-        protected override void OnSessionClosed(CloseReason reason)
-        {
-            //add you logics which will be executed after the session is closed
-            base.OnSessionClosed(reason);
-            //Console.WriteLine("");
-            //Console.WriteLine($"远程客户端{this.RemoteEndPoint.Address.ToString()}:{this.RemoteEndPoint.Port}断开连接");
-        }
+        /// <summary>
+        /// 是否登录
+        /// </summary>
+        public bool IsLogin = false;
 
         protected override void OnSessionStarted()
         {
-            this.Send(MainCommand.Conn, SecondCommand.Conn_Success, 
+            //进入连接
+            this.Send(MainCommand.Conn, SecondCommand.Conn_Success,
                 "Welcome to SuperSocket Minecraft Server");
             //Console.WriteLine("");
             //Console.WriteLine($"远程IP端口：{this.RemoteEndPoint.Address.ToString()}:{this.RemoteEndPoint.Port}");
@@ -48,9 +34,38 @@ namespace Minecraft.ServerHall
             //Console.WriteLine($"开始时间：{this.StartTime.ToString("yyyy-MM-dd HH:mm:ss")}");
             //Console.WriteLine($"安全协议：{this.SecureProtocol.ToString()}");
 
-            var sessions = this.AppServer.GetAllSessions().ToList();
+            // var sessions = this.AppServer.GetAllSessions().ToList();
             //Console.WriteLine($"当前连接数量：{sessions.Count()}");
+
+            //ip,address,sessionID
+            // this.SessionID
+            //this.IsLogin
         }
+
+        protected override void OnSessionClosed(CloseReason reason)
+        {
+            //断开连接
+            //add you logics which will be executed after the session is closed
+            base.OnSessionClosed(reason);
+            //Console.WriteLine("");
+            //Console.WriteLine($"远程客户端{this.RemoteEndPoint.Address.ToString()}:{this.RemoteEndPoint.Port}断开连接");
+        }
+
+        protected override void HandleException(Exception e)
+        {
+            this.Send(MainCommand.Error, SecondCommand.Error_ApplicationErrot,
+                "Application error: " + e.Message);
+        }
+
+        protected override void HandleUnknownRequest(StringRequestInfo requestInfo)
+        {
+            this.Send(MainCommand.Error, SecondCommand.Error_UnknowRequest,
+                "Unknow request");
+        }
+
+     
+
+       
 
         //服务器发送给客户端的消息的后续处理方法
         protected override string ProcessSendingMessage(string rawMessage)

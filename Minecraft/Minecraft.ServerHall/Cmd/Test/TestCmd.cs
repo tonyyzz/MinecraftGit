@@ -19,7 +19,6 @@ namespace Minecraft.ServerHall.Cmd.Test
     {
         private MainCommand mainCommand = MainCommand.Test;
         private SecondCommand secondCommand = SecondCommand.Test_Test;
-
         public override string Name
         {
             get

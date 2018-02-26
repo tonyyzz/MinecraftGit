@@ -14,7 +14,6 @@ namespace Minecraft.ServerHall.Cmd.Heart
     {
         private MainCommand mainCommand = MainCommand.Heart;
         private SecondCommand secondCommand = SecondCommand.Heart_Data;
-
         public override string Name
         {
             get
@@ -24,7 +23,7 @@ namespace Minecraft.ServerHall.Cmd.Heart
         }
         public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
         {
-            
+            session.Send(mainCommand, secondCommand, "");
         }
     }
 }
