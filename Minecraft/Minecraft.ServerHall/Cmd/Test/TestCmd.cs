@@ -30,7 +30,7 @@ namespace Minecraft.ServerHall.Cmd.Test
         {
             Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
 
-            session.Send(mainCommand, secondCommand,  
+            session.Send(mainCommand, secondCommand,   
                 requestInfo.Body + " --by yzz Minecraft");
         }
     }
