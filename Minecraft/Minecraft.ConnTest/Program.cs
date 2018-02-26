@@ -18,7 +18,7 @@ namespace Minecraft.ConnTest
             Socket socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPAddress ip = IPAddress.Parse("127.0.0.1");
             //IPAddress ip = IPAddress.Parse("111.230.142.94");
-            IPEndPoint point = new IPEndPoint(ip, 2018);
+            IPEndPoint point = new IPEndPoint(ip, 2017);
             //进行连接
             socketClient.Connect(point);
 

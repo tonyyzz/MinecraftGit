@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cmd\Player\PlyerLogin.cs" />
     <Compile Include="Cmd\Test\TestCmd.cs" />
     <Compile Include="Helper\ProtocolHelper.cs" />
     <Compile Include="Program.cs" />

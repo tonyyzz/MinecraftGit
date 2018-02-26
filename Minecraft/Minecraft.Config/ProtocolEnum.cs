@@ -17,6 +17,7 @@ namespace Minecraft.Config
         Test = 1, //测试
         Conn = 2, //连接
         Error = 3,
+        Player=4, //玩家
     }
 
     public enum SecondCommand
@@ -30,5 +31,8 @@ namespace Minecraft.Config
         //错误
         Error_ApplicationErrot = 3001,
         Error_UnknowRequest,
+
+        //玩家
+        Player_Login=4001,
     }
 }

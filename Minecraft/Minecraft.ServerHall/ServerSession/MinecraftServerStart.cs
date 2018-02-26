@@ -13,14 +13,14 @@ namespace Minecraft.ServerHall
 		public void Do()
 		{
 			var appServer = new MinecraftServer();
-			Console.WriteLine($"BodyName:{Encoding.UTF8.BodyName}");
-			Console.WriteLine($"EncodingName:{Encoding.UTF8.EncodingName}");
-			Console.WriteLine($"HeaderName:{Encoding.UTF8.HeaderName}");
-			Console.WriteLine($"WebName:{Encoding.UTF8.WebName}");
+			//Console.WriteLine($"BodyName:{Encoding.UTF8.BodyName}");
+			//Console.WriteLine($"EncodingName:{Encoding.UTF8.EncodingName}");
+			//Console.WriteLine($"HeaderName:{Encoding.UTF8.HeaderName}");
+			//Console.WriteLine($"WebName:{Encoding.UTF8.WebName}");
 			ServerConfig serverConfig = new ServerConfig
 			{
 				TextEncoding = CommonConfig.DefEncoding.WebName,
-				Port = 2018,
+				Port = 2017,
 				DisableSessionSnapshot = true,
 				MaxConnectionNumber = 60000
 			};
@@ -46,7 +46,7 @@ namespace Minecraft.ServerHall
 
 			Console.WriteLine("The server started successfully, press key 'q' to stop it!");
 
-			Console.WriteLine($"服务器文本编码：{appServer.TextEncoding.WebName}");
+			//Console.WriteLine($"服务器文本编码：{appServer.TextEncoding.WebName}");
 
 			appServer.Logger.Error("");
 
