@@ -37,7 +37,7 @@ namespace Minecraft.ServerHall.Cmd.Test
             //CustomDE.Encrypt(bytes, 0, bytes.Length);
             // session.Send(CommonConfig.DefEncoding.GetString(bytes));
 
-            session.Send(CustomEncrypt.Encrypt(sendStr));
+            session.Send(CustomEncrypt.Encrypt(sendStr)); 
 
             //var sessions = session.AppServer.GetAllSessions().ToList();
 
