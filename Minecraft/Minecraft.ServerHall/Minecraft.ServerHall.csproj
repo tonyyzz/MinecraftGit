@@ -34,14 +34,17 @@
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSocket.Common, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
-      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.Common.dll</HintPath>
+    <Reference Include="SuperSocket.Common, Version=1.6.4.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.SocketEngine-unofficial.1.6.4.3\lib\net40\SuperSocket.Common.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSocket.Facility, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
-      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.Facility.dll</HintPath>
+    <Reference Include="SuperSocket.Facility, Version=1.6.4.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.SocketEngine-unofficial.1.6.4.3\lib\net40\SuperSocket.Facility.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSocket.SocketBase, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
-      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.SocketBase.dll</HintPath>
+    <Reference Include="SuperSocket.SocketBase, Version=1.6.4.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.SocketEngine-unofficial.1.6.4.3\lib\net40\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketEngine, Version=1.6.4.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.SocketEngine-unofficial.1.6.4.3\lib\net40\SuperSocket.SocketEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -54,8 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cmd\Test\TestCmd.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerSession\MinecraftServer.cs" />
+    <Compile Include="ServerSession\MinecraftServerStart.cs" />
+    <Compile Include="ServerSession\MinecraftSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -69,6 +76,15 @@
       <Project>{b6d99a0e-5aeb-42c1-98b4-be32bb16caa8}</Project>
       <Name>Minecraft.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Minecraft.Common\Minecraft.Common.csproj">
+      <Project>{464cd133-6ff3-408e-9d53-934e14776072}</Project>
+      <Name>Minecraft.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Minecraft.Config\Minecraft.Config.csproj">
+      <Project>{80ef137f-c350-4a24-b749-15e84375764e}</Project>
+      <Name>Minecraft.Config</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

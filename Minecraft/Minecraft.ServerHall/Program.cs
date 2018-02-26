@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperSocketSdy.ConsoleTest.Telnet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Minecraft.ServerHall
     {
         static void Main(string[] args)
         {
+            new MinecraftServerStart().Do();
         }
     }
 }
