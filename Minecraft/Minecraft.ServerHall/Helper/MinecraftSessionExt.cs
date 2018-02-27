@@ -1,5 +1,4 @@
 ﻿using Minecraft.Config;
-using Minecraft.ServerHall.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace Minecraft.ServerHall
         public static void Send(this MinecraftSession session,
             MainCommand mainCommand,
             SecondCommand secondCommand,
-            string sendStr)
+            string sendStr = "")
         {
             string protocolStr = ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
             session.Send(protocolStr + " " + sendStr);

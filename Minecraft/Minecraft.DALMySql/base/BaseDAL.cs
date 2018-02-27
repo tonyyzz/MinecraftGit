@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Dapper;
 using GoStop.BaseCommon;
 
-namespace GoStop.DAL
+namespace Minecraft.DALMySql
 {
 	public class BaseDAL
 	{

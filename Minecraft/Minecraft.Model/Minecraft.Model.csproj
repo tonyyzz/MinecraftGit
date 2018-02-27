@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlayerbaseModel.cs" />
     <Compile Include="PlayerModel.cs" />
+    <Compile Include="Player\PlayerLoginRequest.cs" />
+    <Compile Include="Player\PlayerLoginResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

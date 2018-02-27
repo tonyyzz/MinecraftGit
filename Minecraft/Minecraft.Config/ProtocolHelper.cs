@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.ServerHall.Helper
+namespace Minecraft.Config
 {
     public class ProtocolHelper
     {

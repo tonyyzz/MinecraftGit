@@ -15,28 +15,57 @@ namespace Minecraft.Config
     public enum MainCommand
     {
         Test = 1, //测试
-        Conn = 2, //连接
-        Error = 3,
-        Player = 4, //玩家
-        Heart = 5,
+        Conn, //连接
+        Error,
+        Player, //玩家
+        Heart,
     }
 
     public enum SecondCommand
     {
-        //测试
+        /// <summary>
+        /// 测试
+        /// </summary>
         Test_Test = 1001,
 
-        //连接
-        Conn_Success = 2001,
-        Conn_Close ,
 
-        //错误
-        Error_ApplicationErrot = 3001,
+        /// <summary>
+        /// 连接成功
+        /// </summary>
+        Conn_Success,
+        /// <summary>
+        /// 连接关闭
+        /// </summary>
+        Conn_Close,
+
+
+
+        /// <summary>
+        /// 应用程序错误
+        /// </summary>
+        Error_ApplicationError,
+        /// <summary>
+        /// 未知错误
+        /// </summary>
         Error_UnknowRequest,
+        /// <summary>
+        /// 参数错误
+        /// </summary>
+        Error_ParameterError,
+        /// <summary>
+        /// 不存在
+        /// </summary>
+        Error_NotExist,
 
-        //玩家
-        Player_Login = 4001,
-        //心跳包
-        Heart_Data = 5001,
+
+
+        /// <summary>
+        /// 玩家登录
+        /// </summary>
+        Player_Login,
+        /// <summary>
+        /// 心跳包 数据
+        /// </summary>
+        Heart_Data
     }
 }

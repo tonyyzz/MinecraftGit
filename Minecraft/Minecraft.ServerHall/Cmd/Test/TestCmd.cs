@@ -1,7 +1,6 @@
 ﻿using GoStop.BaseCommon;
 using Minecraft.Common;
 using Minecraft.Config;
-using Minecraft.ServerHall.Helper;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -17,22 +16,22 @@ namespace Minecraft.ServerHall.Cmd.Test
     /// </summary>
     public class TestCmd : CommandBase<MinecraftSession, StringRequestInfo>
     {
-        private MainCommand mainCommand = MainCommand.Test;
-        private SecondCommand secondCommand = SecondCommand.Test_Test;
+        private MainCommand defMainCommand = MainCommand.Test;
+        private SecondCommand defSecondCommand = SecondCommand.Test_Test;
         public override string Name
         {
             get
             {
-                return ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
+                return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
             }
         }
         public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
         {
-            Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
+           // Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
 
-            Console.WriteLine($"是否登陆：{session.IsLogin}");
+           // Console.WriteLine($"是否登陆：{session.IsLogin}");
 
-            session.Send(mainCommand, secondCommand,   
+            session.Send(defMainCommand, defSecondCommand,   
                 requestInfo.Body + " --by yzz Minecraft");
             //session.Close( SuperSocket.SocketBase.CloseReason.ServerClosing);
         }

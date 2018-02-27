@@ -1,5 +1,4 @@
 ﻿using Minecraft.Config;
-using Minecraft.ServerHall.Helper;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -12,18 +11,18 @@ namespace Minecraft.ServerHall.Cmd.Heart
 {
     public class HeartData : CommandBase<MinecraftSession, StringRequestInfo>
     {
-        private MainCommand mainCommand = MainCommand.Heart;
-        private SecondCommand secondCommand = SecondCommand.Heart_Data;
+        private MainCommand defMainCommand = MainCommand.Heart;
+        private SecondCommand defSecondCommand = SecondCommand.Heart_Data;
         public override string Name
         {
             get
             {
-                return ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
+                return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
             }
         }
         public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
         {
-            session.Send(mainCommand, secondCommand, "");
+            session.Send(defMainCommand, defSecondCommand);
         }
     }
 }
