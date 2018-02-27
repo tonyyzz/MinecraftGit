@@ -10,16 +10,9 @@ namespace Minecraft.Test
     {
         static void Main(string[] args)
         {
-            var f = (int)TestEnum.C;
+          
         }
 
-        enum TestEnum
-        {
-            A = 1,
-            B,
-            C,
-            D,
-            F = 1
-        }
+       
     }
 }
