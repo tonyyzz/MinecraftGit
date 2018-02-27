@@ -12,8 +12,12 @@ namespace Minecraft.DALMySql
     {
         public static PlayerModel GetSingleOrDefault(int playerId)
         {
-            string sql = $"select * from player where PlayerId={playerId}";
-            return Conn.QueryFirstOrDefault<PlayerModel>(sql);
+            using (var Conn = GetConn())
+            {
+                Conn.Open();
+                string sql = $"select * from player where PlayerId={playerId}";
+                return Conn.QueryFirstOrDefault<PlayerModel>(sql);
+            }
         }
     }
 }

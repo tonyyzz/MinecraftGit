@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Minecraft.BLL;
+using Minecraft.Model.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,11 @@ namespace Minecraft.Test
     {
         static void Main(string[] args)
         {
-          
+            PlayerLoginRequest playerLoginRequest = new PlayerLoginRequest()
+            {
+                PlayerId = 1
+            };
+            var player = PlayerBLL.GetSingleOrDefault(playerLoginRequest.PlayerId);
         }
 
        
