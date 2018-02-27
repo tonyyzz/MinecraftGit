@@ -17,6 +17,8 @@ namespace Minecraft.Test
                 PlayerId = 1
             };
             var player = PlayerBLL.GetSingleOrDefault(playerLoginRequest.PlayerId);
+            Console.WriteLine(player.JsonSerialize());
+            Console.ReadKey();
         }
 
        
