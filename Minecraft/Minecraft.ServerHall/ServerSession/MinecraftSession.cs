@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using SuperSocket.SocketBase.Protocol;
 using Minecraft.Config;
+using Minecraft.Model;
 
 namespace Minecraft.ServerHall
 {
     public class MinecraftSession : AppSession<MinecraftSession>
     {
         /// <summary>
-        /// 是否登录
+        /// session info ext
         /// </summary>
-        public bool IsLogin = false;
+        public SessionInfo sessionInfo = new SessionInfo();
 
         protected override void OnSessionStarted()
         {
@@ -33,7 +34,7 @@ namespace Minecraft.ServerHall
             //Console.WriteLine($"开始时间：{this.StartTime.ToString("yyyy-MM-dd HH:mm:ss")}");
             //Console.WriteLine($"安全协议：{this.SecureProtocol.ToString()}");
 
-             //var sessions = this.AppServer.GetAllSessions().ToList();
+            //var sessions = this.AppServer.GetAllSessions().ToList();
             //Console.WriteLine($"当前连接数量：{sessions.Count()}");
 
             //ip,address,sessionID
@@ -44,12 +45,19 @@ namespace Minecraft.ServerHall
         protected override void OnSessionClosed(CloseReason reason)
         {
             //断开连接
+
+
+            //存储数据
+
+
             //add you logics which will be executed after the session is closed
             //base.OnSessionClosed(reason);
             this.Send(MainCommand.Conn, SecondCommand.Conn_Close,
                 "断开连接");
+
+
             //var sessions = this.AppServer.GetAllSessions().ToList();
-           // Console.WriteLine($"当前连接数量：{sessions.Count()}");
+            // Console.WriteLine($"当前连接数量：{sessions.Count()}");
             //Console.WriteLine("");
             //Console.WriteLine($"远程客户端{this.RemoteEndPoint.Address.ToString()}:{this.RemoteEndPoint.Port}断开连接");
         }
@@ -66,9 +74,9 @@ namespace Minecraft.ServerHall
                 "Unknow request");
         }
 
-     
 
-       
+
+
 
         //服务器发送给客户端的消息的后续处理方法
         protected override string ProcessSendingMessage(string rawMessage)

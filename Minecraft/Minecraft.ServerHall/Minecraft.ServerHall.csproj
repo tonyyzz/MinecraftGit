@@ -68,6 +68,7 @@
     <Compile Include="ServerSession\MinecraftServerStart.cs" />
     <Compile Include="ServerSession\MinecraftSession.cs" />
     <Compile Include="Ext\MinecraftSessionExt.cs" />
+    <Compile Include="ServerSession\SessionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

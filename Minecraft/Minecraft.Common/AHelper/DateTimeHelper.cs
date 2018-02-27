@@ -57,7 +57,13 @@ namespace System
 
 		public class DateTimeConst
 		{
+			/// <summary>
+			/// 默认时间
+			/// </summary>
+			public static DateTime DefaultTime = new DateTime(1900, 1, 1);
+
 			public static DateTime UnixDateTimeZeroPoint = new DateTime(1970, 01, 01, 0, 0, 0, DateTimeKind.Utc);
+			
 		}
 	}
 }

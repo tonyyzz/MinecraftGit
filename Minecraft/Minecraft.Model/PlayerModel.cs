@@ -1,5 +1,5 @@
 using System;
-namespace GoStopProxy.Model
+namespace Minecraft.Model
 {
 	/// <summary>
 	/// 

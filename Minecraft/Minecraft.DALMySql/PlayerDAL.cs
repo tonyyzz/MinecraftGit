@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using GoStopProxy.Model;
+using Minecraft.Model;
 
 namespace Minecraft.DALMySql
 {

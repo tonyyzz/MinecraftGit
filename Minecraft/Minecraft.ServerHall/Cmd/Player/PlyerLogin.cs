@@ -41,7 +41,10 @@ namespace Minecraft.ServerHall.Cmd.Player
             }
 
             //登录成功
-            session.IsLogin = true;
+            session.sessionInfo.IsLogin = true;
+            session.sessionInfo.LastLoginTime = DateTime.Now;
+            session.sessionInfo.player = player;
+
             session.Send(defMainCommand, defSecondCommand,
                 player.JsonSerialize());
         }
