@@ -14,10 +14,25 @@ namespace Minecraft.Config
 
     public enum MainCommand
     {
-        Test = 1, //测试
-        Conn, //连接
+        /// <summary>
+        /// 测试
+        /// </summary>
+        Test = 1,
+        /// <summary>
+        /// 连接
+        /// </summary>
+        Conn,
+        /// <summary>
+        /// 错误
+        /// </summary>
         Error,
-        Player, //玩家
+        /// <summary>
+        /// 玩家
+        /// </summary>
+        Player,
+        /// <summary>
+        /// 心跳包
+        /// </summary>
         Heart,
     }
 
@@ -63,9 +78,12 @@ namespace Minecraft.Config
         /// 玩家登录
         /// </summary>
         Player_Login,
+
+
+
         /// <summary>
         /// 心跳包 数据
         /// </summary>
-        Heart_Data
+        Heart_Data,
     }
 }
