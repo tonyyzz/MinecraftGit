@@ -1,6 +1,6 @@
 ﻿using Minecraft.BLL;
 using Minecraft.Config;
-using Minecraft.Model.Player;
+using Minecraft.Model.ReqResp.Player;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;

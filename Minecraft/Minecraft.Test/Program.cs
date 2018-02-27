@@ -1,5 +1,5 @@
 ﻿using Minecraft.BLL;
-using Minecraft.Model.Player;
+using Minecraft.Model.ReqResp.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
