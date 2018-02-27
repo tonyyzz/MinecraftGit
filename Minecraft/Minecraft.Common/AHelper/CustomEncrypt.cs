@@ -6,11 +6,11 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.Common
+namespace System
 {
     public class CustomEncrypt
     {
-      private  static string encryptKey = "Oyea";    //定义密钥  
+        private static string encryptKey = "Oyea";    //定义密钥  
         #region 加密字符串  
         /// <summary> 
         /// 加密字符串   
@@ -64,5 +64,20 @@ namespace Minecraft.Common
             return Encoding.Unicode.GetString(MStream.ToArray());       //返回解密后的字符串  
         }
         #endregion
+
+        //加密
+        public static void Encrypt(byte[] byteArray, int offset, int len)
+        {
+            for (int i = 0; i < len; i++)
+                byteArray[i + offset] ^= 0xa7;
+
+        }
+        //解密
+        public static void Decrypt(byte[] byteArray, int offset, int len)
+        {
+            for (int i = 0; i < len; i++)
+                byteArray[i + offset] ^= 0xa7;
+
+        }
     }
 }

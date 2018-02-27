@@ -1,6 +1,4 @@
-﻿using GoStop.BaseCommon;
-using Minecraft.Common;
-using Minecraft.Config;
+﻿using Minecraft.Config;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;

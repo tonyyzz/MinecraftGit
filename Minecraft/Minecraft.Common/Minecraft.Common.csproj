@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AHelper\CookieHelper.cs" />
+    <Compile Include="AHelper\CustomEncrypt.cs" />
     <Compile Include="AHelper\DateTimeHelper.cs" />
     <Compile Include="AHelper\EnumHelper.cs" />
     <Compile Include="AHelper\FileBinaryConvertHelper.cs" />
@@ -58,8 +59,6 @@
     <Compile Include="AHelper\NetworkHelper.cs" />
     <Compile Include="AHelper\ObjectHelper.cs" />
     <Compile Include="AHelper\StringHelper.cs" />
-    <Compile Include="CustomDE.cs" />
-    <Compile Include="CustomEncrypt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
