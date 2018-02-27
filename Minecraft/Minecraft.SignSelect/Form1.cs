@@ -32,7 +32,7 @@ namespace Minecraft.SignSelect
             Init();
 
             var signStr = tbxSignStr.Text.Trim();
-            if (string.IsNullOrWhiteSpace(signStr))
+            if (signStr.IsNullOrWhiteSpace())
             {
                 lblInfo.Text = "sign不能为空";
                 tbxSignStr.Focus();
@@ -63,7 +63,7 @@ namespace Minecraft.SignSelect
 
         private void tbxMainCmd_MouseEnter(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(tbxMainCmd.Text))
+            if(!tbxMainCmd.Text.IsNullOrWhiteSpace())
             {
                 tbxMainCmd.Focus();
                 tbxMainCmd.SelectAll();
@@ -72,7 +72,7 @@ namespace Minecraft.SignSelect
 
         private void tbxSecondCmd_MouseEnter(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(tbxSecondCmd.Text))
+            if (!tbxSecondCmd.Text.IsNullOrWhiteSpace())
             {
                 tbxSecondCmd.Focus();
                 tbxSecondCmd.SelectAll();
