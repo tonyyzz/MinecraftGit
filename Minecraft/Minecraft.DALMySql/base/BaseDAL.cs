@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Minecraft.Config;
 
 namespace Minecraft.DALMySql
 {
@@ -21,7 +22,7 @@ namespace Minecraft.DALMySql
 				//string psw = ib.IniReadValue("sql", "psw");
 				//var connStr = string.Format(@"server={0};user={1};database={2};port={3};password={4};Charset=utf8;",
 				//	ip, "root", "gostop", port, psw);
-				return System.Configuration.ConfigurationManager.ConnectionStrings["Minecraft_MySql"].ToString();
+				return ConfigurationConfig.Minecraft_MySqlDBConnStr;
 			}
 		}
 		private static IDbConnection _conn = new MySqlConnection(_connStr);

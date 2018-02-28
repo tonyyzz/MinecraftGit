@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Configuration;
+using Minecraft.Config;
 
 namespace SuperSocketSdy.MongoStdy45
 {
 
 	public class MgDb
 	{
-		private static readonly string connStr = ConfigurationManager.ConnectionStrings["connStr"].ToString();
+		private static readonly string connStr = ConfigurationConfig.Minecraft_MongoDBConnStr;
+		private static readonly string dbName = ConfigurationConfig.Minecraft_MongoDBName;
 
-		private static readonly string dbName = ConfigurationManager.AppSettings["dbName"].ToString();
 
 		private static IMongoDatabase db = null;
 
