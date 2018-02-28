@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="base\BaseBLL.cs" />
-    <Compile Include="PlayerBLL.cs" />
+    <Compile Include="mongodb\PlayerbaseBLL.cs" />
+    <Compile Include="mysql\PlayerBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

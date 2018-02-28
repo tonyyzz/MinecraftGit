@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.BLL
+namespace Minecraft.BLL.mysql
 {
     public class PlayerBLL:BaseBLL
     {

@@ -41,11 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlayerbaseModel.cs" />
-    <Compile Include="PlayerModel.cs" />
-    <Compile Include="ReqResp\Player\PlayerLoginRequest.cs" />
-    <Compile Include="ReqResp\Player\PlayerLoginResponse.cs" />
+    <Compile Include="mongodb\BaseEntity.cs" />
+    <Compile Include="mongodb\PlayerbaseModel.cs" />
+    <Compile Include="mysql\PlayerModel.cs" />
+    <Compile Include="ReqResp\MsgResp.cs" />
+    <Compile Include="ReqResp\Player\PlayerBaseInsertReq.cs" />
+    <Compile Include="ReqResp\Player\PlayerBaseInsertResp.cs" />
+    <Compile Include="ReqResp\Player\PlayerLoginReq.cs" />
+    <Compile Include="ReqResp\Player\PlayerLoginResp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReqResp\TestReq.cs" />
+    <Compile Include="ReqResp\TestResp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,7 @@
 ﻿using Minecraft.BLL;
+using Minecraft.BLL.mysql;
 using Minecraft.Config;
+using Minecraft.Model.ReqResp;
 using Minecraft.Model.ReqResp.Player;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
@@ -11,42 +13,51 @@ using System.Threading.Tasks;
 
 namespace Minecraft.ServerHall.Cmd.Player
 {
-    public class PlyerLogin : CommandBase<MinecraftSession, StringRequestInfo>
-    {
-        private MainCommand defMainCommand = MainCommand.Player;
-        private SecondCommand defSecondCommand = SecondCommand.Player_Login;
-        public override string Name
-        {
-            get
-            {
-                return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
-            }
-        }
-        public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
-        {
-            //Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
+	public class PlyerLogin : CommandBase<MinecraftSession, StringRequestInfo>
+	{
+		public override string Name
+		{
+			get
+			{
+				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+			}
+		}
 
-            PlayerLoginRequest playerLoginRequest = requestInfo.GetRequestObj<PlayerLoginRequest>();
-            if (playerLoginRequest == null || playerLoginRequest.PlayerId <= 0)
-            {
-                session.Send(MainCommand.Error, SecondCommand.Error_ParameterError);
-                return;
-            }
+		private MainCommand defMainCommand = MainCommand.Player;
+		private SecondCommand defSecondCommand = SecondCommand.Player_Login;
+		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
+		{
+			//Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
 
-            var player = PlayerBLL.GetSingleOrDefault(playerLoginRequest.PlayerId);
-            if (player == null)
-            {
-                session.Send(MainCommand.Error, SecondCommand.Error_NotExist);
-                return;
-            }
+			PlayerLoginReq req = requestInfo.GetRequestObj<PlayerLoginReq>(session);
+			if (req == null || req.PlayerId <= 0)
+			{
+				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
+				return;
+			}
 
-            //登录成功
-            session.sessionInfo.IsLogin = true;
-            session.sessionInfo.LastLoginTime = DateTime.Now;
-            session.sessionInfo.player = player;
+			var player = PlayerBLL.GetSingleOrDefault(req.PlayerId);
+			if (player == null)
+			{
+				session.Send(MainCommand.Error, SecondCommand.Error_NotExist, new MsgResp(MsgLevelEnum.Error, "信息不存在"));
+				return;
+			}
 
-            session.Send(defMainCommand, defSecondCommand,
-                player.JsonSerialize());
-        }
-    }
+			//登录成功
+			session.sessionInfo.IsLogin = true;
+			session.sessionInfo.LastLoginTime = DateTime.Now;
+			session.sessionInfo.player = player;
+
+			PlayerLoginResp resp = new PlayerLoginResp
+			{
+				PlayerId = player.PlayerId,
+				Pwd = player.Pwd,
+				exp = player.exp,
+				CompetitiveCurrency = player.CompetitiveCurrency,
+				diamond = player.diamond,
+				MinkName = player.MinkName,
+			};
+			session.Send(defMainCommand, defSecondCommand, resp);
+		}
+	}
 }

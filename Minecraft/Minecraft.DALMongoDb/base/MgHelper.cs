@@ -7,8 +7,9 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Configuration;
 using Minecraft.Config;
+using Minecraft.Model;
 
-namespace SuperSocketSdy.MongoStdy45
+namespace Minecraft.DALMongoDb
 {
 
 	public class MgDb
@@ -91,7 +92,7 @@ namespace SuperSocketSdy.MongoStdy45
 		/// <returns></returns>
 		public T QueryOne(string id)
 		{
-			return collection.Find(a => a.Id == ObjectId.Parse(id)).ToList().FirstOrDefault();
+			return collection.Find(a => a.Id == id).ToList().FirstOrDefault();
 		}
 		/// <summary>
 		/// 删除

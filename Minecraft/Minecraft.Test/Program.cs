@@ -1,4 +1,5 @@
 ﻿using Minecraft.BLL;
+using Minecraft.BLL.mysql;
 using Minecraft.Model.ReqResp.Player;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Minecraft.Test
     {
         static void Main(string[] args)
         {
-            PlayerLoginRequest playerLoginRequest = new PlayerLoginRequest()
+            PlayerLoginReq playerLoginRequest = new PlayerLoginReq()
             {
                 PlayerId = 1
             };

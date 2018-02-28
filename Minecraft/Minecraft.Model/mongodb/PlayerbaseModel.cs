@@ -5,7 +5,7 @@ namespace Minecraft.Model
 	/// 玩家基地信息
 	/// </summary>
 	/// 由代码生成器生成，Created Time：2018-02-27 13:33:18
-	public partial class PlayerbaseModel
+	public partial class PlayerbaseModel : BaseEntity
 	{
 		/// <summary>
 		/// 

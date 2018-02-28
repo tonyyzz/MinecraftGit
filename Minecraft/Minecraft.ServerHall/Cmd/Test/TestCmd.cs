@@ -1,4 +1,5 @@
 ﻿using Minecraft.Config;
+using Minecraft.Model.ReqResp;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -9,29 +10,38 @@ using System.Threading.Tasks;
 
 namespace Minecraft.ServerHall.Cmd.Test
 {
-    /// <summary>
-    /// 测试命令
-    /// </summary>
-    public class TestCmd : CommandBase<MinecraftSession, StringRequestInfo>
-    {
-        private MainCommand defMainCommand = MainCommand.Test;
-        private SecondCommand defSecondCommand = SecondCommand.Test_Test;
-        public override string Name
-        {
-            get
-            {
-                return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
-            }
-        }
-        public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
-        {
-           // Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
+	/// <summary>
+	/// 测试命令
+	/// </summary>
+	public class TestCmd : CommandBase<MinecraftSession, StringRequestInfo>
+	{
+		public override string Name
+		{
+			get
+			{
+				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+			}
+		}
 
-           // Console.WriteLine($"是否登陆：{session.IsLogin}");
+		private MainCommand defMainCommand = MainCommand.Test;
+		private SecondCommand defSecondCommand = SecondCommand.Test_Test;
+		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
+		{
+			TestReq req = requestInfo.GetRequestObj<TestReq>(session);
+			if (req == null || req.PlayerId <= 0)
+			{
+				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
+				return;
+			}
 
-            session.Send(defMainCommand, defSecondCommand,   
-                requestInfo.Body + " --by yzz Minecraft");
-            //session.Close( SuperSocket.SocketBase.CloseReason.ServerClosing);
-        }
-    }
+
+
+
+			TestResp resp = new TestResp
+			{
+				PlayerId = req.PlayerId
+			};
+			session.Send(defMainCommand, defSecondCommand, resp);
+		}
+	}
 }

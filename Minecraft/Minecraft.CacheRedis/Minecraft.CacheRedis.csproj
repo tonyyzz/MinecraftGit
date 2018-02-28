@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RedisHelper.cs" />
+    <Compile Include="base\RedisHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Minecraft.DALMongoDb\Minecraft.DALMongoDb.csproj">

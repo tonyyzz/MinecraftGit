@@ -9,7 +9,7 @@ namespace Minecraft.Model.ReqResp.Player
     /// <summary>
     /// 玩家登录请求消息体
     /// </summary>
-    public class PlayerLoginRequest
+    public class PlayerLoginReq
     {
         public int PlayerId { get; set; }
     }
