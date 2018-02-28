@@ -27,11 +27,10 @@ namespace Minecraft.ServerHall.Cmd.Test
 		private SecondCommand defSecondCommand = SecondCommand.Test_Test;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
-			TestReq req = requestInfo.GetRequestObj<TestReq>(session);
+			var req = requestInfo.GetRequestObj<TestReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
 				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
-				//session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new { gh=8});
 				return;
 			}
 

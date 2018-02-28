@@ -13,9 +13,9 @@ namespace Minecraft.ServerHall
 	public class MinecraftSession : AppSession<MinecraftSession>
 	{
 		/// <summary>
-		/// session info ext
+		/// minecraft session info ext
 		/// </summary>
-		public SessionInfo sessionInfo = new SessionInfo();
+		public MinecraftSessionInfo minecraftSessionInfo = new MinecraftSessionInfo();
 
 		protected override void OnSessionStarted()
 		{

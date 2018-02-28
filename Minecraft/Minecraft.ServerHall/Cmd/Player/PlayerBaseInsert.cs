@@ -27,7 +27,7 @@ namespace Minecraft.ServerHall.Cmd.Player
 		private SecondCommand defSecondCommand = SecondCommand.Player_BaseInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
-			PlayerBaseInsertReq req = requestInfo.GetRequestObj<PlayerBaseInsertReq>(session);
+			var req = requestInfo.GetRequestObj<PlayerBaseInsertReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
 				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));

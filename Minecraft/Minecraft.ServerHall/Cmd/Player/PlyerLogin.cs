@@ -29,7 +29,7 @@ namespace Minecraft.ServerHall.Cmd.Player
 		{
 			//Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
 
-			PlayerLoginReq req = requestInfo.GetRequestObj<PlayerLoginReq>(session);
+			var req = requestInfo.GetRequestObj<PlayerLoginReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
 				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
@@ -44,9 +44,9 @@ namespace Minecraft.ServerHall.Cmd.Player
 			}
 
 			//登录成功
-			session.sessionInfo.IsLogin = true;
-			session.sessionInfo.LastLoginTime = DateTime.Now;
-			session.sessionInfo.player = player;
+			session.minecraftSessionInfo.IsLogin = true;
+			session.minecraftSessionInfo.LastLoginTime = DateTime.Now;
+			session.minecraftSessionInfo.player = player;
 
 			PlayerLoginResp resp = new PlayerLoginResp
 			{
