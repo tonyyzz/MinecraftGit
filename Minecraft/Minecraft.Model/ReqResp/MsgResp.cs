@@ -11,11 +11,6 @@ namespace Minecraft.Model.ReqResp
 	/// </summary>
 	public class MsgResp
 	{
-		public MsgResp()
-		{
-			InfoLevel = MsgLevelEnum.Info;
-			Msg = "默认消息";
-		}
 		/// <summary>
 		/// 消息响应实体 有参构造
 		/// </summary>
@@ -36,6 +31,9 @@ namespace Minecraft.Model.ReqResp
 		public string Msg { get; set; }
 	}
 
+	/// <summary>
+	/// 消息级别枚举
+	/// </summary>
 	public enum MsgLevelEnum
 	{
 		Info = 1,

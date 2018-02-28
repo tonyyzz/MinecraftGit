@@ -12,8 +12,6 @@ namespace Minecraft.ServerHall.Cmd.Heart
 {
 	public class HeartData : CommandBase<MinecraftSession, StringRequestInfo>
 	{
-		private MainCommand defMainCommand = MainCommand.Heart;
-		private SecondCommand defSecondCommand = SecondCommand.Heart_Data;
 		public override string Name
 		{
 			get
@@ -21,6 +19,9 @@ namespace Minecraft.ServerHall.Cmd.Heart
 				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
 			}
 		}
+
+		private MainCommand defMainCommand = MainCommand.Heart;
+		private SecondCommand defSecondCommand = SecondCommand.Heart_Data;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			session.Send(defMainCommand, defSecondCommand, new MsgResp(MsgLevelEnum.Info, "心跳包"));
