@@ -83,11 +83,5 @@ namespace Minecraft.ServerHall
 		{
 			this.Send(MainCommand.Error, SecondCommand.Error_UnknowRequest, new MsgResp(MsgLevelEnum.Error, "Unknow request"));
 		}
-
-
-
-
-
-
 	}
 }

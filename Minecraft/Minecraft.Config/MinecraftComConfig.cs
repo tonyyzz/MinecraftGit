@@ -8,6 +8,9 @@ namespace Minecraft.Config
 {
 	public static class MinecraftComConfig
 	{
+		/// <summary>
+		/// 默认编码
+		/// </summary>
 		public static Encoding DefEncoding = Encoding.UTF8;
 		/// <summary>
 		/// 结束符
