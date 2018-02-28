@@ -27,8 +27,6 @@ namespace Minecraft.ServerHall.Cmd.Player
 		private SecondCommand defSecondCommand = SecondCommand.Player_Login;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
-			//Console.WriteLine($"IP:{session.RemoteEndPoint.Address.ToString()}; Body:{requestInfo.Body}");
-
 			var req = requestInfo.GetRequestObj<PlayerLoginReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{

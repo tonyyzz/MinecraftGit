@@ -61,7 +61,7 @@ namespace Minecraft.DALMongoDb
 		{
 			var flag = ObjectId.GenerateNewId();
 			//entity.GetType().GetProperty("Id").SetValue(entity, flag);
-			entity.GetType().GetProperty("Id").SetValue(entity, flag, null);
+			entity.GetType().GetProperty("Id").SetValue(entity, flag.ToString(), null);
 			//entity.State = "y";
 			entity.CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 			entity.UpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");

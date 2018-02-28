@@ -24,15 +24,15 @@ namespace Minecraft.ServerHall
 			}
 			catch (FormatException ex)
 			{
-				session.Logger.Fatal(ex);
+				session.Logger.Fatal(ex.Message);
 			}
 			catch (Newtonsoft.Json.JsonSerializationException ex)
 			{
-				session.Logger.Fatal(ex);
+				session.Logger.Fatal(ex.Message);
 			}
 			catch (Exception ex)
 			{
-				session.Logger.Fatal(ex);
+				session.Logger.Fatal(ex.Message);
 			}
 			return default(T);
 		}

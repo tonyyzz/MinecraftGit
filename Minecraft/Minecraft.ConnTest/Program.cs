@@ -23,23 +23,18 @@ namespace Minecraft.ConnTest
 			//进行连接
 			socketClient.Connect(point);
 
-			ThreadPool.QueueUserWorkItem(o =>
-			{
-				while (true)
-				{
-
-
-					var protocolStr2 = ProtocolHelper.GetProtocolStr(
-							MainCommand.Heart, SecondCommand.Heart_Data);
-					var buffter2 = Encoding.UTF8.GetBytes($"{protocolStr2} {""}##");
-					socketClient.Send(buffter2);
-					Thread.Sleep(5000);
-					//Thread.Sleep(1);
-
-				}
-
-			});
-
+			//ThreadPool.QueueUserWorkItem(o =>
+			//{
+			//	while (true)
+			//	{
+			//		var protocolStr2 = ProtocolHelper.GetProtocolStr(
+			//				MainCommand.Heart, SecondCommand.Heart_Data);
+			//		var buffter2 = Encoding.UTF8.GetBytes($"{protocolStr2} {""}##");
+			//		socketClient.Send(buffter2);
+			//		Thread.Sleep(5000);
+			//		//Thread.Sleep(1);
+			//	}
+			//});
 
 
 			//不停的接收服务器端发送的消息
@@ -52,17 +47,36 @@ namespace Minecraft.ConnTest
 
 
 
+			//var protocolStr = ProtocolHelper.GetProtocolStr(
+			//	MainCommand.Test, SecondCommand.Test_Test);
+			//TestReq req = new TestReq()
+			//{
+			//	PlayerId = 1
+			//};
+
 			var protocolStr = ProtocolHelper.GetProtocolStr(
-				MainCommand.Test, SecondCommand.Test_Test);
+				MainCommand.Player, SecondCommand.Player_BaseInsert);
 
-			TestReq req = new TestReq()
+			PlayerBaseInsertReq req = new PlayerBaseInsertReq
 			{
-				PlayerId = 1
+				PlayerId = 1,
+				Fight_Attack = 4,
+				Fight_AttackSpeed = 7,
+				Fight_Defense = 78,
+				Fight_TravelRate = 79,
+				Human_Clean = 5,
+				Human_GoToilet = 57,
+				Human_Hunger = 4,
+				Human_Life = 4,
+
 			};
-			string cont = "78";// req.JsonSerialize();
-			var sendContent = cont;// CustomEncrypt.Encrypt(cont);
 
 
+
+
+
+			string cont = req.JsonSerialize();
+			var sendContent = CustomEncrypt.Encrypt(cont);
 			var buffter = Encoding.UTF8.GetBytes($"{protocolStr} {sendContent}##");
 			socketClient.Send(buffter);
 
