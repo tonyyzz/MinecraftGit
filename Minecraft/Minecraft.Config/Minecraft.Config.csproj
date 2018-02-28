@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonConfig.cs" />
+    <Compile Include="MinecraftComConfig.cs" />
     <Compile Include="ConfigurationConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProtocolEnum.cs" />

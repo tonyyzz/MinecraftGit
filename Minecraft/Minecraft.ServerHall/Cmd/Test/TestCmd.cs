@@ -31,6 +31,7 @@ namespace Minecraft.ServerHall.Cmd.Test
 			if (req == null || req.PlayerId <= 0)
 			{
 				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
+				//session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new { gh=8});
 				return;
 			}
 

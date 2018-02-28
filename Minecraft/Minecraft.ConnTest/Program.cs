@@ -23,16 +23,22 @@ namespace Minecraft.ConnTest
 			//进行连接
 			socketClient.Connect(point);
 
-			//ThreadPool.QueueUserWorkItem(o =>
-			//{
-			//    while (true)
-			//    {
-			//        Console.WriteLine("是否链接：" + socketClient.Connected);
-			//        Thread.Sleep(1000);
+			ThreadPool.QueueUserWorkItem(o =>
+			{
+				while (true)
+				{
 
-			//    }
 
-			//});
+					var protocolStr2 = ProtocolHelper.GetProtocolStr(
+							MainCommand.Heart, SecondCommand.Heart_Data);
+					var buffter2 = Encoding.UTF8.GetBytes($"{protocolStr2} {""}##");
+					socketClient.Send(buffter2);
+					Thread.Sleep(5000);
+					//Thread.Sleep(1);
+
+				}
+
+			});
 
 
 
@@ -53,19 +59,12 @@ namespace Minecraft.ConnTest
 			{
 				PlayerId = 1
 			};
-			string cont = "56"; //req.JsonSerialize();
-			var sendContent = cont; //CustomEncrypt.Encrypt(cont);
+			string cont = "78";// req.JsonSerialize();
+			var sendContent = cont;// CustomEncrypt.Encrypt(cont);
 
 
 			var buffter = Encoding.UTF8.GetBytes($"{protocolStr} {sendContent}##");
-			var temp = socketClient.Send(buffter);
-
-
-			//var buffter = Encoding.UTF8.GetBytes($"01 构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台机构建5000个连接的请求测试(测试电脑是一台笔记本),请求消息大小为1K;构建一个简单的TCP服务,然后在另一台\r\n");
-			//CountSpliterReceiveFilter - 固定数量分隔符协议
-			//var buffter = Encoding.UTF8.GetBytes($" ECHO#part1#part2#part3#part4#part5#part6#{i}#");
-			//var buffter = Encoding.ASCII.GetBytes($"KILL BILL");
-
+			socketClient.Send(buffter);
 
 			Console.WriteLine("消息发送成功");
 			Console.ReadKey();
@@ -88,9 +87,36 @@ namespace Minecraft.ConnTest
 				var str = Encoding.UTF8.GetString(buffer, 0, effective);
 				//Console.WriteLine(str);
 
-				var deStr = CustomEncrypt.Decrypt(str);
+				try
+				{
 
-				Console.WriteLine(deStr);
+					//Console.WriteLine("元数据：" + str);
+
+					//黏包情况处理（用结束符分割处理）
+					var strs = str.Split(new String[] { MinecraftComConfig.EndingSymbol }, StringSplitOptions.RemoveEmptyEntries);
+					if (strs.Count() >= 2)
+					{
+						Console.WriteLine("------【出现黏包情况】");
+					}
+					foreach (var item in strs)
+					{
+						//Console.WriteLine("拆分后的数据包：" + item);
+						var deStr = CustomEncrypt.Decrypt(item, "client");
+						//Console.WriteLine("解析后的数据：" + deStr);
+
+						var deStrs = deStr.Split(new char[] { MinecraftComConfig.SeparativeSymbol });
+						var protocolStr = deStrs[0];
+						var dataStr = string.Join(MinecraftComConfig.SeparativeSymbol.ToString(), deStrs.Skip(1).ToArray());
+						Console.WriteLine($"协议：{protocolStr}，数据：{dataStr}");
+					}
+					Console.WriteLine("---------------------------");
+				}
+				catch (Exception)
+				{
+
+					Console.WriteLine("接收异常");
+				}
+
 			}
 		}
 	}

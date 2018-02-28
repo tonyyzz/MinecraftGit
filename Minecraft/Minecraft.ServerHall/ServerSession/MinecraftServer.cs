@@ -6,6 +6,7 @@ using System.Text;
 using SuperSocket.SocketBase.Config;
 using SuperSocket.SocketBase.Protocol;
 using SuperSocket.Facility.Protocol;
+using Minecraft.Config;
 
 namespace Minecraft.ServerHall
 {
@@ -27,7 +28,7 @@ namespace Minecraft.ServerHall
 
 		//结束符协议
 		public MinecraftServer()
-		: base(new TerminatorReceiveFilterFactory("##"))
+		: base(new TerminatorReceiveFilterFactory(MinecraftComConfig.EndingSymbol))
 		{
 
 		}

@@ -62,6 +62,18 @@ namespace Minecraft.ServerHall
 			//Console.WriteLine($"远程客户端{this.RemoteEndPoint.Address.ToString()}:{this.RemoteEndPoint.Port}断开连接");
 		}
 
+		//服务器发送给客户端的消息的后续处理方法
+		protected override string ProcessSendingMessage(string rawMessage)
+		{
+			//加密处理
+
+			var str = CustomEncrypt.Encrypt(rawMessage);
+			//var str = rawMessage;
+
+			//加上 数据结尾分隔符，用作黏包情况处理
+			return str + MinecraftComConfig.EndingSymbol;
+		}
+
 		protected override void HandleException(Exception e)
 		{
 			this.Send(MainCommand.Error, SecondCommand.Error_ApplicationError, new MsgResp(MsgLevelEnum.Error, "Application error: " + e.Message));
@@ -76,11 +88,6 @@ namespace Minecraft.ServerHall
 
 
 
-		//服务器发送给客户端的消息的后续处理方法
-		protected override string ProcessSendingMessage(string rawMessage)
-		{
-			//加密处理
-			return CustomEncrypt.Encrypt(rawMessage);
-		}
+
 	}
 }

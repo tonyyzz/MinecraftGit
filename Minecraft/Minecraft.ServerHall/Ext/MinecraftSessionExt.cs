@@ -14,10 +14,10 @@ namespace Minecraft.ServerHall
 		public static void Send<T>(this MinecraftSession session,
 			MainCommand mainCommand,
 			SecondCommand secondCommand,
-			T obj) where T : class, new()
+			T obj) where T : class
 		{
 			string protocolStr = ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
-			session.Send(protocolStr + " " + obj.JsonSerialize());
+			session.Send(protocolStr + MinecraftComConfig.SeparativeSymbol.ToString() + obj.JsonSerialize());
 
 			ThreadPool.QueueUserWorkItem(o =>
 			{

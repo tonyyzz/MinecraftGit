@@ -20,7 +20,7 @@ namespace Minecraft.ServerHall
 		{
 			try
 			{
-				return CustomEncrypt.Decrypt(requestInfo.Body).JsonDeserialize<T>();
+				return  CustomEncrypt.Decrypt(requestInfo.Body,"server").JsonDeserialize<T>();
 			}
 			catch (FormatException ex)
 			{
