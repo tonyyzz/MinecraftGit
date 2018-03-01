@@ -16,6 +16,7 @@ namespace Minecraft.BLL
 		/// </summary>
 		public static void StartDBServerCheck(out bool canStartAll)
 		{
+			Console.WriteLine("正在检查数据库连接状态...");
 			canStartAll = true;
 			//启动mysql
 			var canStartMysql = StartDALMySql.StartMySqlCheck();
