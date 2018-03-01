@@ -17,5 +17,9 @@ namespace Minecraft.Config
 		/// 玩家信息
 		/// </summary>
 		public static string PlayerInfo = "PlayerInfo";
+		/// <summary>
+		/// 玩家基地
+		/// </summary>
+		public static string Playerbase = "Playerbase";
 	}
 }

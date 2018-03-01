@@ -33,8 +33,7 @@ namespace Minecraft.ServerHall.Cmd.Player
 				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
 				return;
 			}
-
-			var player = PlayerBLL.GetSingleOrDefault(req.PlayerId);
+			var player = PlayerBLL.GetSingleOrDefault(req.PlayerId, out bool fromCache);
 			if (player == null)
 			{
 				session.Send(MainCommand.Error, SecondCommand.Error_NotExist, new MsgResp(MsgLevelEnum.Error, "信息不存在"));

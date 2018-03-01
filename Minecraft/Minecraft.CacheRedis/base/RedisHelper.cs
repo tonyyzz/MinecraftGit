@@ -1207,6 +1207,10 @@ namespace Minecraft.CacheRedis
 			//	var data = memoryStream.ToArray();
 			//	return data;
 			//}
+			if (obj == null)
+			{
+				return null;
+			}
 			return obj.JsonSerialize();
 		}
 
@@ -1237,7 +1241,10 @@ namespace Minecraft.CacheRedis
 		/// <returns></returns>
 		private static T Deserialize<T>(string data)
 		{
-
+			if (data.IsNullOrWhiteSpace())
+			{
+				return default(T);
+			}
 			return data.JsonDeserialize<T>();
 		}
 

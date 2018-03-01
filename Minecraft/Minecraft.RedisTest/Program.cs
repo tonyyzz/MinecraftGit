@@ -19,7 +19,7 @@ namespace Minecraft.RedisTest
 			{
 				PlayerId = 1,
 			};
-			//redisHelper.StringSet(MinecraftRedisKeyConfig.Test + req.PlayerId, req, MinecraftCommonConfig.DefRedisExpiry);
+			redisHelper.StringSet(MinecraftRedisKeyConfig.Test + req.PlayerId, null, MinecraftCommonConfig.DefRedisExpiry);
 
 			var theReq = redisHelper.StringGet<TestReq>(MinecraftRedisKeyConfig.Test + req.PlayerId);
 

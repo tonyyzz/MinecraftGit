@@ -9,19 +9,17 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Test
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            PlayerLoginReq playerLoginRequest = new PlayerLoginReq()
-            {
-                PlayerId = 1
-            };
-            var player = PlayerBLL.GetSingleOrDefault(playerLoginRequest.PlayerId);
-            Console.WriteLine(player.JsonSerialize());
-            Console.ReadKey();
-        }
-
-        
-    }
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			PlayerLoginReq playerLoginRequest = new PlayerLoginReq()
+			{
+				PlayerId = 1
+			};
+			var player = PlayerBLL.GetSingleOrDefault(playerLoginRequest.PlayerId, out bool fromCache);
+			Console.WriteLine(player.JsonSerialize());
+			Console.ReadKey();
+		}
+	}
 }
