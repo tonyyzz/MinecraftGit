@@ -26,7 +26,7 @@ namespace Minecraft.ConsoleCloseTest
 				Console.WriteLine("2");
 				System.Threading.Thread.Sleep(2000);
 				Console.WriteLine("Over, 2秒后退出"); 
-				System.Threading.Thread.Sleep(2000); //test
+				System.Threading.Thread.Sleep(2000);
 				#endregion
 			}
 			else
