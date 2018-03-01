@@ -13,10 +13,10 @@ namespace Minecraft.Config
 		public static string Minecraft_MySqlDBConnStr = GetConnStr("Minecraft_MySql_Debug");
 		public static string Minecraft_MongoDBConnStr = GetConnStr("Minecraft_MongoDB_Debug");
 		public static string Minecraft_RedisConnStr = GetConnStr("Minecraft_Redis_Debug");
-#elif YZZTEST //局域网测试
-		public static string Minecraft_MySqlDBConnStr = GetConnStr("Minecraft_MySql_YzzTest");
-		public static string Minecraft_MongoDBConnStr = GetConnStr("Minecraft_MongoDB_YzzTest");
-		public static string Minecraft_RedisConnStr = GetConnStr("Minecraft_Redis_YzzTest");
+#elif MINECRAFT_LAN //局域网测试
+		public static string Minecraft_MySqlDBConnStr = GetConnStr("Minecraft_MySql_Minecraft_LAN");
+		public static string Minecraft_MongoDBConnStr = GetConnStr("Minecraft_MongoDB_Minecraft_LAN");
+		public static string Minecraft_RedisConnStr = GetConnStr("Minecraft_Redis_Minecraft_LAN");
 #else //线上测试
 		public static string Minecraft_MySqlDBConnStr = GetConnStr("Minecraft_MySql_Release");
 		public static string Minecraft_MongoDBConnStr = GetConnStr("Minecraft_MongoDB_Release");
