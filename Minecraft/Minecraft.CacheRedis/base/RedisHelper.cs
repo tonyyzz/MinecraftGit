@@ -73,9 +73,9 @@ namespace Minecraft.CacheRedis
 
 		static RedisHelper()
 		{
-			ConnectionString = MinecraftDBConfig.Minecraft_RedisConnStr;
+			ConnectionString = MinecraftConfiguration.Minecraft_RedisConnStr;
 			_connMultiplexer = ConnectionMultiplexer.Connect(ConnectionString);
-			DefaultKey = MinecraftDBConfig.Minecraft_RedisDefaultKey;
+			DefaultKey = MinecraftConfiguration.Minecraft_RedisDefaultKey;
 			AddRegisterEvent();
 		}
 
@@ -1124,6 +1124,7 @@ namespace Minecraft.CacheRedis
 		/// <param name="e"></param>
 		private static void ConnMultiplexer_ConfigurationChangedBroadcast(object sender, EndPointEventArgs e)
 		{
+			Console.WriteLine("【重新配置广播时（通常意味着主从同步更改）】");
 			Console.WriteLine($"{nameof(ConnMultiplexer_ConfigurationChangedBroadcast)}: {e.EndPoint}");
 		}
 
@@ -1134,6 +1135,7 @@ namespace Minecraft.CacheRedis
 		/// <param name="e"></param>
 		private static void ConnMultiplexer_InternalError(object sender, InternalErrorEventArgs e)
 		{
+			Console.WriteLine("【发生内部错误时（主要用于调试）】");
 			Console.WriteLine($"{nameof(ConnMultiplexer_InternalError)}: {e.Exception}");
 		}
 
@@ -1144,6 +1146,7 @@ namespace Minecraft.CacheRedis
 		/// <param name="e"></param>
 		private static void ConnMultiplexer_HashSlotMoved(object sender, HashSlotMovedEventArgs e)
 		{
+			Console.WriteLine("【更改集群时】");
 			Console.WriteLine(
 				$"{nameof(ConnMultiplexer_HashSlotMoved)}: {nameof(e.OldEndPoint)}-{e.OldEndPoint} To {nameof(e.NewEndPoint)}-{e.NewEndPoint}, ");
 		}
@@ -1155,7 +1158,10 @@ namespace Minecraft.CacheRedis
 		/// <param name="e"></param>
 		private static void ConnMultiplexer_ConfigurationChanged(object sender, EndPointEventArgs e)
 		{
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("【配置更改】");
 			Console.WriteLine($"{nameof(ConnMultiplexer_ConfigurationChanged)}: {e.EndPoint}");
+			Console.ResetColor();
 		}
 
 		/// <summary>
@@ -1165,6 +1171,7 @@ namespace Minecraft.CacheRedis
 		/// <param name="e"></param>
 		private static void ConnMultiplexer_ErrorMessage(object sender, RedisErrorEventArgs e)
 		{
+			Console.WriteLine("【发生错误时】");
 			Console.WriteLine($"{nameof(ConnMultiplexer_ErrorMessage)}: {e.Message}");
 		}
 
@@ -1175,7 +1182,10 @@ namespace Minecraft.CacheRedis
 		/// <param name="e"></param>
 		private static void ConnMultiplexer_ConnectionFailed(object sender, ConnectionFailedEventArgs e)
 		{
-			Console.WriteLine($"{nameof(ConnMultiplexer_ConnectionFailed)}: {e.Exception}");
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine("【已经与redis服务器断开连接，可能redis服务器已经宕机】");
+			Console.WriteLine($"{nameof(ConnMultiplexer_ConnectionFailed)}: {e.Exception.Message}");
+			Console.ResetColor();
 		}
 
 		/// <summary>
@@ -1185,11 +1195,13 @@ namespace Minecraft.CacheRedis
 		/// <param name="e"></param>
 		private static void ConnMultiplexer_ConnectionRestored(object sender, ConnectionFailedEventArgs e)
 		{
+			Console.WriteLine("【建立物理连接时】");
 			Console.WriteLine($"{nameof(ConnMultiplexer_ConnectionRestored)}: {e.Exception}");
 		}
 
 		#endregion 注册事件
 
+		#region 序列化与反序列化
 		/// <summary>
 		/// 序列化
 		/// </summary>
@@ -1242,7 +1254,8 @@ namespace Minecraft.CacheRedis
 				return default(T);
 			}
 			return data.JsonDeserialize<T>();
-		}
+		} 
+		#endregion
 
 		#endregion private method
 	}

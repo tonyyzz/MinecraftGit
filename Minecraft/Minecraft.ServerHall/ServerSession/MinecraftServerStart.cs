@@ -3,6 +3,7 @@ using Minecraft.Config;
 using SuperSocket.SocketBase.Config;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -10,13 +11,9 @@ namespace Minecraft.ServerHall
 {
 	public class MinecraftServerStart
 	{
-		public void Do()
+		public static void Do()
 		{
 			var appServer = new MinecraftServer();
-			//Console.WriteLine($"BodyName:{Encoding.UTF8.BodyName}");
-			//Console.WriteLine($"EncodingName:{Encoding.UTF8.EncodingName}");
-			//Console.WriteLine($"HeaderName:{Encoding.UTF8.HeaderName}");
-			//Console.WriteLine($"WebName:{Encoding.UTF8.WebName}");
 			ServerConfig serverConfig = new ServerConfig
 			{
 				TextEncoding = MinecraftCommonConfig.DefEncoding.WebName,
@@ -26,6 +23,9 @@ namespace Minecraft.ServerHall
 			};
 			//Setup the appServer
 			//if (!appServer.Setup(2012)) //Setup with listening port
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
+
 			Console.WriteLine("服务器启动中...");
 			if (!appServer.Setup(serverConfig)) //Setup with listening port
 			{
@@ -34,8 +34,6 @@ namespace Minecraft.ServerHall
 				return;
 			}
 
-			Console.WriteLine();
-
 			//Try to start the appServer
 			if (!appServer.Start())
 			{
@@ -43,6 +41,8 @@ namespace Minecraft.ServerHall
 				Console.ReadKey();
 				return;
 			}
+			stopwatch.Stop();
+			Console.WriteLine($"服务器启动所花时间为：{stopwatch.Elapsed.TotalSeconds.ToString("0.00")} s");
 
 			Console.WriteLine("The server started successfully, press key 'q' to stop it!");
 

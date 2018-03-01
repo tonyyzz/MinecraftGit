@@ -1,9 +1,11 @@
 ﻿using Minecraft.BLL;
 using Minecraft.BLL.mysql;
+using Minecraft.Config;
 using Minecraft.Model.ReqResp.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,8 +23,10 @@ namespace Minecraft.Test
 			//Console.WriteLine(player.JsonSerialize());
 			//Console.ReadKey();
 
-			Object g = null;
-			var ff= g.JsonSerialize();
+			Console.WriteLine(MinecraftConfiguration.Minecraft_MongoDBConnStr);
+			Console.WriteLine(MinecraftConfiguration.Minecraft_MySqlDBConnStr);
+			Console.WriteLine(MinecraftConfiguration.Minecraft_RedisConnStr);
+			Console.ReadKey();
 		}
 	}
 }

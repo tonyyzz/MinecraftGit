@@ -30,6 +30,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'YzzTest|AnyCPU'">
+    <OutputPath>bin\YzzTest\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="mongodb\BaseEntity.cs" />
+    <Compile Include="mongodb\MongoDbTestModel.cs" />
     <Compile Include="mongodb\PlayerbaseModel.cs" />
     <Compile Include="mysql\PlayerModel.cs" />
     <Compile Include="ReqResp\MsgResp.cs" />

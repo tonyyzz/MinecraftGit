@@ -14,8 +14,8 @@ namespace Minecraft.DALMongoDb
 
 	public class MgDb
 	{
-		private static readonly string connStr = MinecraftDBConfig.Minecraft_MongoDBConnStr;
-		private static readonly string dbName = MinecraftDBConfig.Minecraft_MongoDBName;
+		private static readonly string connStr = MinecraftConfiguration.Minecraft_MongoDBConnStr;
+		private static readonly string dbName = MinecraftConfiguration.Minecraft_MongoDBName;
 
 
 		private static IMongoDatabase db = null;

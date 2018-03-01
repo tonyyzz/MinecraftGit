@@ -31,6 +31,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'YzzTest|AnyCPU'">
+    <OutputPath>bin\YzzTest\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,6 +66,10 @@
     <ProjectReference Include="..\Minecraft.Common\Minecraft.Common.csproj">
       <Project>{464cd133-6ff3-408e-9d53-934e14776072}</Project>
       <Name>Minecraft.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Minecraft.Config\Minecraft.Config.csproj">
+      <Project>{ec058aee-1e8d-4a14-9b91-50167a01153b}</Project>
+      <Name>Minecraft.Config</Name>
     </ProjectReference>
     <ProjectReference Include="..\Minecraft.Model\Minecraft.Model.csproj">
       <Project>{d89518f5-88e7-4b0e-ab9d-86589f429176}</Project>
