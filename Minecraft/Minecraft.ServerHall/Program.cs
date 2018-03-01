@@ -20,7 +20,7 @@ namespace Minecraft.ServerHall
 			{
 				Console.WriteLine("数据库连接测试：所有数据库启动连接成功！");
 			}
-			else 
+			else
 			{
 				Console.WriteLine($"数据库连接检查所花时间为：{stopwatch.Elapsed.TotalSeconds.ToString("0.00")} s");
 				Console.WriteLine("按任意键退出");
