@@ -1207,10 +1207,6 @@ namespace Minecraft.CacheRedis
 			//	var data = memoryStream.ToArray();
 			//	return data;
 			//}
-			if (obj == null)
-			{
-				return null;
-			}
 			return obj.JsonSerialize();
 		}
 

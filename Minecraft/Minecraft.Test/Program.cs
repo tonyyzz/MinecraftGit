@@ -13,13 +13,16 @@ namespace Minecraft.Test
 	{
 		static void Main(string[] args)
 		{
-			PlayerLoginReq playerLoginRequest = new PlayerLoginReq()
-			{
-				PlayerId = 1
-			};
-			var player = PlayerBLL.GetSingleOrDefault(playerLoginRequest.PlayerId, out bool fromCache);
-			Console.WriteLine(player.JsonSerialize());
-			Console.ReadKey();
+			//PlayerLoginReq playerLoginRequest = new PlayerLoginReq()
+			//{
+			//	PlayerId = 1
+			//};
+			//var player = PlayerBLL.GetSingleOrDefault(playerLoginRequest.PlayerId, out bool fromCache);
+			//Console.WriteLine(player.JsonSerialize());
+			//Console.ReadKey();
+
+			Object g = null;
+			var ff= g.JsonSerialize();
 		}
 	}
 }
