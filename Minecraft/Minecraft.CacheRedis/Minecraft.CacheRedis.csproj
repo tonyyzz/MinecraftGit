@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StackExchange.Redis.1.2.6\lib\net45\StackExchange.Redis.dll</HintPath>
     </Reference>
@@ -50,6 +53,14 @@
     <Compile Include="base\RedisHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Minecraft.Common\Minecraft.Common.csproj">
+      <Project>{464cd133-6ff3-408e-9d53-934e14776072}</Project>
+      <Name>Minecraft.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Minecraft.Config\Minecraft.Config.csproj">
+      <Project>{ec058aee-1e8d-4a14-9b91-50167a01153b}</Project>
+      <Name>Minecraft.Config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Minecraft.DALMongoDb\Minecraft.DALMongoDb.csproj">
       <Project>{f22fc0e3-8064-427b-8437-38cc996de567}</Project>
       <Name>Minecraft.DALMongoDb</Name>

@@ -17,7 +17,7 @@ namespace Minecraft.ServerHall
 			T obj) where T : class
 		{
 			string protocolStr = ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
-			session.Send(protocolStr + MinecraftComConfig.SeparativeSymbol.ToString() + obj.JsonSerialize());
+			session.Send(protocolStr + MinecraftCommonConfig.SeparativeSymbol.ToString() + obj.JsonSerialize());
 
 			ThreadPool.QueueUserWorkItem(o =>
 			{

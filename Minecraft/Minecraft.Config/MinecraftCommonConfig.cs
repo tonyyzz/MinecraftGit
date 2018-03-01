@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Config
 {
-	public static class MinecraftComConfig
+	public static class MinecraftCommonConfig
 	{
 		/// <summary>
 		/// 默认编码
@@ -21,6 +21,11 @@ namespace Minecraft.Config
 		/// 协议与数据包的分隔符
 		/// </summary>
 		public static char SeparativeSymbol = ' ';
+
+		/// <summary>
+		/// 默认redis缓存过期时间
+		/// </summary>
+		public static TimeSpan DefRedisExpiry = new TimeSpan(1, 0, 0); 
 
 
 	}

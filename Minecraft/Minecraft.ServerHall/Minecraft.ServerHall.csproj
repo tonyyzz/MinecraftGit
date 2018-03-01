@@ -96,7 +96,7 @@
       <Name>Minecraft.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Minecraft.Config\Minecraft.Config.csproj">
-      <Project>{80ef137f-c350-4a24-b749-15e84375764e}</Project>
+      <Project>{ec058aee-1e8d-4a14-9b91-50167a01153b}</Project>
       <Name>Minecraft.Config</Name>
     </ProjectReference>
     <ProjectReference Include="..\Minecraft.Model\Minecraft.Model.csproj">

@@ -19,7 +19,7 @@ namespace Minecraft.ServerHall
 			//Console.WriteLine($"WebName:{Encoding.UTF8.WebName}");
 			ServerConfig serverConfig = new ServerConfig
 			{
-				TextEncoding = MinecraftComConfig.DefEncoding.WebName,
+				TextEncoding = MinecraftCommonConfig.DefEncoding.WebName,
 				Port = 2017,
 				DisableSessionSnapshot = true,
 				MaxConnectionNumber = 60000

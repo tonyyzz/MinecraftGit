@@ -71,7 +71,7 @@ namespace Minecraft.ServerHall
 			//var str = rawMessage;
 
 			//加上 数据结尾分隔符，用作黏包情况处理
-			return str + MinecraftComConfig.EndingSymbol;
+			return str + MinecraftCommonConfig.EndingSymbol;
 		}
 
 		protected override void HandleException(Exception e)
