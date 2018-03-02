@@ -23,10 +23,13 @@ namespace Minecraft.Test
 			//Console.WriteLine(player.JsonSerialize());
 			//Console.ReadKey();
 
-			Console.WriteLine(MinecraftConfiguration.Minecraft_MongoDBConnStr);
-			Console.WriteLine(MinecraftConfiguration.Minecraft_MySqlDBConnStr);
-			Console.WriteLine(MinecraftConfiguration.Minecraft_RedisConnStr);
-			Console.ReadKey();
+			//Console.WriteLine(MinecraftConfiguration.Minecraft_MongoDBConnStr);
+			//Console.WriteLine(MinecraftConfiguration.Minecraft_MySqlDBConnStr);
+			//Console.WriteLine(MinecraftConfiguration.Minecraft_RedisConnStr);
+			//Console.ReadKey();
+
+			//Assembly.GetAssembly()
+
 		}
 	}
 }
