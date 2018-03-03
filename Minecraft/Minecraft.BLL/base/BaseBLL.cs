@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Minecraft.BLL
 {
-	public class BaseBLL
+	public partial class BaseBLL
 	{
 		/// <summary>
 		/// 初始化指定表

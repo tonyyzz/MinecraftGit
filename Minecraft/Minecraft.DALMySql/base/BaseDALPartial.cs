@@ -5,12 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Minecraft.Model;
 
 namespace Minecraft.DALMySql
 {
 	public partial class BaseDAL
 	{
-		//动态建立数据表
+
+		/// <summary>
+		/// 判断表是否存在
+		/// </summary>
+		/// <param name="tableName"></param>
+		/// <returns></returns>
+		private static bool JudgeTableExists(string tableName)
+		{
+			string sql = $"show tables like '{tableName}'; ";
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				return Conn.Execute(sql) > 0;
+			}
+		}
+
+
+		/// <summary>
+		/// 动态建立数据表
+		/// </summary>
+		/// <param name="playerId"></param>
+		/// <returns></returns>
 		private static string GetCreateGoodsTableSql(int playerId)
 		{
 
@@ -48,37 +70,64 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 		}
 
 		/// <summary>
-		/// 判断表是否存在
-		/// </summary>
-		/// <param name="tableName"></param>
-		/// <returns></returns>
-		private static bool JudgeTableExists(string tableName)
-		{
-			string sql = $"show tables like '{tableName}'; ";
-			using (var Conn = GetConn())
-			{
-				Conn.Open();
-				return Conn.Execute(sql) > 0;
-			}
-		}
-
-		/// <summary>
 		/// 动态增加goods表，如果存在，则不做处理
 		/// </summary>
 		/// <param name="playerId"></param>
+		/// <param name="tableNameList">goods表名称内存缓存</param>
 		/// <returns></returns>
-		public static bool AddGoodsTable(int playerId)
+		public static bool AddGoodsTable(int playerId, List<string> tableNameList)
 		{
-			var isGoodsTableExists = JudgeTableExists(GetGoodsTableName(playerId));
+			string tableName = GetGoodsTableName(playerId);
+			if (tableNameList.Any(m => m == tableName))
+			{
+				return true;
+			}
+			var isGoodsTableExists = JudgeTableExists(tableName);
 			if (isGoodsTableExists)
 			{
+				tableNameList.Add(tableName);
 				return true;
 			}
 			string sql = GetCreateGoodsTableSql(playerId);
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				return Conn.Execute(sql) > 0;
+				bool exec = Conn.Execute(sql) > 0;
+				if (exec)
+				{
+					tableNameList.Add(tableName);
+				}
+				return exec;
+			}
+		}
+
+
+		/// <summary>
+		/// goods信息插入
+		/// </summary>
+		/// <param name="model"></param>
+		/// <returns></returns>
+		public static bool InsertSuccessGoodsModel(GoodsModel model, List<string> goodsTableNameList)
+		{
+			if (AddGoodsTable(model.PlayerId, goodsTableNameList))
+			{
+				using (var Conn = GetConn())
+				{
+					Conn.Open();
+					var propKeys = model.GetAllPropKeys();
+					var names = string.Join(",", propKeys.ToArray());
+					var values = string.Join(",", propKeys.ToList().ConvertAll(m => "@" + m).ToArray());
+					string sql = string.Format(@"insert into {0}({1}) values({2});",
+						//model.GetType().Name.Substring(0, model.GetType().Name.LastIndexOf("Model")).ToLower()+"_"+,
+						GetGoodsTableName(model.PlayerId),
+						names,
+						values);
+					return Conn.Execute(sql, model) > 0;
+				}
+			}
+			else
+			{
+				return false;
 			}
 		}
 	}
