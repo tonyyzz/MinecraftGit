@@ -34,19 +34,19 @@ namespace Minecraft.ServerHall.Cmd.Player
 				return;
 			}
 
-			PlayerbaseModel playerbaseModel = new PlayerbaseModel
-			{
-				PlayerId = req.PlayerId,
-				Fight_Attack = 1,
-				Fight_AttackSpeed = 2,
-				Fight_Defense = 3,
-				Fight_TravelRate = 4,
-				Human_Clean = 6,
-				Human_GoToilet = 7,
-				Human_Hunger = 9,
-				Human_Life = 78,
-			};
-			playerbaseModel = PlayerbaseBLL.Insert(playerbaseModel);
+			//PlayerbaseModel playerbaseModel = new PlayerbaseModel
+			//{
+			//	PlayerId = req.PlayerId,
+			//	Fight_Attack = 1,
+			//	Fight_AttackSpeed = 2,
+			//	Fight_Defense = 3,
+			//	Fight_TravelRate = 4,
+			//	Human_Clean = 6,
+			//	Human_GoToilet = 7,
+			//	Human_Hunger = 9,
+			//	Human_Life = 78,
+			//};
+			//playerbaseModel = PlayerbaseBLL.Insert(playerbaseModel);
 
 
 			PlayerBaseInsertResp resp = new PlayerBaseInsertResp

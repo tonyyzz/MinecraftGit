@@ -25,6 +25,7 @@ namespace Minecraft.Config
 
 		public static string Minecraft_MongoDBName = GetAppSettingStr("Minecraft_MongoDBName");
 		public static string Minecraft_RedisDefaultKey = GetAppSettingStr("Redis.DefaultKey");
+		public static string Minecraft_Mysql_GoodsTable_SubmeterLen = GetAppSettingStr("Minecraft_Mysql_GoodsTable_SubmeterLen");
 
 		/// <summary>
 		/// 获取 ConnectionString value

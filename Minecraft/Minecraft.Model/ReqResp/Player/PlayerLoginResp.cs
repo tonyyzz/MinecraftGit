@@ -16,24 +16,52 @@ namespace Minecraft.Model.ReqResp.Player
 		/// </summary>
 		public int PlayerId { get; set; }
 		/// <summary>
-		/// 密码
+		/// 名字，不允许重名
 		/// </summary>
-		public string Pwd { get; set; }
+		public string Name { get; set; }
 		/// <summary>
-		/// 昵称
+		/// 当前经验值
 		/// </summary>
-		public string MinkName { get; set; }
+		public int Exp { get; set; }
 		/// <summary>
-		/// 经验值
+		/// 体力值
 		/// </summary>
-		public int exp { get; set; }
+		public int PhysicalStrengthValue { get; set; }
 		/// <summary>
-		/// 竞技币
+		/// 金币
 		/// </summary>
-		public int CompetitiveCurrency { get; set; }
+		public int GoldCoin { get; set; }
 		/// <summary>
-		/// 钻石
+		/// 生命值
 		/// </summary>
-		public int diamond { get; set; }
+		public int Human_Life { get; set; }
+		/// <summary>
+		/// 清洁值
+		/// </summary>
+		public int Human_Clean { get; set; }
+		/// <summary>
+		/// 如厕值
+		/// </summary>
+		public int Human_GoToilet { get; set; }
+		/// <summary>
+		/// 饥饿值
+		/// </summary>
+		public int Human_Hunger { get; set; }
+		/// <summary>
+		/// 攻击力
+		/// </summary>
+		public int Fight_Attack { get; set; }
+		/// <summary>
+		/// 防御力
+		/// </summary>
+		public int Fight_Defense { get; set; }
+		/// <summary>
+		/// 移动速度
+		/// </summary>
+		public int Fight_TravelRate { get; set; }
+		/// <summary>
+		/// 攻击速度
+		/// </summary>
+		public int Fight_AttackSpeed { get; set; }
 	}
 }

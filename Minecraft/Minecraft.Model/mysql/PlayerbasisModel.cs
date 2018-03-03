@@ -2,21 +2,25 @@ using System;
 namespace Minecraft.Model
 {
 	/// <summary>
-	/// 玩家基地信息
+	/// 
 	/// </summary>
-	/// 由代码生成器生成，Created Time：2018-02-27 13:33:18
-	public partial class PlayerbaseModel : BaseEntity
+	/// 由代码生成器生成，Created Time：2018-03-03 17:28:38
+	public partial class PlayerbasisModel
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public PlayerbaseModel()
+		public PlayerbasisModel()
 		{
 			PlayerId = 0;
+			Name = "";
+			Exp = 0;
+			PhysicalStrengthValue = 0;
+			GoldCoin = 0;
 			Human_Life = 0;
-			Human_Hunger = 0;
 			Human_Clean = 0;
 			Human_GoToilet = 0;
+			Human_Hunger = 0;
 			Fight_Attack = 0;
 			Fight_Defense = 0;
 			Fight_TravelRate = 0;
@@ -27,13 +31,25 @@ namespace Minecraft.Model
 		/// </summary>
 		public int PlayerId { get; set; }
 		/// <summary>
+		/// 名字，不允许重名
+		/// </summary>
+		public string Name { get; set; }
+		/// <summary>
+		/// 当前经验值
+		/// </summary>
+		public int Exp { get; set; }
+		/// <summary>
+		/// 体力值
+		/// </summary>
+		public int PhysicalStrengthValue { get; set; }
+		/// <summary>
+		/// 金币
+		/// </summary>
+		public int GoldCoin { get; set; }
+		/// <summary>
 		/// 生命值
 		/// </summary>
 		public int Human_Life { get; set; }
-		/// <summary>
-		/// 饥饿值
-		/// </summary>
-		public int Human_Hunger { get; set; }
 		/// <summary>
 		/// 清洁值
 		/// </summary>
@@ -42,6 +58,10 @@ namespace Minecraft.Model
 		/// 如厕值
 		/// </summary>
 		public int Human_GoToilet { get; set; }
+		/// <summary>
+		/// 饥饿值
+		/// </summary>
+		public int Human_Hunger { get; set; }
 		/// <summary>
 		/// 攻击力
 		/// </summary>

@@ -89,6 +89,8 @@
     <Compile Include="Cmd\Player\PlyerLogin.cs" />
     <Compile Include="Cmd\Test\TestCmd.cs" />
     <Compile Include="Ext\StringRequestInfoExt.cs" />
+    <Compile Include="Memory\MemoryDataManager.cs" />
+    <Compile Include="Memory\MemorySystemManager.cs" />
     <Compile Include="Memory\Test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

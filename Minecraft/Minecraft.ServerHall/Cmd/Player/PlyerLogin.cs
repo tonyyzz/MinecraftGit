@@ -3,6 +3,7 @@ using Minecraft.BLL.mysql;
 using Minecraft.Config;
 using Minecraft.Model.ReqResp;
 using Minecraft.Model.ReqResp.Player;
+using Minecraft.ServerHall.Memory;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -33,7 +34,7 @@ namespace Minecraft.ServerHall.Cmd.Player
 				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
 				return;
 			}
-			var player = PlayerBLL.GetSingleOrDefault(req.PlayerId, out bool fromCache);
+			var player = PlayerbasisBLL.GetSingleOrDefault(req.PlayerId, out bool fromCache);
 			if (player == null)
 			{
 				session.Send(MainCommand.Error, SecondCommand.Error_NotExist, new MsgResp(MsgLevelEnum.Error, "信息不存在"));
@@ -45,15 +46,11 @@ namespace Minecraft.ServerHall.Cmd.Player
 			session.minecraftSessionInfo.LastLoginTime = DateTime.Now;
 			session.minecraftSessionInfo.player = player;
 
-			PlayerLoginResp resp = new PlayerLoginResp
-			{
-				PlayerId = player.PlayerId,
-				Pwd = player.Pwd,
-				exp = player.exp,
-				CompetitiveCurrency = player.CompetitiveCurrency,
-				diamond = player.diamond,
-				MinkName = player.MinkName,
-			};
+			MemoryDataManager.UpdatePlayerbasis(player);
+
+			//暂定
+			PlayerLoginResp resp = player.JsonSerialize().JsonDeserialize<PlayerLoginResp>();
+
 			session.Send(defMainCommand, defSecondCommand, resp);
 		}
 	}

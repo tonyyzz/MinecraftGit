@@ -8,15 +8,15 @@ using Minecraft.Model;
 
 namespace Minecraft.DALMySql
 {
-    public class PlayerDAL : BaseDAL
+    public class PlayerbasisDAL : BaseDAL
     {
-        public static PlayerModel GetSingleOrDefault(int playerId)
+        public static PlayerbasisModel GetSingleOrDefault(int playerId)
         {
             using (var Conn = GetConn())
             {
                 Conn.Open();
                 string sql = $"select * from player where PlayerId={playerId}";
-                return Conn.QueryFirstOrDefault<PlayerModel>(sql);
+                return Conn.QueryFirstOrDefault<PlayerbasisModel>(sql);
             }
         }
     }

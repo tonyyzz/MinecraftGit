@@ -10,7 +10,7 @@ using Minecraft.Config;
 
 namespace Minecraft.DALMySql
 {
-	public class BaseDAL
+	public partial class BaseDAL
 	{
 		private static string _connStr
 		{

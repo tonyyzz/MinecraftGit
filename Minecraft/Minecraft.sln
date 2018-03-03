@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft.Config", "Minecra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft.ConsoleCloseTest", "Minecraft.ConsoleCloseTest\Minecraft.ConsoleCloseTest.csproj", "{746DE0B3-3426-4AA7-BEC5-78AE5A1D17E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft.InitTest", "Minecraft.InitTest\Minecraft.InitTest.csproj", "{7D89D5EC-C1F7-4E69-9895-B9FF1E592ABE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,12 @@ Global
 		{746DE0B3-3426-4AA7-BEC5-78AE5A1D17E9}.Minecraft_LAN|Any CPU.Build.0 = Release|Any CPU
 		{746DE0B3-3426-4AA7-BEC5-78AE5A1D17E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{746DE0B3-3426-4AA7-BEC5-78AE5A1D17E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D89D5EC-C1F7-4E69-9895-B9FF1E592ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D89D5EC-C1F7-4E69-9895-B9FF1E592ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D89D5EC-C1F7-4E69-9895-B9FF1E592ABE}.Minecraft_LAN|Any CPU.ActiveCfg = Release|Any CPU
+		{7D89D5EC-C1F7-4E69-9895-B9FF1E592ABE}.Minecraft_LAN|Any CPU.Build.0 = Release|Any CPU
+		{7D89D5EC-C1F7-4E69-9895-B9FF1E592ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D89D5EC-C1F7-4E69-9895-B9FF1E592ABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +156,7 @@ Global
 		{BC6B9E05-84DA-464E-9BB4-16BEAB94AB31} = {696DA0EF-8845-4A4A-956E-D96DA7DB7159}
 		{EC058AEE-1E8D-4A14-9B91-50167A01153B} = {6D27CC8B-FB71-47E1-A583-86E8BC24242E}
 		{746DE0B3-3426-4AA7-BEC5-78AE5A1D17E9} = {696DA0EF-8845-4A4A-956E-D96DA7DB7159}
+		{7D89D5EC-C1F7-4E69-9895-B9FF1E592ABE} = {696DA0EF-8845-4A4A-956E-D96DA7DB7159}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C8DAD07-DF2D-4D74-82FF-6E9AAC89AC0B}

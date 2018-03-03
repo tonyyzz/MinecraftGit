@@ -18,15 +18,19 @@ namespace Minecraft.Config
 		public static string EndingSymbol = "##";
 
 		/// <summary>
-		/// 协议与数据包的分隔符
+		/// 协议与数据包的分隔符（与前端商定）
 		/// </summary>
 		public static char SeparativeSymbol = ' ';
 
 		/// <summary>
 		/// 默认redis缓存过期时间
 		/// </summary>
-		public static TimeSpan DefRedisExpiry = new TimeSpan(1, 0, 0); 
+		public static TimeSpan DefRedisExpiry = new TimeSpan(1, 0, 0);
 
+		/// <summary>
+		/// 数据表字段数据分割符
+		/// </summary>
+		public static string DbDataSeparator = ",";
 
 	}
 }

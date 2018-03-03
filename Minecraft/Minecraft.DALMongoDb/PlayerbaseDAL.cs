@@ -9,11 +9,11 @@ namespace Minecraft.DALMongoDb
 {
 	public class PlayerbaseDAL
 	{
-		private static MgHelper<PlayerbaseModel> mg = new MgHelper<PlayerbaseModel>();
+		//private static MgHelper<PlayerbasisModel> mg = new MgHelper<PlayerbasisModel>();
 
-		public static PlayerbaseModel Insert(PlayerbaseModel playerbaseModel)
-		{
-			return mg.Insert(playerbaseModel);
-		}
+		//public static PlayerbasisModel Insert(PlayerbasisModel playerbaseModel)
+		//{
+		//	return mg.Insert(playerbaseModel);
+		//}
 	}
 }

@@ -3,17 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.ServerHall
+namespace Minecraft.InitTest
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
-			#region 数据监测以及初始化
 			Stopwatch stopwatch = new Stopwatch();
 			stopwatch.Start();
 			StartBLL.StartDBServerCheck(out bool canStartAll);
@@ -30,13 +28,16 @@ namespace Minecraft.ServerHall
 				return;
 			}
 
+			Console.WriteLine();
 
+			//执行初始化方法
+			Init.Do();
 
+			Console.WriteLine();
 
-			#endregion
+			Console.WriteLine("按任意键退出程序");
+			Console.ReadKey();
 
-			//服务器最后启动
-			MinecraftServerStart.Do();
 		}
 	}
 }

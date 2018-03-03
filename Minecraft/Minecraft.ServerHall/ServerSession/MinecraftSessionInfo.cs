@@ -24,6 +24,6 @@ namespace Minecraft.ServerHall
 		/// <summary>
 		/// 玩家信息
 		/// </summary>
-		public PlayerModel player = null;
+		public PlayerbasisModel player = null;
 	}
 }

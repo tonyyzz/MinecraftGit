@@ -61,8 +61,8 @@
   <ItemGroup>
     <Compile Include="mongodb\BaseEntity.cs" />
     <Compile Include="mongodb\MongoDbTestModel.cs" />
-    <Compile Include="mongodb\PlayerbaseModel.cs" />
-    <Compile Include="mysql\PlayerModel.cs" />
+    <Compile Include="mysql\GoodsModel.cs" />
+    <Compile Include="mysql\PlayerbasisModel.cs" />
     <Compile Include="ReqResp\MsgResp.cs" />
     <Compile Include="ReqResp\Player\PlayerBaseInsertReq.cs" />
     <Compile Include="ReqResp\Player\PlayerBaseInsertResp.cs" />

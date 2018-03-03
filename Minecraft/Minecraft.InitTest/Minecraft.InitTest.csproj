@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B6D99A0E-5AEB-42C1-98B4-BE32BB16CAA8}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Minecraft.BLL</RootNamespace>
-    <AssemblyName>Minecraft.BLL</AssemblyName>
+    <ProjectGuid>{7D89D5EC-C1F7-4E69-9895-B9FF1E592ABE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Minecraft.InitTest</RootNamespace>
+    <AssemblyName>Minecraft.InitTest</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,30 +23,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'YzzTest|AnyCPU'">
-    <OutputPath>bin\YzzTest\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Minecraft_LAN|AnyCPU'">
-    <OutputPath>bin\Minecraft_LAN\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -59,28 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="base\BaseBLL.cs" />
-    <Compile Include="mongodb\PlayerbaseBLL.cs" />
-    <Compile Include="mysql\PlayerbasisBLL.cs" />
+    <Compile Include="Init.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartBLL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Minecraft.CacheRedis\Minecraft.CacheRedis.csproj">
-      <Project>{78c39217-0e3a-4e93-9f58-0108efe5639f}</Project>
-      <Name>Minecraft.CacheRedis</Name>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Minecraft.BLL\Minecraft.BLL.csproj">
+      <Project>{b6d99a0e-5aeb-42c1-98b4-be32bb16caa8}</Project>
+      <Name>Minecraft.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Minecraft.Config\Minecraft.Config.csproj">
       <Project>{ec058aee-1e8d-4a14-9b91-50167a01153b}</Project>
       <Name>Minecraft.Config</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Minecraft.DALMongoDb\Minecraft.DALMongoDb.csproj">
-      <Project>{f22fc0e3-8064-427b-8437-38cc996de567}</Project>
-      <Name>Minecraft.DALMongoDb</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Minecraft.DALMySql\Minecraft.DALMySql.csproj">
-      <Project>{d55cebf6-d7a9-4f05-9f3c-91c113f9f1e5}</Project>
-      <Name>Minecraft.DALMySql</Name>
     </ProjectReference>
     <ProjectReference Include="..\Minecraft.Model\Minecraft.Model.csproj">
       <Project>{d89518f5-88e7-4b0e-ab9d-86589f429176}</Project>

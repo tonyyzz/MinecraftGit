@@ -68,7 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="base\BaseDAL.cs" />
-    <Compile Include="PlayerDAL.cs" />
+    <Compile Include="base\BaseDALPartial.cs" />
+    <Compile Include="PlayerbasisDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartDALMySql.cs" />
   </ItemGroup>

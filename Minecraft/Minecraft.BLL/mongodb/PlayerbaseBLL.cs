@@ -12,11 +12,11 @@ namespace Minecraft.BLL.mongodb
 {
 	public class PlayerbaseBLL
 	{
-		private static RedisHelper redisHelper = new RedisHelper();
-		public static PlayerbaseModel Insert(PlayerbaseModel playerbaseModel)
-		{
-			redisHelper.StringSet(MinecraftRedisKeyConfig.Playerbase + playerbaseModel.PlayerId, playerbaseModel, MinecraftCommonConfig.DefRedisExpiry);
-			return PlayerbaseDAL.Insert(playerbaseModel);
-		}
+		//private static RedisHelper redisHelper = new RedisHelper();
+		//public static PlayerbasisModel Insert(PlayerbasisModel playerbaseModel)
+		//{
+		//	redisHelper.StringSet(MinecraftRedisKeyConfig.Playerbase + playerbaseModel.PlayerId, playerbaseModel, MinecraftCommonConfig.DefRedisExpiry);
+		//	return PlayerbaseDAL.Insert(playerbaseModel);
+		//}
 	}
 }
