@@ -4,6 +4,7 @@ using Minecraft.Config;
 using Minecraft.Model.ReqResp.Player;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,7 +16,9 @@ namespace Minecraft.Test
 	{
 		static void Main(string[] args)
 		{
-			var str = new MsgResp(MsgLevelEnum.Info, "信息").JsonSerialize();
+			var s = AppDomain.CurrentDomain;
+
+			var execName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
 		}
 		
 	}

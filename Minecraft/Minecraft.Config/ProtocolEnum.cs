@@ -8,10 +8,19 @@ namespace Minecraft.Config
 {
 	public static class ProtocolLen
 	{
+		/// <summary>
+		/// 主协议长度
+		/// </summary>
 		public const int Main = 3;
+		/// <summary>
+		/// 次协议长度
+		/// </summary>
 		public const int Second = 5;
 	}
 
+	/// <summary>
+	/// 主协议
+	/// </summary>
 	public enum MainCommand
 	{
 		/// <summary>
@@ -41,6 +50,9 @@ namespace Minecraft.Config
 		Backpack,
 	}
 
+	/// <summary>
+	/// 次协议
+	/// </summary>
 	public enum SecondCommand
 	{
 		/// <summary>
