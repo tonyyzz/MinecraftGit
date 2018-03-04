@@ -23,6 +23,8 @@ namespace Minecraft.Config
 		public static string Minecraft_RedisConnStr = GetConnStr("Minecraft_Redis_Release");
 #endif
 
+		public static string HeartDataReqSecretKey = GetAppSettingStr("HeartDataReqSecretKey");
+		public static string HeartDataReqTimeFrame = GetAppSettingStr("HeartDataReqTimeFrame");
 		public static string Minecraft_MongoDBName = GetAppSettingStr("Minecraft_MongoDBName");
 		public static string Minecraft_RedisDefaultKey = GetAppSettingStr("Redis.DefaultKey");
 		public static string Minecraft_Mysql_GoodsTable_SubmeterLen = GetAppSettingStr("Minecraft_Mysql_GoodsTable_SubmeterLen");

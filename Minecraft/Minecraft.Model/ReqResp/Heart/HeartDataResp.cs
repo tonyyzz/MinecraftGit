@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.ServerHall.Memory
+namespace Minecraft.Model.ReqResp.Heart
 {
-	public class Test
+	public class HeartDataResp
 	{
+		public DateTime timeNow { get; set; }
 	}
 }

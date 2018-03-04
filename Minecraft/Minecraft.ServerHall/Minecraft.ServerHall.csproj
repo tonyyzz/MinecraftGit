@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cmd\Backpack\BackpackGoodsInsert.cs" />
     <Compile Include="Cmd\Heart\HeartData.cs" />
     <Compile Include="Cmd\Player\PlayerBaseInsert.cs" />
     <Compile Include="Cmd\Player\PlyerLogin.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Ext\StringRequestInfoExt.cs" />
     <Compile Include="Memory\MemoryDataManager.cs" />
     <Compile Include="Memory\MemorySystemManager.cs" />
-    <Compile Include="Memory\Test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerSession\MinecraftServer.cs" />

@@ -28,7 +28,7 @@ namespace Minecraft.ConnTest
 				while (true)
 				{
 					var protocolStr2 = ProtocolHelper.GetProtocolStr(
-							MainCommand.Heart, SecondCommand.Heart_Data);
+							MainCommand.Heart, SecondCommand.Heart_HeartData);
 					var buffter2 = Encoding.UTF8.GetBytes($"{protocolStr2} {""}##");
 					socketClient.Send(buffter2);
 					Thread.Sleep(5000);
@@ -48,33 +48,12 @@ namespace Minecraft.ConnTest
 
 
 			var protocolStr = ProtocolHelper.GetProtocolStr(
-				MainCommand.Test, SecondCommand.Test_Test);
+				MainCommand.Test, SecondCommand.Test_TestCmd);
 			TestReq req = new TestReq()
 			{
 				PlayerId = 1
 			};
-
-			//var protocolStr = ProtocolHelper.GetProtocolStr(
-			//	MainCommand.Player, SecondCommand.Player_BaseInsert);
-
-			//PlayerBaseInsertReq req = new PlayerBaseInsertReq
-			//{
-			//	PlayerId = 1,
-			//	Fight_Attack = 4,
-			//	Fight_AttackSpeed = 7,
-			//	Fight_Defense = 78,
-			//	Fight_TravelRate = 79,
-			//	Human_Clean = 5,
-			//	Human_GoToilet = 57,
-			//	Human_Hunger = 4,
-			//	Human_Life = 4,
-
-			//};
-
-
-
-
-
+			
 			string cont = req.JsonSerialize();
 			var sendContent = CustomEncrypt.Encrypt(cont);
 			var buffter = Encoding.UTF8.GetBytes($"{protocolStr} {sendContent}##");

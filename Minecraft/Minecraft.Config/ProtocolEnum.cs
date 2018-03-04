@@ -19,6 +19,10 @@ namespace Minecraft.Config
 		/// </summary>
 		Test = 1,
 		/// <summary>
+		/// 心跳包
+		/// </summary>
+		Heart,
+		/// <summary>
 		/// 连接
 		/// </summary>
 		Conn,
@@ -30,10 +34,11 @@ namespace Minecraft.Config
 		/// 玩家
 		/// </summary>
 		Player,
+		
 		/// <summary>
-		/// 心跳包
+		/// 背包
 		/// </summary>
-		Heart,
+		Backpack,
 	}
 
 	public enum SecondCommand
@@ -41,7 +46,12 @@ namespace Minecraft.Config
 		/// <summary>
 		/// 测试
 		/// </summary>
-		Test_Test = 1001,
+		Test_TestCmd = 1001,
+
+		/// <summary>
+		/// 心跳包 数据
+		/// </summary>
+		Heart_HeartData,
 
 
 		/// <summary>
@@ -77,14 +87,16 @@ namespace Minecraft.Config
 		/// <summary>
 		/// 玩家登录
 		/// </summary>
-		Player_Login,
-		Player_BaseInsert,
-
-
+		Player_PlyerLogin,
+		/// <summary>
+		/// 玩家基础信息插入
+		/// </summary>
+		Player_PlayerBaseInsert,
+		
 
 		/// <summary>
-		/// 心跳包 数据
+		/// 背包物品插入
 		/// </summary>
-		Heart_Data,
+		Backpack_BackpackGoodsInsert,
 	}
 }

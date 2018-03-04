@@ -24,7 +24,7 @@ namespace Minecraft.ServerHall.Cmd.Player
 		}
 
 		private MainCommand defMainCommand = MainCommand.Player;
-		private SecondCommand defSecondCommand = SecondCommand.Player_BaseInsert;
+		private SecondCommand defSecondCommand = SecondCommand.Player_PlayerBaseInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			var req = requestInfo.GetRequestObj<PlayerBaseInsertReq>(session);
