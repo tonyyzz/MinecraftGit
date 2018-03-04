@@ -1,6 +1,7 @@
 ﻿using Minecraft.BLL;
 using Minecraft.BLL.mysql;
 using Minecraft.Config;
+using Minecraft.Model.ReqResp;
 using Minecraft.Model.ReqResp.Player;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,11 @@ namespace Minecraft.Test
 	{
 		static void Main(string[] args)
 		{
-			var s = AppDomain.CurrentDomain;
-
+			//获取执行文件的文件路径
 			var execName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
+
+			var type = typeof(MsgResp);
+			var name = nameof(MsgResp);
 		}
 		
 	}

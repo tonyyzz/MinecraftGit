@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.ConnTest.Send.Test
+namespace Minecraft.ConnTest.Send
 {
 	/// <summary>
 	/// 发送测试

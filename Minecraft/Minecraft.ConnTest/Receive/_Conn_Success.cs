@@ -1,5 +1,6 @@
-﻿using Minecraft.ConnTest.Com;
-using Minecraft.ConnTest.Send.Test;
+﻿using Minecraft.Config;
+using Minecraft.ConnTest.Com;
+using Minecraft.ConnTest.Send;
 using Minecraft.Model.ReqResp;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Minecraft.ConnTest.Receive
 	/// </summary>
 	public class Conn_Success
 	{
-		public void Execute(string respStr)
+		public void Execute(MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
 			var resp = respStr.JsonDeserialize<MsgResp>();
 			if (resp == null || resp.InfoLevel != MsgLevelEnum.Info)
@@ -23,17 +24,18 @@ namespace Minecraft.ConnTest.Receive
 				return;
 			}
 			//连接成功
+			Console.WriteLine("连接成功");
 
-			ComManager.Send(ComManager.socketClient, () =>
-			{
-				return SendTestCmd.GetReq();
-			}, () =>
-			{
-				ComManager.Send(ComManager.socketClient, () =>
-				{
-					return SendTestCmd.GetReq();
-				});
-			});
+			//ComManager.Send(ComManager.socketClient, () =>
+			//{
+			//	return SendTestCmd.GetReq();
+			//}, () =>
+			//{
+			//	ComManager.Send(ComManager.socketClient, () =>
+			//	{
+			//		return SendTestCmd.GetReq();
+			//	});
+			//});
 
 			ThreadPool.QueueUserWorkItem(nn =>
 			{
@@ -42,7 +44,7 @@ namespace Minecraft.ConnTest.Receive
 					//发送
 					ComManager.Send(ComManager.socketClient, () =>
 					{
-						return SendTestCmd.GetReq();
+						return SendHeartData.GetReq();
 					});
 					Thread.Sleep(1000);
 				}

@@ -1,7 +1,6 @@
 ﻿using Minecraft.Config;
 using Minecraft.ConnTest.Com;
 using Minecraft.ConnTest.Receive;
-using Minecraft.ConnTest.Send.Test;
 using Minecraft.Model.ReqResp;
 using Minecraft.Model.ReqResp.Player;
 using System;
@@ -120,7 +119,7 @@ namespace Minecraft.ConnTest
 						var deStrs = deStr.Split(new char[] { MinecraftCommonConfig.SeparativeSymbol });
 						var protocolStr = deStrs[0];
 						var respStr = string.Join(MinecraftCommonConfig.SeparativeSymbol.ToString(), deStrs.Skip(1).ToArray());
-						Console.WriteLine($"协议：{protocolStr}，数据：{respStr}");
+						//Console.WriteLine($"协议：{protocolStr}，数据：{respStr}");
 						//接收
 						//解析枚举
 						var mainStr = protocolStr.Substring(0, ProtocolLen.Main);
@@ -149,11 +148,16 @@ namespace Minecraft.ConnTest
 						}
 
 						//设置Show_Str方法中的参数类型，Type[]类型；如有多个参数可以追加多个   
-						Type[] params_type = new Type[1];
-						params_type[0] = Type.GetType("System.String");
+						Type[] params_type = new Type[3];
+						params_type[0] = typeof(MainCommand);
+						params_type[1] = typeof(SecondCommand);
+						params_type[2] = typeof(string);
+
 						//设置Show_Str方法中的参数值；如有多个参数可以追加多个   
-						Object[] params_obj = new Object[1];
-						params_obj[0] = respStr;
+						Object[] params_obj = new Object[3];
+						params_obj[0] = mainCommand;
+						params_obj[1] = secondCommand;
+						params_obj[2] = respStr;
 
 						//执行Show_Str方法   
 						object value = type.GetMethod("Execute", params_type).Invoke(instance, params_obj);
@@ -163,10 +167,10 @@ namespace Minecraft.ConnTest
 					}
 					Console.WriteLine("---------------------------");
 				}
-				catch (Exception)
+				catch (Exception ex)
 				{
 
-					Console.WriteLine("接收异常");
+					Console.WriteLine("接收异常:" + ex);
 				}
 
 			}

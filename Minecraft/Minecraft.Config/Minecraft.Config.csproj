@@ -66,5 +66,11 @@
     <Compile Include="ProtocolHelper.cs" />
     <Compile Include="MinecraftRedisKeyConfig.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Minecraft.Common\Minecraft.Common.csproj">
+      <Project>{464cd133-6ff3-408e-9d53-934e14776072}</Project>
+      <Name>Minecraft.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
