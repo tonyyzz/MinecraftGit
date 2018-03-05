@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.Model.ReqResp.Heart
+namespace Minecraft.Model.ReqResp
 {
-	public class HeartDataReq
+	public class GoodsInsertReq
 	{
 		/// <summary>
-		/// 被加密的字符串
+		/// 物品所属玩家
 		/// </summary>
-		public string StrEncrypted { get; set; }
+		public int PlayerId { get; set; }
 	}
 }

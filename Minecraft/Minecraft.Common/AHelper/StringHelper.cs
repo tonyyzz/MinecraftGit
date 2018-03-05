@@ -57,6 +57,15 @@ namespace System
 		}
 
 		/// <summary>
+		/// 获取Guid值
+		/// </summary>
+		/// <returns></returns>
+		public static string GetGuidStr()
+		{
+			return Guid.NewGuid().ToString("N");
+		}
+
+		/// <summary>
 		/// 种子
 		/// </summary>
 		/// <returns></returns>

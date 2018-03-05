@@ -2,7 +2,6 @@
 using Minecraft.BLL.mysql;
 using Minecraft.Config;
 using Minecraft.Model.ReqResp;
-using Minecraft.Model.ReqResp.Player;
 using Minecraft.ServerHall.Memory;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
@@ -12,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.ServerHall.Cmd.Player
+namespace Minecraft.ServerHall.Cmd
 {
 	public class PlyerLogin : CommandBase<MinecraftSession, StringRequestInfo>
 	{

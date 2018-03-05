@@ -84,11 +84,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cmd\Backpack\BackpackGoodsInsert.cs" />
-    <Compile Include="Cmd\Heart\HeartData.cs" />
-    <Compile Include="Cmd\Player\PlayerBaseInsert.cs" />
-    <Compile Include="Cmd\Player\PlyerLogin.cs" />
-    <Compile Include="Cmd\Test\TestCmd.cs" />
+    <Compile Include="Cmd\BackpackGoodsInsert.cs" />
+    <Compile Include="Cmd\GoodsInsert.cs" />
+    <Compile Include="Cmd\HeartData.cs" />
+    <Compile Include="Cmd\PlayerBaseInsert.cs" />
+    <Compile Include="Cmd\PlyerLogin.cs" />
+    <Compile Include="Cmd\TestCmd.cs" />
     <Compile Include="Ext\StringRequestInfoExt.cs" />
     <Compile Include="Memory\MemoryDataManager.cs" />
     <Compile Include="Memory\MemorySystemManager.cs" />
@@ -104,9 +105,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Config\log4net.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Config\log4net.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

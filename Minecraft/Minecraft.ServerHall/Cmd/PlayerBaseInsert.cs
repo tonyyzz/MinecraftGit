@@ -2,7 +2,6 @@
 using Minecraft.Config;
 using Minecraft.Model;
 using Minecraft.Model.ReqResp;
-using Minecraft.Model.ReqResp.Player;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -11,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.ServerHall.Cmd.Player
+namespace Minecraft.ServerHall.Cmd
 {
 	public class PlayerBaseInsert : CommandBase<MinecraftSession, StringRequestInfo>
 	{

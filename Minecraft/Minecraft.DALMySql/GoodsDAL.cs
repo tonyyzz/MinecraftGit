@@ -48,7 +48,7 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 		private static string GetGoodsTableName(int playerId)
 		{
 			var submeterLen = Convert.ToInt32(MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen);
-			string tableName = $"Goods_{playerId / submeterLen + submeterLen }";
+			string tableName = $"Goods_{(playerId / submeterLen) * submeterLen + submeterLen }";
 			return tableName;
 		}
 
@@ -75,12 +75,13 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				bool exec = Conn.Execute(sql) > 0;
-				if (exec)
+				Conn.Execute(sql);
+				isGoodsTableExists = JudgeTableExists(tableName);
+				if (isGoodsTableExists)
 				{
 					tableNameList.Add(tableName);
 				}
-				return exec;
+				return isGoodsTableExists;
 			}
 		}
 

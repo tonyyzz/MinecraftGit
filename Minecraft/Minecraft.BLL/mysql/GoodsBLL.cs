@@ -16,10 +16,10 @@ namespace Minecraft.BLL.mysql
 		/// <param name="playerId">玩家Id</param>
 		/// <param name="tableNameList">goods表名称内存缓存</param>
 		/// <returns></returns>
-		public static bool AddGoodsTable(int playerId, List<string> tableNameList)
-		{
-			return GoodsDAL.AddGoodsTable(playerId, tableNameList);
-		}
+		//public static bool AddGoodsTable(int playerId, List<string> tableNameList)
+		//{
+		//	return GoodsDAL.AddGoodsTable(playerId, tableNameList);
+		//}
 
 		/// <summary>
 		/// goods信息插入

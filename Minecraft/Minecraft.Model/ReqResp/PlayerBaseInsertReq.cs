@@ -4,37 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.Model.ReqResp.Player
+namespace Minecraft.Model.ReqResp
 {
-	/// <summary>
-	/// 玩家登录响应消息体
-	/// </summary>
-	public class PlayerLoginResp
+	public class PlayerBaseInsertReq
 	{
 		/// <summary>
 		/// 玩家Id
 		/// </summary>
 		public int PlayerId { get; set; }
 		/// <summary>
-		/// 名字，不允许重名
-		/// </summary>
-		public string Name { get; set; }
-		/// <summary>
-		/// 当前经验值
-		/// </summary>
-		public int Exp { get; set; }
-		/// <summary>
-		/// 体力值
-		/// </summary>
-		public int PhysicalStrengthValue { get; set; }
-		/// <summary>
-		/// 金币
-		/// </summary>
-		public int GoldCoin { get; set; }
-		/// <summary>
 		/// 生命值
 		/// </summary>
 		public int Human_Life { get; set; }
+		/// <summary>
+		/// 饥饿值
+		/// </summary>
+		public int Human_Hunger { get; set; }
 		/// <summary>
 		/// 清洁值
 		/// </summary>
@@ -43,10 +28,6 @@ namespace Minecraft.Model.ReqResp.Player
 		/// 如厕值
 		/// </summary>
 		public int Human_GoToilet { get; set; }
-		/// <summary>
-		/// 饥饿值
-		/// </summary>
-		public int Human_Hunger { get; set; }
 		/// <summary>
 		/// 攻击力
 		/// </summary>

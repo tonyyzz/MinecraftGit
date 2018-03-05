@@ -37,18 +37,23 @@ namespace Minecraft.ConnTest.Receive
 			//	});
 			//});
 
-			ThreadPool.QueueUserWorkItem(nn =>
-			{
-				while (true)
+			//ThreadPool.QueueUserWorkItem(nn =>
+			//{
+			//	while (true)
+			//	{
+			//		//发送
+			//		ComManager.Send(ComManager.socketClient, () =>
+			//		{
+			//			return SendHeartData.GetReq();
+			//		});
+			//		Thread.Sleep(1000);
+			//	}
+			//});
+
+				ComManager.Send(ComManager.socketClient, () =>
 				{
-					//发送
-					ComManager.Send(ComManager.socketClient, () =>
-					{
-						return SendHeartData.GetReq();
-					});
-					Thread.Sleep(1000);
-				}
-			});
+					return SendGoodsInsert.GetReq();
+				});
 		}
 	}
 }

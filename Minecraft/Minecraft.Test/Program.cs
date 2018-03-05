@@ -2,7 +2,6 @@
 using Minecraft.BLL.mysql;
 using Minecraft.Config;
 using Minecraft.Model.ReqResp;
-using Minecraft.Model.ReqResp.Player;
 using System;
 using System.Collections.Generic;
 using System.IO;

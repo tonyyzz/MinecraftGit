@@ -23,7 +23,7 @@ namespace Minecraft.DALMySql
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				return Conn.Execute(sql) > 0;
+				return !string.IsNullOrWhiteSpace(Conn.QueryFirstOrDefault<string>(sql));
 			}
 		}
 

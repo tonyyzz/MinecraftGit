@@ -63,16 +63,18 @@
     <Compile Include="mongodb\MongoDbTestModel.cs" />
     <Compile Include="mysql\GoodsModel.cs" />
     <Compile Include="mysql\PlayerbasisModel.cs" />
-    <Compile Include="ReqResp\Heart\HeartDataReq.cs" />
-    <Compile Include="ReqResp\Heart\HeartDataResp.cs" />
+    <Compile Include="ReqResp\GoodsInsertReq.cs" />
+    <Compile Include="ReqResp\GoodsInsertResp.cs" />
+    <Compile Include="ReqResp\HeartDataReq.cs" />
+    <Compile Include="ReqResp\HeartDataResp.cs" />
     <Compile Include="ReqResp\MsgResp.cs" />
-    <Compile Include="ReqResp\Player\PlayerBaseInsertReq.cs" />
-    <Compile Include="ReqResp\Player\PlayerBaseInsertResp.cs" />
-    <Compile Include="ReqResp\Player\PlayerLoginReq.cs" />
-    <Compile Include="ReqResp\Player\PlayerLoginResp.cs" />
+    <Compile Include="ReqResp\PlayerBaseInsertReq.cs" />
+    <Compile Include="ReqResp\PlayerBaseInsertResp.cs" />
+    <Compile Include="ReqResp\PlayerLoginReq.cs" />
+    <Compile Include="ReqResp\PlayerLoginResp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReqResp\Test\TestReq.cs" />
-    <Compile Include="ReqResp\Test\TestResp.cs" />
+    <Compile Include="ReqResp\TestReq.cs" />
+    <Compile Include="ReqResp\TestResp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

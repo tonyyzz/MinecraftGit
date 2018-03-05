@@ -1,6 +1,5 @@
 ﻿using Minecraft.Config;
 using Minecraft.Model.ReqResp;
-using Minecraft.Model.ReqResp.Heart;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -9,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.ServerHall.Cmd.Heart
+namespace Minecraft.ServerHall.Cmd
 {
 	public class HeartData : CommandBase<MinecraftSession, StringRequestInfo>
 	{

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minecraft.Model.ReqResp.Heart
+namespace Minecraft.Model.ReqResp
 {
-	public class HeartDataResp
+	public class GoodsInsertResp
 	{
-		public DateTime timeNow { get; set; }
+		public bool IsSuccess  { get; set; }
 	}
 }

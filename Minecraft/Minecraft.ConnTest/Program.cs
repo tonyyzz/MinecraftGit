@@ -2,7 +2,6 @@
 using Minecraft.ConnTest.Com;
 using Minecraft.ConnTest.Receive;
 using Minecraft.Model.ReqResp;
-using Minecraft.Model.ReqResp.Player;
 using System;
 using System.Collections.Generic;
 using System.IO;

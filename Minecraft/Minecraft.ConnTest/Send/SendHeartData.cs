@@ -1,5 +1,5 @@
 ﻿using Minecraft.Config;
-using Minecraft.Model.ReqResp.Heart;
+using Minecraft.Model.ReqResp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
