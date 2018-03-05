@@ -67,7 +67,7 @@ namespace Minecraft.ConnTest
 			//	return SendTestCmd.GetReq();
 			//}, () =>
 			//{
-			//	Send(socketClient, () =>
+			//	Send(socketClient, () => 
 			//	{
 			//		return SendTestCmd.GetReq();
 			//	});
