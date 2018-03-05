@@ -41,7 +41,7 @@ namespace Minecraft.ServerHall.Cmd
 				BelongsTo = 1,
 				GoodsItemId = 2,
 				GoodsPosition = 0,
-				WastageValue = 100, 
+				WastageValue = 100,  
 			};
 
 			var flag = GoodsBLL.InsertSuccessGoodsModel(goodsModel, MemorySystemManager.goodsTableList);
