@@ -56,7 +56,7 @@ namespace Minecraft.ServerHall
 
 			//Console.WriteLine($"服务器文本编码：{appServer.TextEncoding.WebName}");
 
-			appServer.Logger.Error("");
+			//appServer.Logger.Error("");
 
 			while (Console.ReadKey().KeyChar != 'q')
 			{

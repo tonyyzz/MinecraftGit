@@ -1,10 +1,10 @@
 ﻿using Minecraft.Config;
-using Minecraft.ConnTest.Com;
 using Minecraft.ConnTest.Send;
 using Minecraft.Model.ReqResp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +16,7 @@ namespace Minecraft.ConnTest.Receive
 	/// </summary>
 	public class Conn_Success
 	{
-		public void Execute(MainCommand mainCommand, SecondCommand secondCommand, string respStr)
+		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
 			var resp = respStr.JsonDeserialize<MsgResp>();
 			if (resp == null || resp.InfoLevel != MsgLevelEnum.Info)
@@ -24,36 +24,12 @@ namespace Minecraft.ConnTest.Receive
 				return;
 			}
 			//连接成功
-			Console.WriteLine("连接成功");
 
-			//ComManager.Send(ComManager.socketClient, () =>
-			//{
-			//	return SendTestCmd.GetReq();
-			//}, () =>
-			//{
-			//	ComManager.Send(ComManager.socketClient, () =>
-			//	{
-			//		return SendTestCmd.GetReq();
-			//	});
-			//});
 
-			//ThreadPool.QueueUserWorkItem(nn =>
-			//{
-			//	while (true)
-			//	{
-			//		//发送
-			//		ComManager.Send(ComManager.socketClient, () =>
-			//		{
-			//			return SendHeartData.GetReq();
-			//		});
-			//		Thread.Sleep(1000);
-			//	}
-			//});
-
-				ComManager.Send(ComManager.socketClient, () =>
-				{
-					return SendGoodsInsert.GetReq();
-				});
+			ComManager.Send(socketClient, () =>
+			{
+				return SendTestCmd.GetReq();
+			});
 		}
 	}
 }

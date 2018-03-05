@@ -100,6 +100,8 @@
     <Compile Include="ServerSession\MinecraftSession.cs" />
     <Compile Include="Ext\MinecraftSessionExt.cs" />
     <Compile Include="ServerSession\MinecraftSessionInfo.cs" />
+    <Compile Include="ServerThreadPool\base\ServerThreadPoolBase.cs" />
+    <Compile Include="ServerThreadPool\ServerThreadPoolTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

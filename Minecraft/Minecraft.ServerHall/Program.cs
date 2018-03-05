@@ -1,4 +1,5 @@
 ﻿using Minecraft.BLL;
+using Minecraft.ServerHall.ServerThreadPool;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,7 +32,7 @@ namespace Minecraft.ServerHall
 			}
 
 
-
+			//ServerThreadPoolTest.Start();
 
 			#endregion
 

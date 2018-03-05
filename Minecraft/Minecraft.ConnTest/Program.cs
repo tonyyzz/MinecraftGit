@@ -1,5 +1,4 @@
 ﻿using Minecraft.Config;
-using Minecraft.ConnTest.Com;
 using Minecraft.ConnTest.Receive;
 using Minecraft.Model.ReqResp;
 using System;
@@ -20,58 +19,19 @@ namespace Minecraft.ConnTest
 	{
 		static void Main(string[] args)
 		{
-			//var socketClient = ComManager.socketClient;
-			ComManager.socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+			var socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			IPAddress ip = IPAddress.Parse("127.0.0.1");
 			//IPAddress ip = IPAddress.Parse("111.230.142.94");
 			IPEndPoint point = new IPEndPoint(ip, 2017);
 			//进行连接
-			ComManager.socketClient.Connect(point);
-
-			//ThreadPool.QueueUserWorkItem(o =>
-			//{
-			//	while (true)
-			//	{
-			//		var protocolStr2 = ProtocolHelper.GetProtocolStr(
-			//				MainCommand.Heart, SecondCommand.Heart_HeartData);
-			//		var buffter2 = Encoding.UTF8.GetBytes($"{protocolStr2} {""}##");
-			//		socketClient.Send(buffter2);
-			//		Thread.Sleep(5000);
-			//		//Thread.Sleep(1);
-			//	}
-			//});
-
+			socketClient.Connect(point);
 
 			//不停的接收服务器端发送的消息
 			Thread thread = new Thread(Recive)
 			{
 				IsBackground = true
 			};
-			thread.Start(ComManager.socketClient);
-
-			//ThreadPool.QueueUserWorkItem(nn =>
-			//{
-			//	while (true)
-			//	{
-			//		//发送
-			//		Send(socketClient, () =>
-			//		{
-			//			return SendTestCmd.GetReq();
-			//		});
-			//		Thread.Sleep(1000);
-			//	}
-			//});
-			//发送
-			//Send(socketClient, () =>
-			//{
-			//	return SendTestCmd.GetReq();
-			//}, () =>
-			//{
-			//	Send(socketClient, () => 
-			//	{
-			//		return SendTestCmd.GetReq();
-			//	});
-			//});
+			thread.Start(socketClient);
 
 			Console.ReadKey();
 		}
@@ -82,25 +42,19 @@ namespace Minecraft.ConnTest
 
 		static void Recive(object o)
 		{
-			var send = o as Socket;
+			var socketClient = o as Socket;
 			while (true)
 			{
 				//获取发送过来的消息
 				byte[] buffer = new byte[1024 * 1024 * 2];
-				var effective = send.Receive(buffer);
+				var effective = socketClient.Receive(buffer);
 				if (effective == 0)
 				{
 					break;
 				}
-				//var bytes = buffer.ToList().Take(effective).ToArray();
-				//CustomDE.Decrypt(bytes, 0, bytes.Length);
-
 				var str = Encoding.UTF8.GetString(buffer, 0, effective);
-				//Console.WriteLine(str);
-
 				try
 				{
-
 					//Console.WriteLine("元数据：" + str);
 
 					//黏包情况处理（用结束符分割处理）
@@ -130,6 +84,10 @@ namespace Minecraft.ConnTest
 						MainCommand mainCommand = (MainCommand)mainInt;
 						SecondCommand secondCommand = (SecondCommand)secondInt;
 
+
+						//---------------输出协议传输信息----------------
+						ComManager.ConsoleWriteResp(mainCommand, secondCommand, respStr);
+
 						// 加载程序集(dll文件地址)，使用Assembly类
 						var execName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
 						Assembly assembly = Assembly.LoadFile(execName);
@@ -147,16 +105,18 @@ namespace Minecraft.ConnTest
 						}
 
 						//设置Show_Str方法中的参数类型，Type[]类型；如有多个参数可以追加多个   
-						Type[] params_type = new Type[3];
-						params_type[0] = typeof(MainCommand);
-						params_type[1] = typeof(SecondCommand);
-						params_type[2] = typeof(string);
+						Type[] params_type = new Type[4];
+						params_type[0] = typeof(Socket);
+						params_type[1] = typeof(MainCommand);
+						params_type[2] = typeof(SecondCommand);
+						params_type[3] = typeof(string);
 
 						//设置Show_Str方法中的参数值；如有多个参数可以追加多个   
-						Object[] params_obj = new Object[3];
-						params_obj[0] = mainCommand;
-						params_obj[1] = secondCommand;
-						params_obj[2] = respStr;
+						Object[] params_obj = new Object[4];
+						params_obj[0] = socketClient;
+						params_obj[1] = mainCommand;
+						params_obj[2] = secondCommand;
+						params_obj[3] = respStr;
 
 						//执行Show_Str方法   
 						object value = type.GetMethod("Execute", params_type).Invoke(instance, params_obj);
@@ -164,7 +124,7 @@ namespace Minecraft.ConnTest
 
 
 					}
-					Console.WriteLine("---------------------------");
+					//Console.WriteLine("---------------------------");
 				}
 				catch (Exception ex)
 				{
