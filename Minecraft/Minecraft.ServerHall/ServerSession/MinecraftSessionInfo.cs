@@ -22,7 +22,7 @@ namespace Minecraft.ServerHall
 		public DateTime LastLoginTime = DateTimeHelper.DateTimeConst.DefaultTime;
 
 		/// <summary>
-		/// 玩家信息
+		/// 玩家基础信息
 		/// </summary>
 		public PlayerbasisModel player = null;
 	}

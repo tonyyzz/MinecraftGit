@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace Minecraft.ServerHall.Cmd
 {
+	/// <summary>
+	/// 玩家登录
+	/// </summary>
 	public class PlyerLogin : CommandBase<MinecraftSession, StringRequestInfo>
 	{
 		public override string Name

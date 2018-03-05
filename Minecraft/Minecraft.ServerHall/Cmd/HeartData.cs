@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Minecraft.ServerHall.Cmd
 {
+	/// <summary>
+	/// 心跳包
+	/// </summary>
 	public class HeartData : CommandBase<MinecraftSession, StringRequestInfo>
 	{
 		public override string Name
