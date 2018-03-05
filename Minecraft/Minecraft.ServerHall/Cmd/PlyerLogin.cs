@@ -48,7 +48,7 @@ namespace Minecraft.ServerHall.Cmd
 			MemoryDataManager.UpdatePlayerbasis(player);
 
 			//暂定
-			PlayerLoginResp resp = player.JsonSerialize().JsonDeserialize<PlayerLoginResp>();
+			var resp = player.JsonSerialize().JsonDeserialize<PlayerLoginResp>();
 
 			session.Send(defMainCommand, defSecondCommand, resp);
 		}

@@ -8,16 +8,13 @@ using System.Threading.Tasks;
 
 namespace Minecraft.ConnTest.Send
 {
-	/// <summary>
-	/// 发送测试
-	/// </summary>
-	public class SendTestCmd
+	public class SendFurnitureInsert
 	{
-		public static MainCommand mainCommand = MainCommand.Test;
-		public static SecondCommand secondCommand = SecondCommand.Test_TestCmd;
+		public static MainCommand mainCommand = MainCommand.Furniture;
+		public static SecondCommand secondCommand = SecondCommand.Furniture_FurnitureInsert;
 		public static (MainCommand, SecondCommand, object) GetReq()
 		{
-			TestReq req = new TestReq()
+			var req = new FurnitureInsertReq()
 			{
 				PlayerId = 1
 			};

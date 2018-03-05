@@ -45,7 +45,7 @@ namespace Minecraft.ServerHall.Cmd
 			};
 
 			var flag = GoodsBLL.InsertSuccessGoodsModel(goodsModel, MemorySystemManager.goodsTableList);
-			GoodsInsertResp resp = new GoodsInsertResp
+			var resp = new GoodsInsertResp
 			{
 				IsSuccess = flag
 			};

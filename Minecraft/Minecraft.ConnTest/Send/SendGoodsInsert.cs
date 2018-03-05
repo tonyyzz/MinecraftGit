@@ -10,7 +10,7 @@ namespace Minecraft.ConnTest.Send
 		public static SecondCommand secondCommand = SecondCommand.Goods_GoodsInsert;
 		public static (MainCommand, SecondCommand, object) GetReq()
 		{
-			GoodsInsertReq req = new GoodsInsertReq()
+			var req = new GoodsInsertReq()
 			{
 				 PlayerId=2,
 			};

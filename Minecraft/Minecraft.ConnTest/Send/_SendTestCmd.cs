@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace Minecraft.ConnTest.Send
 {
-	public class SendHeartData
+	/// <summary>
+	/// 发送测试
+	/// </summary>
+	public class SendTestCmd
 	{
-		public static MainCommand mainCommand = MainCommand.Heart;
-		public static SecondCommand secondCommand = SecondCommand.Heart_HeartData;
+		public static MainCommand mainCommand = MainCommand.Test;
+		public static SecondCommand secondCommand = SecondCommand.Test_TestCmd;
 		public static (MainCommand, SecondCommand, object) GetReq()
 		{
-			var req = new HeartDataReq()
+			var req = new TestReq()
 			{
-				StrEncrypted = CustomEncrypt.Encrypt(MinecraftConfiguration.HeartDataReqSecretKey + " " + DateTime.Now.Ticks)
+				PlayerId = 1
 			};
 			return (mainCommand, secondCommand, req);
 		}

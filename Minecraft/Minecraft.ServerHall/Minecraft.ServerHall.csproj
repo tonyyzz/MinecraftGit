@@ -85,11 +85,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cmd\BackpackGoodsInsert.cs" />
+    <Compile Include="Cmd\FurnitureInsert.cs" />
     <Compile Include="Cmd\GoodsInsert.cs" />
     <Compile Include="Cmd\HeartData.cs" />
     <Compile Include="Cmd\PlayerBaseInsert.cs" />
     <Compile Include="Cmd\PlyerLogin.cs" />
-    <Compile Include="Cmd\TestCmd.cs" />
+    <Compile Include="Cmd\_TestCmd.cs" />
     <Compile Include="Ext\StringRequestInfoExt.cs" />
     <Compile Include="Memory\MemoryDataManager.cs" />
     <Compile Include="Memory\MemorySystemManager.cs" />

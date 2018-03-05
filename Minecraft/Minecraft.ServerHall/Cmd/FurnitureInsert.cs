@@ -1,6 +1,4 @@
-﻿using Minecraft.BLL.mongodb;
-using Minecraft.Config;
-using Minecraft.Model;
+﻿using Minecraft.Config;
 using Minecraft.Model.ReqResp;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
@@ -12,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Minecraft.ServerHall.Cmd
 {
-	public class PlayerBaseInsert : CommandBase<MinecraftSession, StringRequestInfo>
+	public class FurnitureInsert : CommandBase<MinecraftSession, StringRequestInfo>
 	{
 		public override string Name
 		{
@@ -22,33 +20,21 @@ namespace Minecraft.ServerHall.Cmd
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.Player;
-		private SecondCommand defSecondCommand = SecondCommand.Player_PlayerBaseInsert;
+		private MainCommand defMainCommand = MainCommand.Furniture;
+		private SecondCommand defSecondCommand = SecondCommand.Furniture_FurnitureInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
-			var req = requestInfo.GetRequestObj<PlayerBaseInsertReq>(session);
+			var req = requestInfo.GetRequestObj<FurnitureInsertReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
 				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
 				return;
 			}
 
-			//PlayerbaseModel playerbaseModel = new PlayerbaseModel
-			//{
-			//	PlayerId = req.PlayerId,
-			//	Fight_Attack = 1,
-			//	Fight_AttackSpeed = 2,
-			//	Fight_Defense = 3,
-			//	Fight_TravelRate = 4,
-			//	Human_Clean = 6,
-			//	Human_GoToilet = 7,
-			//	Human_Hunger = 9,
-			//	Human_Life = 78,
-			//};
-			//playerbaseModel = PlayerbaseBLL.Insert(playerbaseModel);
 
 
-			var resp = new PlayerBaseInsertResp
+
+			var resp = new FurnitureInsertResp
 			{
 				PlayerId = req.PlayerId
 			};

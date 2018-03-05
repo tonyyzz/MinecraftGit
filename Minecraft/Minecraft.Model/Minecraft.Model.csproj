@@ -63,6 +63,8 @@
     <Compile Include="mongodb\MongoDbTestModel.cs" />
     <Compile Include="mysql\GoodsModel.cs" />
     <Compile Include="mysql\PlayerbasisModel.cs" />
+    <Compile Include="ReqResp\FurnitureInsertReq.cs" />
+    <Compile Include="ReqResp\FurnitureInsertResp.cs" />
     <Compile Include="ReqResp\GoodsInsertReq.cs" />
     <Compile Include="ReqResp\GoodsInsertResp.cs" />
     <Compile Include="ReqResp\HeartDataReq.cs" />

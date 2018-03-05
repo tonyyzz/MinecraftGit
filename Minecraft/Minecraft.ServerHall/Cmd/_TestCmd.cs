@@ -37,7 +37,7 @@ namespace Minecraft.ServerHall.Cmd
 
 
 
-			TestResp resp = new TestResp
+			var resp = new TestResp
 			{
 				PlayerId = req.PlayerId
 			};

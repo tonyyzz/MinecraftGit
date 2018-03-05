@@ -52,6 +52,10 @@ namespace Minecraft.Config
 		/// 背包
 		/// </summary>
 		Goods,
+		/// <summary>
+		/// 家具
+		/// </summary>
+		Furniture,
 	}
 
 	/// <summary>
@@ -120,5 +124,10 @@ namespace Minecraft.Config
 		/// 背包插入
 		/// </summary>
 		Goods_GoodsInsert,
+
+		/// <summary>
+		/// 家具插入
+		/// </summary>
+		Furniture_FurnitureInsert
 	}
 }
