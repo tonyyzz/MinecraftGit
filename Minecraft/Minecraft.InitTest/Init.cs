@@ -1,5 +1,6 @@
 ﻿using Minecraft.BLL;
 using Minecraft.BLL.mysql;
+using Minecraft.Config;
 using Minecraft.Model;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Minecraft.InitTest
 		{
 			Console.WriteLine("正在初始化数据...");
 			InitPlayerbasis();
+			InitGoods();
 			Console.WriteLine("数据初始化完成！");
 		}
 
@@ -45,6 +47,11 @@ namespace Minecraft.InitTest
 				Human_Life = 100,
 			};
 			BaseBLL.Insert(playerbasisModel);
+		}
+
+		private static void InitGoods()
+		{
+			BaseBLL.DropTablesWithPrefix(MinecraftCommonConfig.GoodsTablePrefix);
 		}
 	}
 }

@@ -48,7 +48,7 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 		private static string GetGoodsTableName(int playerId)
 		{
 			var submeterLen = Convert.ToInt32(MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen);
-			string tableName = $"Goods_{(playerId / submeterLen) * submeterLen + submeterLen }";
+			string tableName = $"{MinecraftCommonConfig.GoodsTablePrefix}_{MinecraftCommonConfig.GetTablePostfix(playerId, submeterLen)}";
 			return tableName;
 		}
 

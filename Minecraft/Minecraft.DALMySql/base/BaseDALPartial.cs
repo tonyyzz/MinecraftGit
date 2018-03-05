@@ -27,7 +27,41 @@ namespace Minecraft.DALMySql
 			}
 		}
 
+		private static List<string> GetTableNames(string prefixName)
+		{
+			List<string> list = new List<string>();
+			string sql = $"show tables like '{prefixName}_%'; ";
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				//return !string.IsNullOrWhiteSpace(Conn.QueryFirstOrDefault<string>(sql));
+				list = Conn.Query<string>(sql).ToList();
+			}
+			return list;
+		}
 
-		
+		/// <summary>
+		/// 根据前缀删除表
+		/// </summary>
+		/// <param name="prefixName"></param>
+		public static void DropTablesWithPrefix(string prefixName)
+		{
+			var list = GetTableNames(prefixName);
+			if (list.Any())
+			{
+				string sql = "";
+				list.ForEach(item =>
+				{
+					sql += $"drop table if exists {item};";
+				});
+				using (var Conn = GetConn())
+				{
+					Conn.Open();
+					Conn.Execute(sql);
+				}
+			}
+		}
+
+
 	}
 }

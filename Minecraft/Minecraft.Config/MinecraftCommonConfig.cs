@@ -32,5 +32,20 @@ namespace Minecraft.Config
 		/// </summary>
 		public static string DbDataSeparator = ",";
 
+		/// <summary>
+		/// goods表前缀
+		/// </summary>
+		public static string GoodsTablePrefix = "Goods";
+
+		/// <summary>
+		/// 得到表名称的后缀
+		/// </summary>
+		/// <param name="playerId"></param>
+		/// <param name="submeterLen"></param>
+		/// <returns></returns>
+		public static int GetTablePostfix(int playerId, int submeterLen)
+		{
+			return (playerId / submeterLen) * submeterLen + submeterLen;
+		}
 	}
 }
