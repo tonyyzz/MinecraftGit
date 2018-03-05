@@ -21,7 +21,7 @@ namespace Minecraft.ServerHall
 
 			ThreadPool.QueueUserWorkItem(o =>
 			{
-				var t = obj as MsgResp;
+				var t = o as MsgResp;
 				if (t != null)
 				{
 					switch (t.InfoLevel)
