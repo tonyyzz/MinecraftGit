@@ -31,6 +31,12 @@ namespace Minecraft.BLL.mysql
 			}
 		}
 
+		/// <summary>
+		/// 更新实体
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="model"></param>
+		/// <param name="keyNames"></param>
 		public static void Update<T>(T model, params string[] keyNames) where T : class
 		{
 			if (model == null)
