@@ -48,10 +48,10 @@ namespace Minecraft.Config
 		/// 背包
 		/// </summary>
 		Backpack,
-		/// <summary>
-		/// 背包
-		/// </summary>
-		Goods,
+		///// <summary>
+		///// 背包
+		///// </summary>
+		//Goods,
 		/// <summary>
 		/// 家具
 		/// </summary>
@@ -120,10 +120,10 @@ namespace Minecraft.Config
 		Backpack_BackpackGoodsInsert,
 
 
-		/// <summary>
-		/// 背包插入
-		/// </summary>
-		Goods_GoodsInsert,
+		///// <summary>
+		///// 背包插入
+		///// </summary>
+		//Goods_GoodsInsert,
 
 		/// <summary>
 		/// 家具插入
