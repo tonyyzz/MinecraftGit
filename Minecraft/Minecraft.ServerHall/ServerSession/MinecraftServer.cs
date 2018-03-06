@@ -41,7 +41,7 @@ namespace Minecraft.ServerHall
 		//}
 		//结束符协议
 		public MinecraftServer()
-		: base(new TerminatorReceiveFilterFactory(CommonConfig.EndingSymbol))
+		: base(new TerminatorReceiveFilterFactory(SeparatorConfig.Protocol))
 		{
 			//Console.WriteLine("MinecraftServer");
 		}

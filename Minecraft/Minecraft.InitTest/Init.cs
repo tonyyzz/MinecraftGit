@@ -22,6 +22,7 @@ namespace Minecraft.InitTest
 			InitPlayerbasis();
 			InitGoods();
 			InitFriend();
+			InsertFriendData();
 			Console.WriteLine("数据初始化完成！");
 		}
 
@@ -62,6 +63,37 @@ namespace Minecraft.InitTest
 		private static void InitFriend()
 		{
 			BaseBLL.DropTablesWithPrefix(TablePrefixConfig.Friend);
+		}
+
+		/// <summary>
+		/// 初始化朋友表数据
+		/// </summary>
+		public static void InsertFriendData()
+		{
+			var friendTableNameCacheList = new List<string>();
+
+			for (int i = 1; i <= 10; i++)
+			{
+				for (int j = 1; j <= 10; j++)
+				{
+
+					var friendModel = new FriendModel()
+					{
+						PlayerId = i + 9995,
+						FriendId = j,
+						AddTime = DateTime.Now
+					};
+					FriendBLL.InsertSuccessForSplitTable(friendModel, friendTableNameCacheList);
+					friendModel = new FriendModel()
+					{
+						PlayerId = j,
+						FriendId = i + 9995,
+						AddTime = DateTime.Now
+					};
+					FriendBLL.InsertSuccessForSplitTable(friendModel, friendTableNameCacheList);
+				}
+			}
+
 		}
 	}
 }

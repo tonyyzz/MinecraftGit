@@ -16,15 +16,17 @@ namespace Minecraft.Test
 	{
 		static void Main(string[] args)
 		{
-			//获取执行文件的文件路径
-			var execName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
+			////获取执行文件的文件路径
+			//var execName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
 
-			var type = typeof(BaseResp);
-			var platwr = new TestReq().PlayerId;
-			var gg = new TestReq();
-			var name = nameof(platwr);
-			 name = nameof(gg.PlayerId);
+			//var type = typeof(BaseResp);
+			//var platwr = new TestReq().PlayerId;
+			//var gg = new TestReq();
+			//var name = nameof(platwr);
+			// name = nameof(gg.PlayerId);
+
+			var d = CommonConfig.GetTablePostfix(10000, 10000);
 		}
-		
+
 	}
 }

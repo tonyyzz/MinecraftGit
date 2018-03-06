@@ -36,7 +36,7 @@ namespace Minecraft.ServerHall.Cmd
 				AddTime = DateTime.Now,
 			};
 
-			var flag = FriendBLL.InsertFriendInfoForSplitTable(friendModel, MemorySystemManager.friendTableNameCacheList);
+			var flag = FriendBLL.InsertSuccessForSplitTable(friendModel, MemorySystemManager.friendTableNameCacheList);
 			if (!flag)
 			{
 				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "friend分表插入操作失败" });

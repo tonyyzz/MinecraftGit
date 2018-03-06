@@ -71,6 +71,40 @@ namespace Minecraft.DALMySql
 			}
 		}
 
+		/// <summary>
+		/// 分表获取单个数据
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="keyId"></param>
+		/// <param name="tableNamePrefix"></param>
+		/// <param name="submeterLenStr"></param>
+		/// <param name="keyValue"></param>
+		/// <returns></returns>
+		protected static T GetSingleOrDefaultWithTablePrefix<T, V>(T model, int keyId,
+			string tableNamePrefix,
+			string submeterLenStr,
+			(string key, V value) keyValue) where T : class
+		{
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue.key}={GetTypeValueStr(keyValue.value)} limit 1";
+				return Conn.QueryFirstOrDefault<T>(sql);
+			}
+		}
+
+		protected static List<T> GetListAllWithTablePrefix<T, V>(T model, int keyId,
+			string tableNamePrefix,
+			string submeterLenStr,
+			(string key, V value) keyValue) where T : class
+		{
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue.key}={GetTypeValueStr(keyValue.value)}";
+				return Conn.Query<T>(sql).ToList();
+			}
+		}
 
 
 		/// <summary>
@@ -95,7 +129,6 @@ namespace Minecraft.DALMySql
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				//return !string.IsNullOrWhiteSpace(Conn.QueryFirstOrDefault<string>(sql));
 				list = Conn.Query<string>(sql).ToList();
 			}
 			return list;

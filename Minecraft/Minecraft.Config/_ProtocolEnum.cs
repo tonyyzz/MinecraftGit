@@ -111,5 +111,9 @@ namespace Minecraft.Config
 		/// 好友信息插入
 		/// </summary>
 		Friend_FriendInsert,
+		/// <summary>
+		/// 朋友列表查询
+		/// </summary>
+		Friend_FriendListSelect,
 	}
 }

@@ -22,6 +22,8 @@ namespace Minecraft.DALMySql
 				TablePrefixConfig.Friend, 
 				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen);
 
+			//  "+ tableName + @"
+
 			string sql = @"
 
 /*==============================================================*/
@@ -46,7 +48,7 @@ alter table " + tableName + @" comment '好友表';
 		/// <param name="model"></param>
 		/// <param name="friendTableNameCacheList"></param>
 		/// <returns></returns>
-		public static bool InsertFriendInfoForSplitTable(FriendModel model, List<string> friendTableNameCacheList)
+		public static bool InsertSuccessForSplitTable(FriendModel model, List<string> friendTableNameCacheList)
 		{
 			return InsertSuccessModelData(model,
 				friendTableNameCacheList,
@@ -54,6 +56,15 @@ alter table " + tableName + @" comment '好友表';
 				TablePrefixConfig.Friend,
 				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen,
 				GetCreateFriendTableSql);
+		}
+
+		public static List<FriendModel> GetListAll(int playerId)
+		{
+			var model = new FriendModel();
+			return GetListAllWithTablePrefix(model, playerId,
+				TablePrefixConfig.Friend,
+				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen,
+				(nameof(model.PlayerId), playerId));
 		}
 	}
 }

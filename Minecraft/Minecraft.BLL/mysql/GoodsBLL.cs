@@ -16,9 +16,18 @@ namespace Minecraft.BLL.mysql
 		/// <param name="model"></param>
 		/// <param name="goodsTableNameCacheList"></param>
 		/// <returns></returns>
-		public static bool InsertGoodsInfoForSplitTable(GoodsModel model, List<string> goodsTableNameCacheList)
+		public static bool InsertSuccessForSplitTable(GoodsModel model, List<string> goodsTableNameCacheList)
 		{
-			return GoodsDAL.InsertGoodsInfoForSplitTable(model, goodsTableNameCacheList);
+			return GoodsDAL.InsertSuccessForSplitTable(model, goodsTableNameCacheList);
+		}
+
+		public static GoodsModel GetFirstOrDefault(int playerId, string goodsId)
+		{
+			return GoodsDAL.GetFirstOrDefault(playerId, goodsId);
+		}
+		public static List<GoodsModel> GetListAll(int playerId)
+		{
+			return GoodsDAL.GetListAll(playerId);
 		}
 	}
 }

@@ -71,7 +71,7 @@ namespace Minecraft.ServerHall
 			//加密处理
 			var str = EncryptHelper.Encrypt(rawMessage);
 			//加上 数据结尾分隔符，用作黏包情况处理
-			return str + CommonConfig.EndingSymbol;
+			return str + SeparatorConfig.StickyBag;
 		}
 
 		protected override void HandleException(Exception e)

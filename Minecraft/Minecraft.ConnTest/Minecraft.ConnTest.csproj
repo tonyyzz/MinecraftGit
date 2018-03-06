@@ -70,6 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receive\Backpack_BackpackGoodsInsert.cs" />
     <Compile Include="Receive\Friend_FriendInsert.cs" />
+    <Compile Include="Receive\Friend_FriendListSelect.cs" />
     <Compile Include="Receive\_Conn_Close.cs" />
     <Compile Include="Receive\Furniture_FurnitureInsert.cs" />
     <Compile Include="Receive\Heart_HeartData.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Receive\_Test_TestCmd.cs" />
     <Compile Include="Send\SendBackpackGoodsInsert.cs" />
     <Compile Include="Send\SendFriendInsert.cs" />
+    <Compile Include="Send\SendFriendListSelect.cs" />
     <Compile Include="Send\SendFurnitureInsert.cs" />
     <Compile Include="Send\_SendPlyerLogin.cs" />
     <Compile Include="Send\_SendTestCmd.cs" />

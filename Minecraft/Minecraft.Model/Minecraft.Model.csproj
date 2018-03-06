@@ -75,6 +75,8 @@
     <Compile Include="ReqResp\base\BaseResp.cs" />
     <Compile Include="ReqResp\FriendInsertReq.cs" />
     <Compile Include="ReqResp\FriendInsertResp.cs" />
+    <Compile Include="ReqResp\FriendListSelectReq.cs" />
+    <Compile Include="ReqResp\FriendListSelectResp.cs" />
     <Compile Include="ReqResp\FurnitureInsertReq.cs" />
     <Compile Include="ReqResp\FurnitureInsertResp.cs" />
     <Compile Include="ReqResp\HeartDataReq.cs" />

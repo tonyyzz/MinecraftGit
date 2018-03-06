@@ -78,12 +78,12 @@ namespace Minecraft.DALMySql
 		/// <param name="tableName"></param>
 		/// <param name="keyValue"></param>
 		/// <returns></returns>
-		public static T GetSingleOrDefault<T>(T model, (string key, int value) keyValue) where T : class
+		public static T GetSingleOrDefault<T, V>(T model, (string key, V value) keyValue) where T : class
 		{
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				string sql = $"select * from {GetTableNameByModelName(model)} where {keyValue.key}={keyValue.value} limit 1";
+				string sql = $"select * from {GetTableNameByModelName(model)} where {keyValue.key}={GetTypeValueStr(keyValue.value)} limit 1";
 				return Conn.QueryFirstOrDefault<T>(sql);
 			}
 		}
@@ -201,7 +201,7 @@ namespace Minecraft.DALMySql
 				List<string> valList = new List<string>();
 				foreach (var itemProp in itemProps)
 				{
-					string valStr = GetPropsValueStr(model, itemProp);
+					string valStr = GetPropValueStr(model, itemProp);
 					valList.Add(valStr);
 				}
 				string vals = string.Join(",", valList.ToArray());
@@ -251,14 +251,14 @@ namespace Minecraft.DALMySql
 					exceptProps.Add(itemProp);
 					continue;
 				}
-				string valStr = GetPropsValueStr(model, itemProp);
+				string valStr = GetPropValueStr(model, itemProp);
 				valList.Add($"{itemProp.Name}={valStr}");
 			}
 			string vals = string.Join(",", valList.ToArray());
 			List<string> whereList = new List<string>();
 			foreach (var prop in exceptProps)
 			{
-				string valStr = GetPropsValueStr(model, prop);
+				string valStr = GetPropValueStr(model, prop);
 				whereList.Add($"{prop.Name}={valStr}");
 			}
 			string whereStr = string.Join(",", whereList.ToArray());
@@ -279,11 +279,32 @@ namespace Minecraft.DALMySql
 		/// <param name="model"></param>
 		/// <param name="itemProp"></param>
 		/// <returns></returns>
-		private static string GetPropsValueStr<T>(T model, PropertyInfo itemProp)
+		private static string GetPropValueStr<T>(T model, PropertyInfo itemProp)
 		{
 			var val = itemProp.GetValue(model);
 			string valStr = "";
 			var typeName = itemProp.PropertyType.FullName;
+			switch (typeName)
+			{
+				case "System.String":
+				case "System.DateTime":
+					{
+						valStr = "'" + val + "'";
+					}
+					break;
+				default:
+					{
+						valStr = val.ToString();
+					}
+					break;
+			}
+			return valStr;
+		}
+
+		private static string GetTypeValueStr<T>(T val)
+		{
+			var typeName = typeof(T).FullName;
+			string valStr = "";
 			switch (typeName)
 			{
 				case "System.String":

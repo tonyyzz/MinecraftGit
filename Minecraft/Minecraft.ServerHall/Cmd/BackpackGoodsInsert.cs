@@ -42,7 +42,7 @@ namespace Minecraft.ServerHall.Cmd
 				GoodsPosition = 0,
 				WastageValue = 100
 			};
-			var flag = GoodsBLL.InsertGoodsInfoForSplitTable(goodsModel, Memory.MemorySystemManager.goodsTableNameCacheList);
+			var flag = GoodsBLL.InsertSuccessForSplitTable(goodsModel, Memory.MemorySystemManager.goodsTableNameCacheList);
 			if (!flag)
 			{
 				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "goods分表插入操作失败" });

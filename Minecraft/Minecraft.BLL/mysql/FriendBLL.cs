@@ -16,9 +16,14 @@ namespace Minecraft.BLL.mysql
 		/// <param name="model"></param>
 		/// <param name="friendTableNameCacheList"></param>
 		/// <returns></returns>
-		public static bool InsertFriendInfoForSplitTable(FriendModel model, List<string> friendTableNameCacheList)
+		public static bool InsertSuccessForSplitTable(FriendModel model, List<string> friendTableNameCacheList)
 		{
-			return FriendDAL.InsertFriendInfoForSplitTable(model, friendTableNameCacheList);
+			return FriendDAL.InsertSuccessForSplitTable(model, friendTableNameCacheList);
+		}
+
+		public static List<FriendModel> GetListAll(int playerId)
+		{
+			return FriendDAL.GetListAll(playerId);
 		}
 	}
 }

@@ -23,6 +23,8 @@ namespace Minecraft.DALMySql
 				TablePrefixConfig.Goods,
 				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen);
 
+			//   " + tableName + @"
+
 			string sql = @"
 
 /*==============================================================*/
@@ -52,7 +54,7 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 		/// <param name="model"></param>
 		/// <param name="goodsTableNameCacheList"></param>
 		/// <returns></returns>
-		public static bool InsertGoodsInfoForSplitTable(GoodsModel model, List<string> goodsTableNameCacheList)
+		public static bool InsertSuccessForSplitTable(GoodsModel model, List<string> goodsTableNameCacheList)
 		{
 			return InsertSuccessModelData(model,
 				goodsTableNameCacheList,
@@ -62,69 +64,22 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 				GetCreateGoodsTableSql);
 		}
 
-
-		///// <summary>
-		///// 动态增加goods表，如果存在，则不做处理
-		///// </summary>
-		///// <param name="playerId"></param>
-		///// <param name="goodsTableNameList">goods表名称内存缓存</param>
-		///// <returns></returns>
-		//public static bool AddGoodsTable(int playerId, List<string> goodsTableNameList)
-		//{
-		//	string tableName = GetTableNameWithTablePrefix(playerId, MinecraftCommonConfig.GoodsTablePrefix);
-		//	if (goodsTableNameList.Any(m => m == tableName))
-		//	{
-		//		return true;
-		//	}
-		//	var isGoodsTableExists = JudgeTableExists(tableName);
-		//	if (isGoodsTableExists)
-		//	{
-		//		goodsTableNameList.Add(tableName);
-		//		return true;
-		//	}
-		//	string sql = GetCreateGoodsTableSql(playerId);
-		//	using (var Conn = GetConn())
-		//	{
-		//		Conn.Open();
-		//		Conn.Execute(sql);
-		//		isGoodsTableExists = JudgeTableExists(tableName);
-		//		if (isGoodsTableExists)
-		//		{
-		//			goodsTableNameList.Add(tableName);
-		//		}
-		//		return isGoodsTableExists;
-		//	}
-		//}
-
-
-		///// <summary>
-		///// goods信息插入
-		///// </summary>
-		///// <param name="model"></param>
-		///// <returns></returns>
-		//public static bool InsertSuccessGoodsModel(GoodsModel model, List<string> goodsTableNameList)
-		//{
-		//	if (AddGoodsTable(model.PlayerId, goodsTableNameList))
-		//	{
-		//		using (var Conn = GetConn())
-		//		{
-		//			Conn.Open();
-		//			var propKeys = model.GetAllPropKeys();
-		//			var names = string.Join(",", propKeys.ToArray());
-		//			var values = string.Join(",", propKeys.ToList().ConvertAll(m => "@" + m).ToArray());
-		//			string sql = string.Format(@"insert into {0}({1}) values({2});",
-		//				GetTableNameWithTablePrefix(model.PlayerId, MinecraftCommonConfig.GoodsTablePrefix),
-		//				names,
-		//				values);
-		//			return Conn.Execute(sql, model) > 0;
-		//		}
-		//	}
-		//	else
-		//	{
-		//		return false;
-		//	}
-		//}
-
-
+		public static GoodsModel GetFirstOrDefault(int playerId, string goodsId)
+		{
+			var model = new GoodsModel();
+			return GetSingleOrDefaultWithTablePrefix(model, playerId,
+				TablePrefixConfig.Goods,
+				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
+				(nameof(model.GoodsId), goodsId));
+		}
+		
+		public static List<GoodsModel> GetListAll(int playerId)
+		{
+			var model = new GoodsModel();
+			return GetListAllWithTablePrefix(model,playerId,
+				TablePrefixConfig.Goods,
+				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
+				(nameof(model.PlayerId), playerId));
+		}
 	}
 }

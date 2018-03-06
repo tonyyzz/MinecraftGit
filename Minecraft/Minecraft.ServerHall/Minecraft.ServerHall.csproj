@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Cmd\BackpackGoodsInsert.cs" />
     <Compile Include="Cmd\FriendInsert.cs" />
+    <Compile Include="Cmd\FriendListSelect.cs" />
     <Compile Include="Cmd\FurnitureInsert.cs" />
     <Compile Include="Cmd\HeartData.cs" />
     <Compile Include="Cmd\PlyerLogin.cs" />
