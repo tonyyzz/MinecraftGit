@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Config
 {
-	public static class MinecraftCommonConfig
+	public static class CommonConfig
 	{
 		/// <summary>
 		/// 默认编码
@@ -31,15 +31,6 @@ namespace Minecraft.Config
 		/// 数据表字段数据分割符
 		/// </summary>
 		public static string DbDataSeparator = ",";
-
-		/// <summary>
-		/// goods表前缀
-		/// </summary>
-		public static string Prefix_GoodsTable = "Goods";
-		/// <summary>
-		/// Friend表前缀
-		/// </summary>
-		public static string Prefix_FriendTable = "Friend";
 
 		/// <summary>
 		/// 得到表名称的后缀

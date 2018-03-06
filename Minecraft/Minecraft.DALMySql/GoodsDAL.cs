@@ -20,7 +20,7 @@ namespace Minecraft.DALMySql
 		{
 
 			string tableName = GetTableNameWithTablePrefix(keyId,
-				MinecraftCommonConfig.Prefix_GoodsTable,
+				TablePrefixConfig.Goods,
 				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen);
 
 			string sql = @"
@@ -57,7 +57,7 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 			return InsertSuccessModelData(model,
 				goodsTableNameCacheList,
 				model.PlayerId,
-				MinecraftCommonConfig.Prefix_GoodsTable,
+				TablePrefixConfig.Goods,
 				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
 				GetCreateGoodsTableSql);
 		}

@@ -10,11 +10,25 @@ namespace Minecraft.ConnTest.Receive
 		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
 			var resp = respStr.JsonDeserialize<BackpackGoodsInsertResp>();
-			if (resp == null || resp.PlayerId <= 0)
+			if (resp == null)
 			{
 				return;
 			}
-			Console.WriteLine($"背包信息：{respStr}");
+			switch (resp.RespLevel)
+			{
+				case RespLevelEnum.Success:
+					{
+						Console.WriteLine($"背包信息：{respStr}");
+					}
+					break;
+				case RespLevelEnum.Warn:
+					break;
+				case RespLevelEnum.Error:
+					break;
+				default:
+					break;
+			}
+			
 		}
 	}
 }

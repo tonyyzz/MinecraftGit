@@ -19,7 +19,7 @@ namespace Minecraft.Test
 			//获取执行文件的文件路径
 			var execName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
 
-			var type = typeof(MsgResp);
+			var type = typeof(BaseResp);
 			var platwr = new TestReq().PlayerId;
 			var name = nameof(platwr);
 		}

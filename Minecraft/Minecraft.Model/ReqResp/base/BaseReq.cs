@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Model.ReqResp
 {
-	public class GoodsInsertReq : BaseReq
+	/// <summary>
+	/// 请求实体基类
+	/// </summary>
+	public class BaseReq
 	{
-		/// <summary>
-		/// 物品所属玩家
-		/// </summary>
-		public int PlayerId { get; set; }
 	}
 }

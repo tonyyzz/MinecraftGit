@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Config
 {
-	public static class MinecraftRedisKeyConfig
+	public static class RedisKeyConfig
 	{
 		/// <summary>
 		/// 测试

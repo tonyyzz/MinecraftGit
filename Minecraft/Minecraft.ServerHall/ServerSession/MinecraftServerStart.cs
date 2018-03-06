@@ -16,7 +16,7 @@ namespace Minecraft.ServerHall
 			var appServer = new MinecraftServer() ;
 			ServerConfig serverConfig = new ServerConfig
 			{
-				TextEncoding = MinecraftCommonConfig.DefEncoding.WebName,
+				TextEncoding = CommonConfig.DefEncoding.WebName,
 				Port = 2017,
 				DisableSessionSnapshot = true,
 				MaxConnectionNumber = 60000,

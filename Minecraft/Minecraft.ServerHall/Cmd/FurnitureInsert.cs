@@ -27,7 +27,7 @@ namespace Minecraft.ServerHall.Cmd
 			var req = requestInfo.GetRequestObj<FurnitureInsertReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
-				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
+				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 

@@ -15,18 +15,32 @@ namespace Minecraft.ConnTest.Receive
 		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
 			var resp = respStr.JsonDeserialize<PlayerLoginResp>();
-			if (resp == null || resp.PlayerId <=0)
+			if (resp == null)
 			{
 				return;
 			}
-			//登录成功
-
-			//登录之后的操作
-
-			ComManager.Send(socketClient, () =>
+			switch (resp.RespLevel)
 			{
-				return SendBackpackGoodsInsert.GetReq();
-			});
+				case RespLevelEnum.Success:
+					{
+						//登录成功
+
+						//登录之后的操作
+
+						ComManager.Send(socketClient, () =>
+						{
+							return SendFriendInsert.GetReq();
+						});
+					}
+					break;
+				case RespLevelEnum.Warn:
+					break;
+				case RespLevelEnum.Error:
+					break;
+				default:
+					break;
+			}
+			
 		}
 	}
 }

@@ -18,8 +18,8 @@ namespace Minecraft.DALMySql
 		private static string GetCreateFriendTableSql(int playerId)
 		{
 
-			string tableName = GetTableNameWithTablePrefix(playerId, 
-				MinecraftCommonConfig.Prefix_GoodsTable, 
+			string tableName = GetTableNameWithTablePrefix(playerId,
+				TablePrefixConfig.Friend, 
 				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen);
 
 			string sql = @"
@@ -31,7 +31,8 @@ create table " + tableName + @"
 (
    PlayerId             int comment '玩家Id',
    FriendId             int comment '好友Id',
-   AddTime              datetime comment '添加时间'
+   AddTime              datetime comment '添加时间',
+   primary key (PlayerId, FriendId)
 );
 
 alter table " + tableName + @" comment '好友表';
@@ -50,7 +51,7 @@ alter table " + tableName + @" comment '好友表';
 			return InsertSuccessModelData(model,
 				friendTableNameCacheList,
 				model.PlayerId,
-				MinecraftCommonConfig.Prefix_FriendTable,
+				TablePrefixConfig.Friend,
 				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen,
 				GetCreateFriendTableSql);
 		}

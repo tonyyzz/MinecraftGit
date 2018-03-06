@@ -12,11 +12,11 @@ namespace Minecraft.ConnTest.Send
 	{
 		public static MainCommand mainCommand = MainCommand.Player;
 		public static SecondCommand secondCommand = SecondCommand.Player_PlayerLogin;
-		public static (MainCommand, SecondCommand, object) GetReq()
+		public static (MainCommand, SecondCommand, PlayerLoginReq) GetReq()
 		{
 			var req = new PlayerLoginReq()
 			{
-				PlayerId = 1
+				PlayerId = 10001
 			};
 			return (mainCommand, secondCommand, req);
 		}

@@ -15,7 +15,7 @@ namespace Minecraft.CacheRedis
 			try
 			{
 				RedisHelper redisHelper = new RedisHelper();
-				redisHelper.StringGet<string>(MinecraftRedisKeyConfig.Test + 1);
+				redisHelper.StringGet<string>(RedisKeyConfig.Test + 1);
 				canStart = true;
 			}
 			catch (Exception)

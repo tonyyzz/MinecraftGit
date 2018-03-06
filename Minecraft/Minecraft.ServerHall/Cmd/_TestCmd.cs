@@ -3,10 +3,6 @@ using Minecraft.Model.ReqResp;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Minecraft.ServerHall.Cmd
 {
@@ -30,7 +26,7 @@ namespace Minecraft.ServerHall.Cmd
 			var req = requestInfo.GetRequestObj<TestReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
-				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
+				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 

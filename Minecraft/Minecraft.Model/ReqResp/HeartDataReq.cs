@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Model.ReqResp
 {
-	public class HeartDataReq
+	public class HeartDataReq : BaseReq
 	{
 		/// <summary>
 		/// 被加密的字符串

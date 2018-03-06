@@ -20,7 +20,7 @@ namespace Minecraft.ServerHall
 		protected override void OnSessionStarted()
 		{
 			//进入连接
-			this.Send(MainCommand.Conn, SecondCommand.Conn_Success, new MsgResp(MsgLevelEnum.Info, "Welcome to SuperSocket Minecraft Server"));
+			this.Send(MainCommand.Conn, SecondCommand.Conn_Success, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "Welcome to SuperSocket Minecraft Server" });
 
 			//Console.WriteLine("");
 			//Console.WriteLine($"远程IP端口：{this.RemoteEndPoint.Address.ToString()}:{this.RemoteEndPoint.Port}");
@@ -53,7 +53,7 @@ namespace Minecraft.ServerHall
 
 			//add you logics which will be executed after the session is closed
 			//base.OnSessionClosed(reason);
-			this.Send(MainCommand.Conn, SecondCommand.Conn_Close, new MsgResp(MsgLevelEnum.Info, "断开连接的通知"));
+			this.Send(MainCommand.Conn, SecondCommand.Conn_Close, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "断开连接的通知" });
 
 
 			//var sessions = this.AppServer.GetAllSessions().ToList();
@@ -71,17 +71,17 @@ namespace Minecraft.ServerHall
 			//var str = rawMessage;
 
 			//加上 数据结尾分隔符，用作黏包情况处理
-			return str + MinecraftCommonConfig.EndingSymbol;
+			return str + CommonConfig.EndingSymbol;
 		}
 
 		protected override void HandleException(Exception e)
 		{
-			this.Send(MainCommand.Error, SecondCommand.Error_ApplicationError, new MsgResp(MsgLevelEnum.Error, "Application error: " + e.Message));
+			this.Send(MainCommand.Handle, SecondCommand.Handle_HandleException, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = e.Message });
 		}
 
 		protected override void HandleUnknownRequest(StringRequestInfo requestInfo)
 		{
-			this.Send(MainCommand.Error, SecondCommand.Error_UnknowRequest, new MsgResp(MsgLevelEnum.Error, "Unknow request"));
+			this.Send(MainCommand.Handle, SecondCommand.Handle_HandleUnknownRequest, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = $"Unknow request：{requestInfo.Key}" });
 		}
 	}
 }

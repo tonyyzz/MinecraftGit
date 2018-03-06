@@ -76,7 +76,7 @@ namespace Minecraft.ServerHall.Cmd
 				return;
 			}
 			//心跳包合法
-			session.Send(defMainCommand, defSecondCommand, new MsgResp(MsgLevelEnum.Info, "心跳包"));
+			session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "心跳包" });
 		}
 	}
 }

@@ -18,9 +18,16 @@ namespace Minecraft.InitTest
 		public static void Do()
 		{
 			Console.WriteLine("正在初始化数据...");
+			//TruncateTables();
 			InitPlayerbasis();
-			InitGoods();
+			//InitGoods();
+			//InitFriend();
 			Console.WriteLine("数据初始化完成！");
+		}
+
+		private static void TruncateTables()
+		{
+			BaseBLL.TruncateTable(new PlayerbasisModel());
 		}
 
 		/// <summary>
@@ -28,11 +35,10 @@ namespace Minecraft.InitTest
 		/// </summary>
 		private static void InitPlayerbasis()
 		{
-			BaseBLL.TruncateTable(new PlayerbasisModel());
 			//插入一条数据
 			PlayerbasisModel playerbasisModel = new PlayerbasisModel
 			{
-				PlayerId = 1,
+				PlayerId = 10001,
 				Name = "Player_1",
 				PhysicalStrengthValue = 100,
 				Fight_Attack = 10,
@@ -51,8 +57,11 @@ namespace Minecraft.InitTest
 
 		private static void InitGoods()
 		{
-			BaseBLL.DropTablesWithPrefix(MinecraftCommonConfig.Prefix_GoodsTable);
+			BaseBLL.DropTablesWithPrefix(TablePrefixConfig.Goods);
+		}
+		private static void InitFriend()
+		{
+			BaseBLL.DropTablesWithPrefix(TablePrefixConfig.Friend);
 		}
 	}
 }
- 

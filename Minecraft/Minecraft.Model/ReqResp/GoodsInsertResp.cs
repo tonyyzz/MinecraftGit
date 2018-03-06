@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Model.ReqResp
 {
-	public class GoodsInsertResp
+	public class GoodsInsertResp : BaseResp
 	{
 		public bool IsSuccess  { get; set; }
 	}

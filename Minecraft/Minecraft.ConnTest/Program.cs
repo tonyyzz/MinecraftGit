@@ -58,7 +58,7 @@ namespace Minecraft.ConnTest
 					//Console.WriteLine("元数据：" + str);
 
 					//黏包情况处理（用结束符分割处理）
-					var strs = str.Split(new String[] { MinecraftCommonConfig.EndingSymbol }, StringSplitOptions.RemoveEmptyEntries);
+					var strs = str.Split(new String[] { CommonConfig.EndingSymbol }, StringSplitOptions.RemoveEmptyEntries);
 					if (strs.Count() >= 2)
 					{
 						Console.WriteLine("------【出现黏包情况】");
@@ -69,9 +69,9 @@ namespace Minecraft.ConnTest
 						var deStr = EncryptHelper.Decrypt(item, "client");
 						//Console.WriteLine("解析后的数据：" + deStr);
 
-						var deStrs = deStr.Split(new char[] { MinecraftCommonConfig.SeparativeSymbol });
+						var deStrs = deStr.Split(new char[] { CommonConfig.SeparativeSymbol });
 						var protocolStr = deStrs[0];
-						var respStr = string.Join(MinecraftCommonConfig.SeparativeSymbol.ToString(), deStrs.Skip(1).ToArray());
+						var respStr = string.Join(CommonConfig.SeparativeSymbol.ToString(), deStrs.Skip(1).ToArray());
 						//Console.WriteLine($"协议：{protocolStr}，数据：{respStr}");
 						//接收
 						//解析枚举

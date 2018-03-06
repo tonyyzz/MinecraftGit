@@ -1,4 +1,5 @@
 ﻿using Minecraft.Config;
+using Minecraft.Model.ReqResp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace Minecraft.ConnTest
 {
 	public class ComManager
 	{
-		public static void Send(Socket socketClient,
-			Func<(MainCommand, SecondCommand, object)> func)
+		public static void Send<T>(Socket socketClient,
+			Func<(MainCommand, SecondCommand, T)> func) where T : BaseReq
 		{
 			var (mainCommand, secondCommand, req) = func();
 			var protocolStr = ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
@@ -28,7 +29,8 @@ namespace Minecraft.ConnTest
 		/// <param name="respStr"></param>
 		public static void ConsoleWriteResp(MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
-			Console.WriteLine($"主协议：{mainCommand.ToString()} 次协议：{secondCommand.ToString()} 响应字符串：{respStr}");
+			var resp = respStr.JsonDeserialize<BaseResp>();
+			Console.WriteLine($"主协议：{mainCommand.ToString()} 次协议：{secondCommand.ToString()} 【响应消息级别：{resp.RespLevel.ToString()}】 响应字符串：{respStr}");
 		}
 	}
 }

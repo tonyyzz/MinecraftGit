@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Model.ReqResp
 {
-	public class HeartDataResp
+	public class HeartDataResp : BaseResp
 	{
-		public DateTime timeNow { get; set; }
+		public DateTime TimeNow { get; set; }
 	}
 }

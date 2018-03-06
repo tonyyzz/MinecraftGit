@@ -68,13 +68,16 @@
     <Compile Include="mysql\PlayerbasisModel.cs" />
     <Compile Include="ReqResp\BackpackGoodsInsertReq.cs" />
     <Compile Include="ReqResp\BackpackGoodsInsertResp.cs" />
+    <Compile Include="ReqResp\base\BaseReq.cs" />
+    <Compile Include="ReqResp\base\BaseResp.cs" />
+    <Compile Include="ReqResp\FriendInsertReq.cs" />
+    <Compile Include="ReqResp\FriendInsertResp.cs" />
     <Compile Include="ReqResp\FurnitureInsertReq.cs" />
     <Compile Include="ReqResp\FurnitureInsertResp.cs" />
     <Compile Include="ReqResp\GoodsInsertReq.cs" />
     <Compile Include="ReqResp\GoodsInsertResp.cs" />
     <Compile Include="ReqResp\HeartDataReq.cs" />
     <Compile Include="ReqResp\HeartDataResp.cs" />
-    <Compile Include="ReqResp\MsgResp.cs" />
     <Compile Include="ReqResp\PlayerLoginReq.cs" />
     <Compile Include="ReqResp\PlayerLoginResp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

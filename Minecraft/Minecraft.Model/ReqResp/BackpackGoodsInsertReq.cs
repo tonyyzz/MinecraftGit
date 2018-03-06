@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Model.ReqResp
 {
-	public class BackpackGoodsInsertReq
+	public class BackpackGoodsInsertReq : BaseReq
 	{
 		public int PlayerId { get; set; }
 	}

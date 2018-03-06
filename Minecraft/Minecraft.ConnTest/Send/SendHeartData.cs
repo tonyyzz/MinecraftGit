@@ -12,7 +12,7 @@ namespace Minecraft.ConnTest.Send
 	{
 		public static MainCommand mainCommand = MainCommand.Heart;
 		public static SecondCommand secondCommand = SecondCommand.Heart_HeartData;
-		public static (MainCommand, SecondCommand, object) GetReq()
+		public static (MainCommand, SecondCommand, HeartDataReq) GetReq()
 		{
 			var req = new HeartDataReq()
 			{

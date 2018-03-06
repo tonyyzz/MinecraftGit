@@ -1,4 +1,5 @@
-﻿using SuperSocket.SocketBase.Protocol;
+﻿using Minecraft.Model.ReqResp;
+using SuperSocket.SocketBase.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,11 @@ namespace Minecraft.ServerHall
 		/// <param name="requestInfo"></param>
 		/// <returns></returns>
 		public static T GetRequestObj<T>(this StringRequestInfo requestInfo,
-			MinecraftSession session)
+			MinecraftSession session) where T : BaseReq
 		{
 			try
 			{
-				return  EncryptHelper.Decrypt(requestInfo.Body,"server").JsonDeserialize<T>();
+				return EncryptHelper.Decrypt(requestInfo.Body, "server").JsonDeserialize<T>();
 			}
 			catch (FormatException ex)
 			{

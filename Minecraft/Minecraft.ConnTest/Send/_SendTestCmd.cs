@@ -15,7 +15,7 @@ namespace Minecraft.ConnTest.Send
 	{
 		public static MainCommand mainCommand = MainCommand.Test;
 		public static SecondCommand secondCommand = SecondCommand.Test_TestCmd;
-		public static (MainCommand, SecondCommand, object) GetReq()
+		public static (MainCommand, SecondCommand, TestReq) GetReq()
 		{
 			var req = new TestReq()
 			{

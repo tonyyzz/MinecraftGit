@@ -13,10 +13,21 @@ namespace Minecraft.ConnTest.Receive
 	{
 		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
-			var resp = respStr.JsonDeserialize<MsgResp>();
-			if (resp == null || resp.InfoLevel != MsgLevelEnum.Info)
+			var resp = respStr.JsonDeserialize<BaseResp>();
+			if (resp == null)
 			{
 				return;
+			}
+			switch (resp.RespLevel)
+			{
+				case RespLevelEnum.Success:
+					break;
+				case RespLevelEnum.Warn:
+					break;
+				case RespLevelEnum.Error:
+					break;
+				default:
+					break;
 			}
 		}
 	}

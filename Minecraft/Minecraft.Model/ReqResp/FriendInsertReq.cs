@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Model.ReqResp
 {
-	public class GoodsInsertReq : BaseReq
+	public class FriendInsertReq : BaseReq
 	{
-		/// <summary>
-		/// 物品所属玩家
-		/// </summary>
-		public int PlayerId { get; set; }
+		public int FriendId { get; set; }
 	}
 }

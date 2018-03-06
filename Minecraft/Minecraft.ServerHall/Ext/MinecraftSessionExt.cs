@@ -14,29 +14,29 @@ namespace Minecraft.ServerHall
 		public static void Send<T>(this MinecraftSession session,
 			MainCommand mainCommand,
 			SecondCommand secondCommand,
-			T obj) where T : class
+			T obj) where T : BaseResp
 		{
 			string protocolStr = ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
-			session.Send(protocolStr + MinecraftCommonConfig.SeparativeSymbol.ToString() + obj.JsonSerialize());
+			session.Send(protocolStr + CommonConfig.SeparativeSymbol.ToString() + obj.JsonSerialize());
 
 			ThreadPool.QueueUserWorkItem(o =>
 			{
-				var t = o as MsgResp;
+				var t = o as BaseResp;
 				if (t != null)
 				{
-					switch (t.InfoLevel)
+					switch (t.RespLevel)
 					{
-						case MsgLevelEnum.Warn:
+						case RespLevelEnum.Warn:
 							{
 								session.Logger.Warn(t.Msg);
 							}
 							break;
-						case MsgLevelEnum.Error:
+						case RespLevelEnum.Error:
 							{
 								session.Logger.Error(t.Msg);
 							}
 							break;
-						case MsgLevelEnum.Info:
+						case RespLevelEnum.Success:
 							break;
 						default:
 							break;

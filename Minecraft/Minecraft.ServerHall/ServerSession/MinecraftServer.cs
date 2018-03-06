@@ -28,7 +28,7 @@ namespace Minecraft.ServerHall
 
 		//结束符协议
 		public MinecraftServer()
-		: base(new TerminatorReceiveFilterFactory(MinecraftCommonConfig.EndingSymbol))
+		: base(new TerminatorReceiveFilterFactory(CommonConfig.EndingSymbol))
 		{
 
 		}

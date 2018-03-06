@@ -12,7 +12,7 @@ namespace Minecraft.ConnTest.Send
 	{
 		public static MainCommand mainCommand = MainCommand.Furniture;
 		public static SecondCommand secondCommand = SecondCommand.Furniture_FurnitureInsert;
-		public static (MainCommand, SecondCommand, object) GetReq()
+		public static (MainCommand, SecondCommand, FurnitureInsertReq) GetReq()
 		{
 			var req = new FurnitureInsertReq()
 			{

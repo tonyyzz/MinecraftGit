@@ -106,7 +106,7 @@ namespace Minecraft.DALMySql
 		protected static string GetTableNameWithTablePrefix(int keyId, string tableNamePrefix,string submeterLenStr)
 		{
 			var submeterLen = Convert.ToInt32(submeterLenStr);
-			string tableName = $"{tableNamePrefix}_{MinecraftCommonConfig.GetTablePostfix(keyId, submeterLen)}";
+			string tableName = $"{tableNamePrefix}_{CommonConfig.GetTablePostfix(keyId, submeterLen)}";
 			return tableName;
 		}
 

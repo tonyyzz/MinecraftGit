@@ -36,26 +36,25 @@ namespace Minecraft.Config
 		/// </summary>
 		Conn,
 		/// <summary>
-		/// 错误
+		/// 处理
 		/// </summary>
-		Error,
+		Handle,
 		/// <summary>
 		/// 玩家
 		/// </summary>
 		Player,
-		
 		/// <summary>
 		/// 背包
 		/// </summary>
 		Backpack,
-		///// <summary>
-		///// 背包
-		///// </summary>
-		//Goods,
 		/// <summary>
 		/// 家具
 		/// </summary>
 		Furniture,
+		/// <summary>
+		/// 好友
+		/// </summary>
+		Friend,
 	}
 
 	/// <summary>
@@ -82,31 +81,15 @@ namespace Minecraft.Config
 		/// 连接关闭
 		/// </summary>
 		Conn_Close,
-
-
-
+		
 		/// <summary>
-		/// 应用程序错误
+		/// 处理异常
 		/// </summary>
-		Error_ApplicationError,
+		Handle_HandleException,
 		/// <summary>
-		/// 未知错误
+		/// 处理未知请求
 		/// </summary>
-		Error_UnknowRequest,
-		/// <summary>
-		/// 参数错误
-		/// </summary>
-		Error_ParameterError,
-		/// <summary>
-		/// 不存在
-		/// </summary>
-		Error_NotExist,
-		/// <summary>
-		/// 操作失败
-		/// </summary>
-		Error_OperationFailure,
-
-
+		Handle_HandleUnknownRequest,
 
 		/// <summary>
 		/// 玩家登录
@@ -120,14 +103,13 @@ namespace Minecraft.Config
 		Backpack_BackpackGoodsInsert,
 
 
-		///// <summary>
-		///// 背包插入
-		///// </summary>
-		//Goods_GoodsInsert,
-
 		/// <summary>
 		/// 家具插入
 		/// </summary>
-		Furniture_FurnitureInsert
+		Furniture_FurnitureInsert,
+		/// <summary>
+		/// 好友信息插入
+		/// </summary>
+		Friend_FriendInsert,
 	}
 }

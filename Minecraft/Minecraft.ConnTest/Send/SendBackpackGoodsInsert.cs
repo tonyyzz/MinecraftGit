@@ -11,7 +11,7 @@ namespace Minecraft.ConnTest.Send
 	{
 		public static MainCommand mainCommand = MainCommand.Backpack;
 		public static SecondCommand secondCommand = SecondCommand.Backpack_BackpackGoodsInsert;
-		public static (MainCommand, SecondCommand, object) GetReq()
+		public static (MainCommand, SecondCommand, BackpackGoodsInsertReq) GetReq()
 		{
 			var req = new BackpackGoodsInsertReq()
 			{

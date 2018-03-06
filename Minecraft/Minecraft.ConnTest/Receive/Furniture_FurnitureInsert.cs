@@ -14,9 +14,20 @@ namespace Minecraft.ConnTest.Receive
 		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
 			var resp = respStr.JsonDeserialize<FurnitureInsertResp>();
-			if (resp == null || resp.PlayerId <= 0)
+			if (resp == null)
 			{
 				return;
+			}
+			switch (resp.RespLevel)
+			{
+				case RespLevelEnum.Success:
+					break;
+				case RespLevelEnum.Warn:
+					break;
+				case RespLevelEnum.Error:
+					break;
+				default:
+					break;
 			}
 		}
 	}
