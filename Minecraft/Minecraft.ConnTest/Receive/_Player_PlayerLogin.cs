@@ -6,29 +6,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Minecraft.ConnTest.Receive
 {
-	/// <summary>
-	/// 连接成功后
-	/// </summary>
-	public class Conn_Success
+	public class Player_PlayerLogin
 	{
 		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
-			var resp = respStr.JsonDeserialize<MsgResp>();
-			if (resp == null || resp.InfoLevel != MsgLevelEnum.Info)
+			var resp = respStr.JsonDeserialize<PlayerLoginResp>();
+			if (resp == null || resp.PlayerId <=0)
 			{
 				return;
 			}
-			//连接成功
+			//登录成功
 
-			//登录操作
+			//登录之后的操作
+
 			ComManager.Send(socketClient, () =>
 			{
-				return SendPlyerLogin.GetReq();
+				return SendBackpackGoodsInsert.GetReq();
 			});
 		}
 	}

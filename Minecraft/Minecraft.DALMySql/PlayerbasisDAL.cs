@@ -15,7 +15,7 @@ namespace Minecraft.DALMySql
             using (var Conn = GetConn())
             {
                 Conn.Open();
-                string sql = $"select * from player where PlayerId={playerId}";
+                string sql = $"select * from playerbasis where PlayerId={playerId}";
                 return Conn.QueryFirstOrDefault<PlayerbasisModel>(sql);
             }
         }

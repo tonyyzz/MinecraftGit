@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Minecraft.BLL.mysql;
 using Minecraft.Config;
+using Minecraft.Model;
 using Minecraft.Model.ReqResp;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
@@ -31,8 +33,21 @@ namespace Minecraft.ServerHall.Cmd
 				return;
 			}
 
-
-
+			GoodsModel goodsModel = new GoodsModel
+			{
+				GoodsId = StringHelper.GetGuidStr(),
+				PlayerId = req.PlayerId,
+				BelongsTo = 1,
+				GoodsItemId = 1,
+				GoodsPosition = 0,
+				WastageValue = 100
+			};
+			var flag = GoodsBLL.InsertGoodsInfoForSplitTable(goodsModel, Memory.MemorySystemManager.goodsTableNameCacheList);
+			if (!flag)
+			{
+				session.Send(MainCommand.Error, SecondCommand.Error_OperationFailure, new MsgResp(MsgLevelEnum.Error, "goods分表插入操作失败"));
+				return;
+			}
 
 			var resp = new BackpackGoodsInsertResp
 			{

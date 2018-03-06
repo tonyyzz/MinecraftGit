@@ -5,15 +5,16 @@ using System.Net.Sockets;
 
 namespace Minecraft.ConnTest.Receive
 {
-	public class Test_TestCmd
+	public class Backpack_BackpackGoodsInsert
 	{
 		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
-			var resp = respStr.JsonDeserialize<MsgResp>();
-			if (resp == null || resp.InfoLevel != MsgLevelEnum.Info)
+			var resp = respStr.JsonDeserialize<BackpackGoodsInsertResp>();
+			if (resp == null || resp.PlayerId <= 0)
 			{
 				return;
 			}
+			Console.WriteLine($"背包信息：{respStr}");
 		}
 	}
 }

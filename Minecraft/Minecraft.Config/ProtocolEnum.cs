@@ -101,17 +101,17 @@ namespace Minecraft.Config
 		/// 不存在
 		/// </summary>
 		Error_NotExist,
+		/// <summary>
+		/// 操作失败
+		/// </summary>
+		Error_OperationFailure,
 
 
 
 		/// <summary>
 		/// 玩家登录
 		/// </summary>
-		Player_PlyerLogin,
-		/// <summary>
-		/// 玩家基础信息插入
-		/// </summary>
-		Player_PlayerBaseInsert,
+		Player_PlayerLogin,
 		
 
 		/// <summary>

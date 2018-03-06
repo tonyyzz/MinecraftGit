@@ -71,6 +71,8 @@ namespace Minecraft.DALMySql
 			}
 		}
 
+		//public static T GetFirstOrDefault<T,K>(K keyId,)
+
 		/// <summary>
 		/// 统一插入方法（使用注意：model类名必须以‘Model’结尾，并且model属性名称和个数必须与数据库表字段名称和个数一致。如果不一致，请使用其中的一个重载方法 T^T）
 		/// </summary>

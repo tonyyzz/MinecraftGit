@@ -20,7 +20,8 @@ namespace Minecraft.Test
 			var execName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
 
 			var type = typeof(MsgResp);
-			//var name = nameof(MsgResp);
+			var platwr = new TestReq().PlayerId;
+			var name = nameof(platwr);
 		}
 		
 	}

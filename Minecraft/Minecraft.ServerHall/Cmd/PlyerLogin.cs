@@ -27,7 +27,7 @@ namespace Minecraft.ServerHall.Cmd
 		}
 
 		private MainCommand defMainCommand = MainCommand.Player;
-		private SecondCommand defSecondCommand = SecondCommand.Player_PlyerLogin;
+		private SecondCommand defSecondCommand = SecondCommand.Player_PlayerLogin;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			var req = requestInfo.GetRequestObj<PlayerLoginReq>(session);
