@@ -30,7 +30,7 @@ namespace Minecraft.ConnTest
 		public static void ConsoleWriteResp(MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
 			var resp = respStr.JsonDeserialize<BaseResp>();
-			Console.WriteLine($"主协议：{mainCommand.ToString()} 次协议：{secondCommand.ToString()} 【响应消息级别：{resp.RespLevel.ToString()}】 响应字符串：{respStr}");
+			Console.WriteLine($"时间：{DateTime.Now.ToStr()} 主协议：{mainCommand.ToString()} 次协议：{secondCommand.ToString()} 【响应消息级别：{resp.RespLevel.ToString()}】 响应字符串：{respStr}");
 		}
 	}
 }

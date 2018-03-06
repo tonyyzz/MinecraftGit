@@ -16,7 +16,7 @@ namespace Minecraft.ConnTest.Send
 		{
 			var req = new PlayerLoginReq()
 			{
-				PlayerId = 10001
+				PlayerId = 1
 			};
 			return (mainCommand, secondCommand, req);
 		}

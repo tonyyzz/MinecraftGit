@@ -12,6 +12,8 @@ namespace Minecraft.InitTest
 	{
 		static void Main(string[] args)
 		{
+			Console.WriteLine("--------------【Minecraft初始化】---------------");
+
 			Stopwatch stopwatch = new Stopwatch();
 			stopwatch.Start();
 			StartBLL.StartDBServerCheck(out bool canStartAll);

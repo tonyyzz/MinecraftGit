@@ -51,6 +51,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +76,10 @@
       <Project>{78c39217-0e3a-4e93-9f58-0108efe5639f}</Project>
       <Name>Minecraft.CacheRedis</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Minecraft.Common\Minecraft.Common.csproj">
+      <Project>{464cd133-6ff3-408e-9d53-934e14776072}</Project>
+      <Name>Minecraft.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Minecraft.Config\Minecraft.Config.csproj">
       <Project>{ec058aee-1e8d-4a14-9b91-50167a01153b}</Project>
       <Name>Minecraft.Config</Name>
@@ -89,6 +96,9 @@
       <Project>{d89518f5-88e7-4b0e-ab9d-86589f429176}</Project>
       <Name>Minecraft.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,7 +21,9 @@ namespace Minecraft.Test
 
 			var type = typeof(BaseResp);
 			var platwr = new TestReq().PlayerId;
+			var gg = new TestReq();
 			var name = nameof(platwr);
+			 name = nameof(gg.PlayerId);
 		}
 		
 	}

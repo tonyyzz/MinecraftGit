@@ -89,6 +89,14 @@ namespace Minecraft.CacheRedis
 		#region String 操作
 
 		/// <summary>
+		/// 测试
+		/// </summary>
+		public void StringOptTest()
+		{
+			//var keys = _db.KeyDelete();
+		}
+
+		/// <summary>
 		/// 设置 key 并保存字符串（如果 key 已存在，则覆盖值）
 		/// </summary>
 		/// <param name="redisKey"></param>

@@ -60,8 +60,7 @@ namespace Minecraft.DALMongoDb
 		public T Insert(T entity)
 		{
 			var flag = ObjectId.GenerateNewId();
-			//entity.GetType().GetProperty("Id").SetValue(entity, flag);
-			entity.GetType().GetProperty("Id").SetValue(entity, flag.ToString(), null);
+			entity.GetType().GetProperty("Id").SetValue(entity, flag.ToString());
 			//entity.State = "y";
 			entity.CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 			entity.UpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -139,20 +138,16 @@ namespace Minecraft.DALMongoDb
 
 			foreach (var prop in entity.GetType().GetProperties())
 			{
-				//var newValue = prop.GetValue(entity);
-				var newValue = prop.GetValue(entity, null);
-				//var oldValue = old.GetType().GetProperty(prop.Name).GetValue(old);
-				var oldValue = old.GetType().GetProperty(prop.Name).GetValue(old, null);
+				var newValue = prop.GetValue(entity);
+				var oldValue = old.GetType().GetProperty(prop.Name).GetValue(old);
 				if (newValue != null)
 				{
 					if (!newValue.ToString().Equals(oldValue.ToString()))
 					{
-						//old.GetType().GetProperty(prop.Name).SetValue(old, newValue.ToString());
-						old.GetType().GetProperty(prop.Name).SetValue(old, newValue.ToString(), null);
+						old.GetType().GetProperty(prop.Name).SetValue(old, newValue.ToString());
 					}
 				}
 			}
-			//old.State = "y";
 			old.UpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
 			var filter = Builders<T>.Filter.Eq("Id", entity.Id);

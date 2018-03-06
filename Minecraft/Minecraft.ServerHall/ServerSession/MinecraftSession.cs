@@ -7,6 +7,7 @@ using SuperSocket.SocketBase.Protocol;
 using Minecraft.Config;
 using Minecraft.Model;
 using Minecraft.Model.ReqResp;
+using Minecraft.BLL.mysql;
 
 namespace Minecraft.ServerHall
 {
@@ -45,12 +46,14 @@ namespace Minecraft.ServerHall
 
 		protected override void OnSessionClosed(CloseReason reason)
 		{
+
 			//断开连接
 
-
-			//存储数据
-
-
+			if (minecraftSessionInfo.IsLogin)
+			{
+				//存储数据
+				PlayerbasisBLL.Update(minecraftSessionInfo.player, nameof(minecraftSessionInfo.player.PlayerId));
+			}
 			//add you logics which will be executed after the session is closed
 			//base.OnSessionClosed(reason);
 			this.Send(MainCommand.Conn, SecondCommand.Conn_Close, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "断开连接的通知" });
@@ -66,10 +69,7 @@ namespace Minecraft.ServerHall
 		protected override string ProcessSendingMessage(string rawMessage)
 		{
 			//加密处理
-
 			var str = EncryptHelper.Encrypt(rawMessage);
-			//var str = rawMessage;
-
 			//加上 数据结尾分隔符，用作黏包情况处理
 			return str + CommonConfig.EndingSymbol;
 		}
@@ -83,5 +83,6 @@ namespace Minecraft.ServerHall
 		{
 			this.Send(MainCommand.Handle, SecondCommand.Handle_HandleUnknownRequest, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = $"Unknow request：{requestInfo.Key}" });
 		}
+
 	}
 }

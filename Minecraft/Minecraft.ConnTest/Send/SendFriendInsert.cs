@@ -16,7 +16,7 @@ namespace Minecraft.ConnTest.Send
 		{
 			var req = new FriendInsertReq()
 			{
-				FriendId = 1
+				FriendId = 2
 			};
 			return (mainCommand, secondCommand, req);
 		}

@@ -19,6 +19,8 @@ namespace Minecraft.ConnTest
 	{
 		static void Main(string[] args)
 		{
+			Console.WriteLine("--------------【Minecraft客户端】---------------");
+
 			var socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			IPAddress ip = IPAddress.Parse("127.0.0.1");
 			//IPAddress ip = IPAddress.Parse("111.230.142.94");
@@ -37,7 +39,7 @@ namespace Minecraft.ConnTest
 		}
 
 
-		
+
 
 
 		static void Recive(object o)
@@ -75,15 +77,8 @@ namespace Minecraft.ConnTest
 						//Console.WriteLine($"协议：{protocolStr}，数据：{respStr}");
 						//接收
 						//解析枚举
-						var mainStr = protocolStr.Substring(0, ProtocolLen.Main);
-						var secondStr = protocolStr.Substring(ProtocolLen.Main);
-
-						int mainInt = Convert.ToInt32(mainStr);
-						int secondInt = Convert.ToInt32(secondStr);
-
-						MainCommand mainCommand = (MainCommand)mainInt;
-						SecondCommand secondCommand = (SecondCommand)secondInt;
-
+						
+						(MainCommand mainCommand, SecondCommand secondCommand) = ProtocolHelper.GetCommand(protocolStr);
 
 						//---------------输出协议传输信息----------------
 						ComManager.ConsoleWriteResp(mainCommand, secondCommand, respStr);

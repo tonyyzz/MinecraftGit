@@ -24,10 +24,25 @@ namespace Minecraft.BLL.mysql
 			}
 			else
 			{
-				var model = PlayerbasisDAL.GetSingleOrDefault(playerId);
+				var model = new PlayerbasisModel();
+				model = BaseDAL.GetSingleOrDefault(model, (nameof(model.PlayerId), playerId));
 				redisHelper.StringSet(RedisKeyConfig.PlayerInfo + playerId, model, CommonConfig.DefRedisExpiry);
 				return model;
 			}
+		}
+
+		public static void Update<T>(T model, params string[] keyNames) where T : class
+		{
+			if (model == null)
+			{
+				return;
+			}
+			if (keyNames == null || !keyNames.Any())
+			{
+				throw new ArgumentException("参数不能为空或者列表元素个数不能为零");
+			}
+			var props = model.GetAllPropKeys(keyNames.ToList());
+			string sql = $"";
 		}
 	}
 }

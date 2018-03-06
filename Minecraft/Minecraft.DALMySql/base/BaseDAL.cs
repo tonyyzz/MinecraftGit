@@ -71,7 +71,33 @@ namespace Minecraft.DALMySql
 			}
 		}
 
-		//public static T GetFirstOrDefault<T,K>(K keyId,)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="tableName"></param>
+		/// <param name="keyValue"></param>
+		/// <returns></returns>
+		public static T GetSingleOrDefault<T>(T model, (string key, int value) keyValue) where T : class
+		{
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				string sql = $"select * from {GetTableNameByModelName(model)} where {keyValue.key}={keyValue.value} limit 1";
+				return Conn.QueryFirstOrDefault<T>(sql);
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="model"></param>
+		/// <returns></returns>
+		private static string GetTableNameByModelName<T>(T model) where T : class
+		{
+			return typeof(T).Name.Substring(0, typeof(T).Name.LastIndexOf("Model")).ToLower();
+		}
 
 		/// <summary>
 		/// 统一插入方法（使用注意：model类名必须以‘Model’结尾，并且model属性名称和个数必须与数据库表字段名称和个数一致。如果不一致，请使用其中的一个重载方法 T^T）

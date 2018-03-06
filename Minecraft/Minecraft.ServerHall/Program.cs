@@ -14,6 +14,9 @@ namespace Minecraft.ServerHall
 	{
 		static void Main(string[] args)
 		{
+
+			Console.WriteLine("--------------【Minecraft服务器】---------------");
+
 			#region 数据监测以及初始化
 			Stopwatch stopwatch = new Stopwatch();
 			stopwatch.Start();

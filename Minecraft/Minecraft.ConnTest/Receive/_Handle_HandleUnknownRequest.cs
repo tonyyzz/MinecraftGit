@@ -21,6 +21,9 @@ namespace Minecraft.ConnTest.Receive
 				case RespLevelEnum.Warn:
 					break;
 				case RespLevelEnum.Error:
+					{
+
+					}
 					break;
 				default:
 					break;
