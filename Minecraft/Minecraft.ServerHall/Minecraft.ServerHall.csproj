@@ -86,7 +86,6 @@
   <ItemGroup>
     <Compile Include="Cmd\BackpackGoodsInsert.cs" />
     <Compile Include="Cmd\FurnitureInsert.cs" />
-    <Compile Include="Cmd\GoodsInsert.cs" />
     <Compile Include="Cmd\HeartData.cs" />
     <Compile Include="Cmd\PlyerLogin.cs" />
     <Compile Include="Cmd\_TestCmd.cs" />

@@ -11,25 +11,14 @@ namespace Minecraft.BLL.mysql
 	public class GoodsBLL
 	{
 		/// <summary>
-		/// 动态增加goods表，如果存在，则不做处理
-		/// </summary>
-		/// <param name="playerId">玩家Id</param>
-		/// <param name="tableNameList">goods表名称内存缓存</param>
-		/// <returns></returns>
-		//public static bool AddGoodsTable(int playerId, List<string> tableNameList)
-		//{
-		//	return GoodsDAL.AddGoodsTable(playerId, tableNameList);
-		//}
-
-		/// <summary>
-		/// goods信息插入
+		/// 向goods表插入数据（分表插入，如果不存在表，则先建立表，并将表名称缓存起来）
 		/// </summary>
 		/// <param name="model"></param>
-		/// <param name="goodsTableNameList"></param>
+		/// <param name="goodsTableNameCacheList"></param>
 		/// <returns></returns>
-		public static bool InsertSuccessGoodsModel(GoodsModel model, List<string> goodsTableNameList)
+		public static bool InsertGoodsInfoForSplitTable(GoodsModel model, List<string> goodsTableNameCacheList)
 		{
-			return GoodsDAL.InsertSuccessGoodsModel(model, goodsTableNameList);
+			return GoodsDAL.InsertGoodsInfoForSplitTable(model, goodsTableNameCacheList);
 		}
 	}
 }

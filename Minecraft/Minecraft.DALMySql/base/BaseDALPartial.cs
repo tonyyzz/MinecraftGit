@@ -11,35 +11,44 @@ namespace Minecraft.DALMySql
 {
 	public partial class BaseDAL
 	{
-
 		/// <summary>
-		/// 判断表是否存在
+		/// 分表信息插入
 		/// </summary>
-		/// <param name="tableName"></param>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="model"></param>
+		/// <param name="tableNameCacheList">表名称缓存列表</param>
+		/// <param name="keyId">主键Id</param>
+		/// <param name="tableNamePrefix">表名称前缀</param>
+		/// <param name="submeterLenStr">根据keyId分表间隔长度</param>
+		/// <param name="createTableSqlFunc">创建表的sql func</param>
 		/// <returns></returns>
-		protected static bool JudgeTableExists(string tableName)
+		protected static bool InsertSuccessModelData<T>(T model,
+			List<string> tableNameCacheList,
+			int keyId,
+			string tableNamePrefix,
+			string submeterLenStr,
+			Func<int, string> createTableSqlFunc) where T : class
 		{
-			string sql = $"show tables like '{tableName}'; ";
-			using (var Conn = GetConn())
+			if (AddTableSuccess(keyId, tableNameCacheList, tableNamePrefix, submeterLenStr, createTableSqlFunc))
 			{
-				Conn.Open();
-				return !string.IsNullOrWhiteSpace(Conn.QueryFirstOrDefault<string>(sql));
+				using (var Conn = GetConn())
+				{
+					Conn.Open();
+					var propKeys = model.GetAllPropKeys();
+					var names = string.Join(",", propKeys.ToArray());
+					var values = string.Join(",", propKeys.ToList().ConvertAll(m => "@" + m).ToArray());
+					string sql = string.Format(@"insert into {0}({1}) values({2});",
+						GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr),
+						names,
+						values);
+					return Conn.Execute(sql, model) > 0;
+				}
+			}
+			else
+			{
+				return false;
 			}
 		}
-
-		private static List<string> GetTableNames(string prefixName)
-		{
-			List<string> list = new List<string>();
-			string sql = $"show tables like '{prefixName}_%'; ";
-			using (var Conn = GetConn())
-			{
-				Conn.Open();
-				//return !string.IsNullOrWhiteSpace(Conn.QueryFirstOrDefault<string>(sql));
-				list = Conn.Query<string>(sql).ToList();
-			}
-			return list;
-		}
-
 		/// <summary>
 		/// 根据前缀删除表
 		/// </summary>
@@ -63,5 +72,81 @@ namespace Minecraft.DALMySql
 		}
 
 
+
+		/// <summary>
+		/// 判断表是否存在
+		/// </summary>
+		/// <param name="tableName"></param>
+		/// <returns></returns>
+		private static bool JudgeTableExists(string tableName)
+		{
+			string sql = $"show tables like '{tableName}'; ";
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				return !string.IsNullOrWhiteSpace(Conn.QueryFirstOrDefault<string>(sql));
+			}
+		}
+
+		private static List<string> GetTableNames(string prefixName)
+		{
+			List<string> list = new List<string>();
+			string sql = $"show tables like '{prefixName}_%'; ";
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				//return !string.IsNullOrWhiteSpace(Conn.QueryFirstOrDefault<string>(sql));
+				list = Conn.Query<string>(sql).ToList();
+			}
+			return list;
+		}
+
+		
+
+		protected static string GetTableNameWithTablePrefix(int keyId, string tableNamePrefix,string submeterLenStr)
+		{
+			var submeterLen = Convert.ToInt32(submeterLenStr);
+			string tableName = $"{tableNamePrefix}_{MinecraftCommonConfig.GetTablePostfix(keyId, submeterLen)}";
+			return tableName;
+		}
+
+		/// <summary>
+		/// 动态增加表（分表处理），如果存在，则不做处理
+		/// </summary>
+		/// <param name="keyId"></param>
+		/// <param name="tableNameList">goods表名称内存缓存</param>
+		/// <returns></returns>
+		private static bool AddTableSuccess(int keyId, 
+			List<string> tableNameList,
+			string tableNamePrefix,
+			string submeterLenStr,
+			Func<int,string> createTableSqlFunc)
+		{
+			string tableName = GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr);
+			if (tableNameList.Any(m => m == tableName))
+			{
+				return true;
+			}
+			var isTableExists = JudgeTableExists(tableName);
+			if (isTableExists)
+			{
+				tableNameList.Add(tableName);
+				return true;
+			}
+			string sql = createTableSqlFunc(keyId);
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				Conn.Execute(sql);
+				isTableExists = JudgeTableExists(tableName);
+				if (isTableExists)
+				{
+					tableNameList.Add(tableName);
+				}
+				return isTableExists;
+			}
+		}
+
+		
 	}
 }

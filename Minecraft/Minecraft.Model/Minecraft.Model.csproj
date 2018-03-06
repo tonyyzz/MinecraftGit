@@ -61,8 +61,13 @@
   <ItemGroup>
     <Compile Include="mongodb\BaseEntity.cs" />
     <Compile Include="mongodb\MongoDbTestModel.cs" />
-    <Compile Include="mysql\GoodsModel.cs" />
+    <Compile Include="mysql\AtlasscheduleModel.cs" />
+    <Compile Include="mysql\BackpackModel.cs" />
+    <Compile Include="mysql\FriendModel.cs" />
+    <Compile Include="mysql\_GoodsModel.cs" />
     <Compile Include="mysql\PlayerbasisModel.cs" />
+    <Compile Include="ReqResp\BackpackGoodsInsertReq.cs" />
+    <Compile Include="ReqResp\BackpackGoodsInsertResp.cs" />
     <Compile Include="ReqResp\FurnitureInsertReq.cs" />
     <Compile Include="ReqResp\FurnitureInsertResp.cs" />
     <Compile Include="ReqResp\GoodsInsertReq.cs" />
@@ -70,8 +75,6 @@
     <Compile Include="ReqResp\HeartDataReq.cs" />
     <Compile Include="ReqResp\HeartDataResp.cs" />
     <Compile Include="ReqResp\MsgResp.cs" />
-    <Compile Include="ReqResp\PlayerBaseInsertReq.cs" />
-    <Compile Include="ReqResp\PlayerBaseInsertResp.cs" />
     <Compile Include="ReqResp\PlayerLoginReq.cs" />
     <Compile Include="ReqResp\PlayerLoginResp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

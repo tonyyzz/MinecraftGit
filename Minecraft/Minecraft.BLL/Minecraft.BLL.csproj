@@ -62,6 +62,7 @@
     <Compile Include="base\BaseBLL.cs" />
     <Compile Include="base\BaseBLLPartial.cs" />
     <Compile Include="mongodb\PlayerbaseBLL.cs" />
+    <Compile Include="mysql\FriendBLL.cs" />
     <Compile Include="mysql\GoodsBLL.cs" />
     <Compile Include="mysql\PlayerbasisBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

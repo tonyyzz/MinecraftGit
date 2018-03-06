@@ -24,7 +24,7 @@ namespace Minecraft.ServerHall.Cmd
 		private SecondCommand defSecondCommand = SecondCommand.Backpack_BackpackGoodsInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
-			var req = requestInfo.GetRequestObj<PlayerBaseInsertReq>(session);
+			var req = requestInfo.GetRequestObj<BackpackGoodsInsertReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
 				session.Send(MainCommand.Error, SecondCommand.Error_ParameterError, new MsgResp(MsgLevelEnum.Error, "参数错误"));
@@ -34,7 +34,7 @@ namespace Minecraft.ServerHall.Cmd
 
 
 
-			var resp = new TestResp
+			var resp = new BackpackGoodsInsertResp
 			{
 				PlayerId = req.PlayerId
 			};

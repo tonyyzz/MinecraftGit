@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="base\BaseDAL.cs" />
     <Compile Include="base\BaseDALPartial.cs" />
+    <Compile Include="FriendDAL.cs" />
     <Compile Include="GoodsDAL.cs" />
     <Compile Include="PlayerbasisDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

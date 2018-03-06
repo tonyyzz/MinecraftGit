@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Model.ReqResp
 {
-	public class PlayerBaseInsertResp
+	public class BackpackGoodsInsertReq
 	{
-		/// <summary>
-		/// 玩家Id
-		/// </summary>
 		public int PlayerId { get; set; }
 	}
 }

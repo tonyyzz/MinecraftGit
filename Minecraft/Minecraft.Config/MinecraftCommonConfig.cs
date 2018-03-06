@@ -35,7 +35,11 @@ namespace Minecraft.Config
 		/// <summary>
 		/// goods表前缀
 		/// </summary>
-		public static string GoodsTablePrefix = "Goods";
+		public static string Prefix_GoodsTable = "Goods";
+		/// <summary>
+		/// Friend表前缀
+		/// </summary>
+		public static string Prefix_FriendTable = "Friend";
 
 		/// <summary>
 		/// 得到表名称的后缀

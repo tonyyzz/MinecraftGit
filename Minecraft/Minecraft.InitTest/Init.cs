@@ -51,7 +51,7 @@ namespace Minecraft.InitTest
 
 		private static void InitGoods()
 		{
-			BaseBLL.DropTablesWithPrefix(MinecraftCommonConfig.GoodsTablePrefix);
+			BaseBLL.DropTablesWithPrefix(MinecraftCommonConfig.Prefix_GoodsTable);
 		}
 	}
 }

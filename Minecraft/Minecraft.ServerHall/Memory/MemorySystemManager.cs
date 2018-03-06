@@ -12,8 +12,8 @@ namespace Minecraft.ServerHall.Memory
 	public class MemorySystemManager
 	{
 		/// <summary>
-		/// 已经存在的goods表，如果查询过已经存在goods表，则缓存到这里
+		/// 动态缓存已经存在的goods表，如果查询过已经存在goods表，则缓存到这里
 		/// </summary>
-		public static List<string> goodsTableList = new List<string>();
+		public static List<string> goodsTableNameCacheList = new List<string>();
 	}
 }
