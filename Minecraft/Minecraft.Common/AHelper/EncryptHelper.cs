@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace System
 {
-	public class CustomEncrypt
+	/// <summary>
+	/// 加解密帮助类
+	/// </summary>
+	public class EncryptHelper
 	{
 		//private static string encryptKey = "Oyea";    //定义密钥  
 		private static string encryptKey = ConfigurationHelper.GetAppSettingStr("EncryptKey");    //定义密钥  

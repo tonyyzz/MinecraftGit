@@ -16,7 +16,7 @@ namespace Minecraft.ConnTest
 			var (mainCommand, secondCommand, req) = func();
 			var protocolStr = ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
 			string cont = req.JsonSerialize();
-			var sendContent = CustomEncrypt.Encrypt(cont);
+			var sendContent = EncryptHelper.Encrypt(cont);
 			var buffter = Encoding.UTF8.GetBytes($"{protocolStr} {sendContent}##");
 			socketClient.Send(buffter);
 		}

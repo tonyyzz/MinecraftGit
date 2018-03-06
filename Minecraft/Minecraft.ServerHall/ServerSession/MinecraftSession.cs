@@ -67,7 +67,7 @@ namespace Minecraft.ServerHall
 		{
 			//加密处理
 
-			var str = CustomEncrypt.Encrypt(rawMessage);
+			var str = EncryptHelper.Encrypt(rawMessage);
 			//var str = rawMessage;
 
 			//加上 数据结尾分隔符，用作黏包情况处理

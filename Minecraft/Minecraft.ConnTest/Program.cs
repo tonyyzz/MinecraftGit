@@ -66,7 +66,7 @@ namespace Minecraft.ConnTest
 					foreach (var item in strs)
 					{
 						//Console.WriteLine("拆分后的数据包：" + item);
-						var deStr = CustomEncrypt.Decrypt(item, "client");
+						var deStr = EncryptHelper.Decrypt(item, "client");
 						//Console.WriteLine("解析后的数据：" + deStr);
 
 						var deStrs = deStr.Split(new char[] { MinecraftCommonConfig.SeparativeSymbol });

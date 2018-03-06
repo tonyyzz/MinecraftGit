@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AHelper\CookieHelper.cs" />
-    <Compile Include="AHelper\CustomEncrypt.cs" />
+    <Compile Include="AHelper\EncryptHelper.cs" />
     <Compile Include="AHelper\DateTimeHelper.cs" />
     <Compile Include="AHelper\EnumHelper.cs" />
     <Compile Include="AHelper\FileBinaryConvertHelper.cs" />

@@ -35,7 +35,7 @@ namespace Minecraft.ServerHall.Cmd
 			string deStr = "";
 			try
 			{
-				deStr = CustomEncrypt.Decrypt(req.StrEncrypted, "server_heartData");
+				deStr = EncryptHelper.Decrypt(req.StrEncrypted, "server_heartData");
 			}
 			catch (FormatException ex)
 			{

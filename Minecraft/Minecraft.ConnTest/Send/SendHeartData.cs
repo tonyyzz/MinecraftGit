@@ -16,7 +16,7 @@ namespace Minecraft.ConnTest.Send
 		{
 			var req = new HeartDataReq()
 			{
-				StrEncrypted = CustomEncrypt.Encrypt(MinecraftConfiguration.HeartDataReqSecretKey + " " + DateTime.Now.Ticks)
+				StrEncrypted = EncryptHelper.Encrypt(MinecraftConfiguration.HeartDataReqSecretKey + " " + DateTime.Now.Ticks)
 			};
 			return (mainCommand, secondCommand, req);
 		}
