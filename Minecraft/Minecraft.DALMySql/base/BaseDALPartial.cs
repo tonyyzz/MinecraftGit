@@ -101,9 +101,9 @@ namespace Minecraft.DALMySql
 			return list;
 		}
 
-		
 
-		protected static string GetTableNameWithTablePrefix(int keyId, string tableNamePrefix,string submeterLenStr)
+
+		protected static string GetTableNameWithTablePrefix(int keyId, string tableNamePrefix, string submeterLenStr)
 		{
 			var submeterLen = Convert.ToInt32(submeterLenStr);
 			string tableName = $"{tableNamePrefix}_{CommonConfig.GetTablePostfix(keyId, submeterLen)}";
@@ -116,11 +116,11 @@ namespace Minecraft.DALMySql
 		/// <param name="keyId"></param>
 		/// <param name="tableNameList">goods表名称内存缓存</param>
 		/// <returns></returns>
-		private static bool AddTableSuccess(int keyId, 
+		private static bool AddTableSuccess(int keyId,
 			List<string> tableNameList,
 			string tableNamePrefix,
 			string submeterLenStr,
-			Func<int,string> createTableSqlFunc)
+			Func<int, string> createTableSqlFunc)
 		{
 			string tableName = GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr);
 			if (tableNameList.Any(m => m == tableName))
@@ -147,6 +147,6 @@ namespace Minecraft.DALMySql
 			}
 		}
 
-		
+
 	}
 }

@@ -47,8 +47,7 @@ namespace Minecraft.ServerHall.Cmd
 			session.minecraftSessionInfo.IsLogin = true;
 			session.minecraftSessionInfo.LastLoginTime = DateTime.Now;
 			session.minecraftSessionInfo.player = player;
-
-			MemoryDataManager.UpdatePlayerbasis(player);
+			//MemoryDataManager.UpdatePlayerbasis(player);
 
 			//暂定
 			var resp = player.JsonSerialize().JsonDeserialize<PlayerLoginResp>();

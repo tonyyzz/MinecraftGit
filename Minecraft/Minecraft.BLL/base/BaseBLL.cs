@@ -70,5 +70,6 @@ namespace Minecraft.BLL
 			return BaseDAL.BatchInsert(list);
 		}
 
+		
 	}
 }

@@ -18,10 +18,10 @@ namespace Minecraft.InitTest
 		public static void Do()
 		{
 			Console.WriteLine("正在初始化数据...");
-			//TruncateTables();
+			TruncateTables();
 			InitPlayerbasis();
-			//InitGoods();
-			//InitFriend();
+			InitGoods();
+			InitFriend();
 			Console.WriteLine("数据初始化完成！");
 		}
 
@@ -38,7 +38,7 @@ namespace Minecraft.InitTest
 			//插入一条数据
 			PlayerbasisModel playerbasisModel = new PlayerbasisModel
 			{
-				PlayerId = 10001,
+				PlayerId = 1,
 				Name = "Player_1",
 				PhysicalStrengthValue = 100,
 				Fight_Attack = 10,

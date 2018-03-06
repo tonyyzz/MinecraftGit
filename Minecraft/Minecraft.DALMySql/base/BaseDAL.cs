@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Minecraft.Config;
+using System.Reflection;
 
 namespace Minecraft.DALMySql
 {
@@ -65,8 +66,7 @@ namespace Minecraft.DALMySql
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				string sql = string.Format("truncate table {0};",
-					model.GetType().Name.Substring(0, model.GetType().Name.LastIndexOf("Model")).ToLower());
+				string sql = string.Format("truncate table {0};", GetTableNameByModelName(model));
 				return Conn.Execute(sql) > 0;
 			}
 		}
@@ -114,9 +114,7 @@ namespace Minecraft.DALMySql
 				var names = string.Join(",", propKeys.ToArray());
 				var values = string.Join(",", propKeys.ToList().ConvertAll(m => "@" + m).ToArray());
 				string sql = string.Format(@"insert into {0}({1}) values({2});select @@IDENTITY;",
-					model.GetType().Name.Substring(0, model.GetType().Name.LastIndexOf("Model")).ToLower(),
-					names,
-					values);
+					GetTableNameByModelName(model), names, values);
 				var task = Conn.ExecuteScalarAsync(sql, model);
 				return Convert.ToInt32(task.Result);
 			}
@@ -136,9 +134,7 @@ namespace Minecraft.DALMySql
 				var names = string.Join(",", propKeys.ToArray());
 				var values = string.Join(",", propKeys.ToList().ConvertAll(m => "@" + m).ToArray());
 				string sql = string.Format(@"insert into {0}({1}) values({2});",
-					model.GetType().Name.Substring(0, model.GetType().Name.LastIndexOf("Model")).ToLower(),
-					names,
-					values);
+					GetTableNameByModelName(model), names, values);
 				return Conn.Execute(sql, model) > 0;
 			}
 		}
@@ -155,7 +151,7 @@ namespace Minecraft.DALMySql
 			{
 				Conn.Open();
 				string sql = string.Format(@"insert into {0}({1}) values ({2});select @@IDENTITY;",
-				model.GetType().Name.Substring(0, model.GetType().Name.LastIndexOf("Model")).ToLower(),
+				GetTableNameByModelName(model),
 				fieldStrs,
 				string.Join(",", fieldStrs.Split(',').ToList().ConvertAll(m => "@" + m.Trim()).ToArray()));
 				var task = Conn.ExecuteScalarAsync(sql, model);
@@ -176,8 +172,7 @@ namespace Minecraft.DALMySql
 			{
 				Conn.Open();
 				string sql = string.Format(@"insert into {0}({1}) values ({2});",
-				model.GetType().Name.Substring(0, model.GetType().Name.LastIndexOf("Model")).ToLower(),
-				fieldStrs,
+				GetTableNameByModelName(model), fieldStrs,
 				string.Join(",", fieldStrs.Split(',').ToList().ConvertAll(m => "@" + m.Trim()).ToArray()));
 				return Conn.Execute(sql, model) > 0;
 			}
@@ -206,23 +201,7 @@ namespace Minecraft.DALMySql
 				List<string> valList = new List<string>();
 				foreach (var itemProp in itemProps)
 				{
-					var val = itemProp.GetValue(item);
-					string valStr = "";
-					var typeName = itemProp.PropertyType.FullName;
-					switch (typeName)
-					{
-						case "System.String":
-						case "System.DateTime":
-							{
-								valStr = "'" + val + "'";
-							}
-							break;
-						default:
-							{
-								valStr = val.ToString();
-							}
-							break;
-					}
+					string valStr = GetPropsValueStr(model, itemProp);
 					valList.Add(valStr);
 				}
 				string vals = string.Join(",", valList.ToArray());
@@ -231,15 +210,95 @@ namespace Minecraft.DALMySql
 
 			string values = string.Join(",", valAllLi.ToArray());
 			string sql = string.Format(@"insert into {0} ({1}) values {2}",
-				model.GetType().Name.Substring(0, model.GetType().Name.LastIndexOf("Model")).ToLower(),
-				names,
-				values);
+				GetTableNameByModelName(model), names, values);
 
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
 				return Conn.Execute(sql) > 0;
 			}
+		}
+
+		/// <summary>
+		/// 更新实体
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="model"></param>
+		/// <param name="keyNames"></param>
+		public static bool Update<T>(T model, params string[] keyNames) where T : class
+		{
+			if (model == null)
+			{
+				return false;
+			}
+			if (keyNames == null || !keyNames.Any())
+			{
+				throw new ArgumentException("参数不能为空或者列表元素个数不能为零");
+			}
+			var propStrs = model.GetAllPropKeys(keyNames.ToList());
+
+			if (!propStrs.Any())
+			{
+				return false;
+			}
+			var itemProps = model.GetType().GetProperties();
+			List<string> valList = new List<string>();
+			List<PropertyInfo> exceptProps = new List<PropertyInfo>();
+			foreach (var itemProp in itemProps)
+			{
+				if (keyNames.Any(m => m == itemProp.Name))
+				{
+					exceptProps.Add(itemProp);
+					continue;
+				}
+				string valStr = GetPropsValueStr(model, itemProp);
+				valList.Add($"{itemProp.Name}={valStr}");
+			}
+			string vals = string.Join(",", valList.ToArray());
+			List<string> whereList = new List<string>();
+			foreach (var prop in exceptProps)
+			{
+				string valStr = GetPropsValueStr(model, prop);
+				whereList.Add($"{prop.Name}={valStr}");
+			}
+			string whereStr = string.Join(",", whereList.ToArray());
+
+			string sql = $"update {GetTableNameByModelName(model)} set {vals} where {whereStr}";
+
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				return Conn.Execute(sql) > 0;
+			}
+		}
+
+		/// <summary>
+		/// 获取属性的值（特殊值添加引号）
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="model"></param>
+		/// <param name="itemProp"></param>
+		/// <returns></returns>
+		private static string GetPropsValueStr<T>(T model, PropertyInfo itemProp)
+		{
+			var val = itemProp.GetValue(model);
+			string valStr = "";
+			var typeName = itemProp.PropertyType.FullName;
+			switch (typeName)
+			{
+				case "System.String":
+				case "System.DateTime":
+					{
+						valStr = "'" + val + "'";
+					}
+					break;
+				default:
+					{
+						valStr = val.ToString();
+					}
+					break;
+			}
+			return valStr;
 		}
 	}
 }
