@@ -14,9 +14,9 @@ namespace Minecraft.Config
 		public static string Test = "Test";
 
 		/// <summary>
-		/// 玩家信息
+		/// 玩家基础信息
 		/// </summary>
-		public static string PlayerInfo = "PlayerInfo";
+		public static string Playerbasis = "Playerbasis";
 		/// <summary>
 		/// 大地图进度
 		/// </summary>
