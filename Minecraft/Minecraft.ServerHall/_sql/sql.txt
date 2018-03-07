@@ -1,0 +1,88 @@
+﻿drop table if exists AtlasSchedule;
+
+drop table if exists Backpack;
+
+drop table if exists Friend;
+
+drop table if exists Goods;
+
+drop table if exists PlayerBasis;
+
+/*==============================================================*/
+/* Table: AtlasSchedule                                         */
+/*==============================================================*/
+create table AtlasSchedule
+(
+   PlayerId             int not null,
+   CurPosition          int comment '当期所在位置（一个地图下标，从配置表中获取）',
+   DestPosition         int comment '目的地所在位置（一个地图下标，值来源于配置表）',
+   StartTime            datetime comment '前往目的地开始时间',
+   primary key (PlayerId)
+);
+
+alter table AtlasSchedule comment '大地图进度表';
+
+/*==============================================================*/
+/* Table: Backpack                                              */
+/*==============================================================*/
+create table Backpack
+(
+   PlayerId             int not null comment '玩家Id',
+   Size                 int comment '背包格子大小',
+   GoodsIds             text comment '物品Id集合（中间用半角逗号","分隔）',
+   primary key (PlayerId)
+);
+
+alter table Backpack comment '玩家背包';
+
+/*==============================================================*/
+/* Table: Friend                                                */
+/*==============================================================*/
+create table Friend
+(
+   PlayerId             int not null comment '玩家Id',
+   FriendId             int not null comment '好友Id',
+   AddTime              datetime comment '添加时间',
+   primary key (PlayerId, FriendId)
+);
+
+alter table Friend comment '好友表';
+
+/*==============================================================*/
+/* Table: Goods                                                 */
+/*==============================================================*/
+create table Goods
+(
+   GoodsId              varchar(64) not null comment '物品Id（GUID）（物品Id始终唯一，即使两个物品所有属性相同）',
+   PlayerId             int comment '物品所属玩家',
+   BelongsTo            int comment '物品所属（1：背包，2：装备）（待定，所属可能还有地面）',
+   GoodsItemId          int comment '物品ItemId（相同属性的两个物品，其ItemId相同）（可能来自配置表）',
+   GoodsPosition        int comment '物品位置（从0开始，背包中从左到右，由上至下的顺序，而装备中是从上到下，再从左到右的顺序）',
+   WastageValue         int comment '损耗值',
+   primary key (GoodsId)
+);
+
+alter table Goods comment '物品（来自背包或者装备）（需要分表）';
+
+/*==============================================================*/
+/* Table: PlayerBasis                                           */
+/*==============================================================*/
+create table PlayerBasis
+(
+   PlayerId             int not null auto_increment comment '玩家Id',
+   Name                 varchar(32) comment '名字，不允许重名',
+   Exp                  int comment '当前经验值',
+   PhysicalStrengthValue int comment '体力值',
+   GoldCoin             int comment '金币',
+   Human_Life           int comment '生命值',
+   Human_Clean          int comment '清洁值',
+   Human_GoToilet       int comment '如厕值',
+   Human_Hunger         int comment '饥饿值',
+   Fight_Attack         int comment '攻击力',
+   Fight_Defense        int comment '防御力',
+   Fight_TravelRate     int comment '移动速度',
+   Fight_AttackSpeed    int comment '攻击速度',
+   primary key (PlayerId)
+);
+
+alter table PlayerBasis comment '玩家基础信息';

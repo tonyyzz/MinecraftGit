@@ -36,8 +36,8 @@ namespace Minecraft.ServerHall
 			//Console.WriteLine($"开始时间：{this.StartTime.ToString("yyyy-MM-dd HH:mm:ss")}");
 			//Console.WriteLine($"安全协议：{this.SecureProtocol.ToString()}");
 
-			//var sessions = this.AppServer.GetAllSessions().ToList();
-			//Console.WriteLine($"当前连接数量：{sessions.Count()}");
+			var sessions = this.AppServer.GetAllSessions().ToList();
+			Console.WriteLine($"当前连接数量：{sessions.Count()}");
 
 			//ip,address,sessionID
 			// this.SessionID

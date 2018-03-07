@@ -107,6 +107,7 @@
     <Compile Include="ServerThreadPool\ServerThreadPoolTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="_sql\sql.txt" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
