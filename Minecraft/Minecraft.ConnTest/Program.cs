@@ -21,19 +21,27 @@ namespace Minecraft.ConnTest
 		{
 			Console.WriteLine("--------------【Minecraft客户端】---------------");
 
-			var socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-			IPAddress ip = IPAddress.Parse("127.0.0.1");
-			//IPAddress ip = IPAddress.Parse("111.230.142.94");
-			IPEndPoint point = new IPEndPoint(ip, 2017);
-			//进行连接
-			socketClient.Connect(point);
 
-			//不停的接收服务器端发送的消息
-			Thread thread = new Thread(Recive)
+			for (int i = 1; i <= 100; i++)
 			{
-				IsBackground = true
-			};
-			thread.Start(socketClient);
+				ThreadPool.QueueUserWorkItem(o =>
+				{
+					var socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+					IPAddress ip = IPAddress.Parse("127.0.0.1");
+					IPEndPoint point = new IPEndPoint(ip, 2017);
+					//进行连接
+					socketClient.Connect(point);
+
+					//不停的接收服务器端发送的消息
+					Thread thread = new Thread(Recive)
+					{
+						IsBackground = true
+					};
+					thread.Start(socketClient);
+				});
+			}
+
+			
 
 			Console.ReadKey();
 		}
@@ -71,13 +79,13 @@ namespace Minecraft.ConnTest
 						var deStr = EncryptHelper.Decrypt(item, "client");
 						//Console.WriteLine("解析后的数据：" + deStr);
 
-						var deStrs = deStr.Split(new string[] { SeparatorConfig.Transfer },StringSplitOptions.None);
+						var deStrs = deStr.Split(new string[] { SeparatorConfig.Transfer }, StringSplitOptions.None);
 						var protocolStr = deStrs[0];
 						var respStr = string.Join(SeparatorConfig.Transfer, deStrs.Skip(1).ToArray());
 						//Console.WriteLine($"协议：{protocolStr}，数据：{respStr}");
 						//接收
 						//解析枚举
-						
+
 						(MainCommand mainCommand, SecondCommand secondCommand) = ProtocolHelper.GetCommand(protocolStr);
 
 						//---------------输出协议传输信息----------------
