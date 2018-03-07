@@ -1,15 +1,15 @@
-﻿using Minecraft.BLL.mysql;
+﻿using Minecraft.BLL;
+using Minecraft.BLL.mysql;
 using Minecraft.Config;
 using Minecraft.Model;
 using Minecraft.Model.ReqResp;
-using Minecraft.ServerHall.Memory;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
 
 namespace Minecraft.ServerHall.Cmd
 {
-	public class FriendInsert : CommandBase<MinecraftSession, StringRequestInfo>
+	public class AtlasScheduleInsert : CommandBase<MinecraftSession, StringRequestInfo>
 	{
 		public override string Name
 		{
@@ -19,8 +19,8 @@ namespace Minecraft.ServerHall.Cmd
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.Friend;
-		private SecondCommand defSecondCommand = SecondCommand.Friend_FriendInsert;
+		private MainCommand defMainCommand = MainCommand.AtlasSchedule;
+		private SecondCommand defSecondCommand = SecondCommand.AtlasSchedule_AtlasScheduleInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			if (!session.minecraftSessionInfo.IsLogin)
@@ -28,31 +28,31 @@ namespace Minecraft.ServerHall.Cmd
 				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
 				return;
 			}
-			var req = requestInfo.GetRequestObj<FriendInsertReq>(session);
-			if (req == null || req.FriendId <= 0)
+			var req = requestInfo.GetRequestObj<AtlasScheduleInsertReq>(session);
+			if (req == null)
 			{
 				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
-			FriendModel friendModel = new FriendModel
+
+
+			AtlasscheduleModel atlasscheduleModel = new AtlasscheduleModel
 			{
 				PlayerId = session.minecraftSessionInfo.player.PlayerId,
-				FriendId = req.FriendId,
-				AddTime = DateTime.Now,
+				StartTime = DateTime.Now,
+				CurPosition = 0,
+				DestPosition = 1,
 			};
-
-			var flag = FriendBLL.InsertSuccessForSplitTable(friendModel, MemorySystemManager.friendTableNameCacheList);
+			var flag = AtlasScheduleBLL.InsertSuccess(atlasscheduleModel);
 			if (!flag)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "friend分表插入操作失败" });
+				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "操作失败" });
 				return;
 			}
 
 
-			var resp = new FriendInsertResp
+			var resp = new AtlasScheduleInsertResp
 			{
-				PlayerId = friendModel.PlayerId,
-				FriendId = friendModel.FriendId,
 			};
 			session.Send(defMainCommand, defSecondCommand, resp);
 		}

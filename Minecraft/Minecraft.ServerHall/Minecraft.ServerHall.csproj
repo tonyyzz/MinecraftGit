@@ -84,6 +84,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cmd\AtlasScheduleInsert.cs" />
+    <Compile Include="Cmd\AtlasScheduleSelect.cs" />
     <Compile Include="Cmd\BackpackGoodsInsert.cs" />
     <Compile Include="Cmd\FriendInsert.cs" />
     <Compile Include="Cmd\FriendListSelect.cs" />
@@ -108,7 +110,9 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Config\log4net.config" />
+    <Content Include="Config\log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

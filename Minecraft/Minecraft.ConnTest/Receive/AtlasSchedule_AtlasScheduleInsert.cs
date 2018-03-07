@@ -7,11 +7,11 @@ using System.Threading;
 
 namespace Minecraft.ConnTest.Receive
 {
-	public class Test_TestCmd
+	public class AtlasSchedule_AtlasScheduleInsert
 	{
 		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
 		{
-			var resp = respStr.JsonDeserialize<BaseResp>();
+			var resp = respStr.JsonDeserialize<AtlasScheduleInsertResp>();
 			if (resp == null)
 			{
 				return;
@@ -20,11 +20,7 @@ namespace Minecraft.ConnTest.Receive
 			{
 				case RespLevelEnum.Success:
 					{
-						//Thread.Sleep(1000);
-						//ComManager.Send(socketClient, () =>
-						//{
-						//	return SendTestCmd.GetReq();
-						//});
+						
 					}
 					break;
 				case RespLevelEnum.Warn:

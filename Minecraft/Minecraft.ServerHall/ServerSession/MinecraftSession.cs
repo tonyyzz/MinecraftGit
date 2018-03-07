@@ -52,7 +52,7 @@ namespace Minecraft.ServerHall
 			if (minecraftSessionInfo.IsLogin)
 			{
 				//存储数据
-				//PlayerbasisBLL.Update(minecraftSessionInfo.player, nameof(minecraftSessionInfo.player.PlayerId));
+				PlayerbasisBLL.Update(minecraftSessionInfo.player);
 			}
 			//add you logics which will be executed after the session is closed
 			//base.OnSessionClosed(reason);

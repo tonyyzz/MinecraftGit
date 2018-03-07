@@ -17,6 +17,10 @@ namespace Minecraft.BLL
 		{
 			return BaseDAL.TruncateTable(model);
 		}
+		public static T GetSingleOrDefault<T, V>(T model, (string key, V value) keyValue) where T : class
+		{
+			return BaseDAL.GetSingleOrDefault(model, keyValue);
+		}
 		/// <summary>
 		/// 统一插入方法（使用注意：model类名必须以‘Model’结尾，并且model属性名称和个数必须与数据库表字段名称和个数一致。如果不一致，那就使用别的方法吧 T^T）
 		/// </summary>
@@ -69,7 +73,9 @@ namespace Minecraft.BLL
 		{
 			return BaseDAL.BatchInsert(list);
 		}
-
-		
+		public static bool Update<T>(T model, params string[] keyNames) where T : class
+		{
+			return BaseDAL.Update(model, keyNames);
+		}
 	}
 }

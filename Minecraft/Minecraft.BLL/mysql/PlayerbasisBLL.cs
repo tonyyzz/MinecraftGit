@@ -26,7 +26,7 @@ namespace Minecraft.BLL.mysql
 			else
 			{
 				var model = new PlayerbasisModel();
-				model = BaseDAL.GetSingleOrDefault(model, (nameof(model.PlayerId), playerId));
+				model = GetSingleOrDefault(model, (nameof(model.PlayerId), playerId));
 				redisHelper.StringSet(RedisKeyConfig.PlayerInfo + playerId, model, CommonConfig.DefRedisExpiry);
 				return model;
 			}
@@ -34,7 +34,8 @@ namespace Minecraft.BLL.mysql
 
 		public static bool Update(PlayerbasisModel model)
 		{
-			return BaseDAL.Update(model, nameof(model.PlayerId));
+			redisHelper.StringSet(RedisKeyConfig.PlayerInfo + model.PlayerId, model, CommonConfig.DefRedisExpiry);
+			return Update(model, nameof(model.PlayerId));
 		}
 	}
 }

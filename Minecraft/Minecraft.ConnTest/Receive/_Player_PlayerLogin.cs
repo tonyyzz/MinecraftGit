@@ -30,7 +30,7 @@ namespace Minecraft.ConnTest.Receive
 
 						ComManager.Send(socketClient, () =>
 						{
-							return SendFriendListSelect.GetReq();
+							return SendTestCmd.GetReq();
 						});
 
 						//ThreadPool.QueueUserWorkItem(m =>

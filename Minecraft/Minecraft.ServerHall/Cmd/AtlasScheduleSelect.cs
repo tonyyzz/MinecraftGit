@@ -1,4 +1,5 @@
-﻿using Minecraft.Config;
+﻿using Minecraft.BLL.mysql;
+using Minecraft.Config;
 using Minecraft.Model.ReqResp;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
@@ -6,10 +7,7 @@ using System;
 
 namespace Minecraft.ServerHall.Cmd
 {
-	/// <summary>
-	/// 测试命令
-	/// </summary>
-	public class TestCmd : CommandBase<MinecraftSession, StringRequestInfo>
+	public class AtlasScheduleSelect : CommandBase<MinecraftSession, StringRequestInfo>
 	{
 		public override string Name
 		{
@@ -19,8 +17,8 @@ namespace Minecraft.ServerHall.Cmd
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.Test;
-		private SecondCommand defSecondCommand = SecondCommand.Test_TestCmd;
+		private MainCommand defMainCommand = MainCommand.AtlasSchedule;
+		private SecondCommand defSecondCommand = SecondCommand.AtlasSchedule_AtlasScheduleSelect;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			if (!session.minecraftSessionInfo.IsLogin)
@@ -28,19 +26,22 @@ namespace Minecraft.ServerHall.Cmd
 				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
 				return;
 			}
-			var req = requestInfo.GetRequestObj<TestReq>(session);
-			if (req == null || req.PlayerId <= 0)
+			var req = requestInfo.GetRequestObj<AtlasScheduleSelectReq>(session);
+			if (req == null)
 			{
 				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 
-
-
-
-			var resp = new TestResp
+			var model = AtlasScheduleBLL.GetSingleOrDefault(session.minecraftSessionInfo.player.PlayerId, out bool fromCache);
+			if (model == null)
 			{
-				PlayerId = req.PlayerId
+				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "不存在" });
+				return;
+			}
+
+			var resp = new AtlasScheduleSelectResp
+			{
 			};
 			session.Send(defMainCommand, defSecondCommand, resp);
 		}

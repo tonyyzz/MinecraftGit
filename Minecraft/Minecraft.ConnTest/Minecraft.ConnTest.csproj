@@ -68,6 +68,7 @@
     <Compile Include="Com\ComManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Receive\AtlasSchedule_AtlasScheduleInsert.cs" />
     <Compile Include="Receive\Backpack_BackpackGoodsInsert.cs" />
     <Compile Include="Receive\Friend_FriendInsert.cs" />
     <Compile Include="Receive\Friend_FriendListSelect.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="Receive\_Player_PlayerLogin.cs" />
     <Compile Include="Receive\_Conn_Success.cs" />
     <Compile Include="Receive\_Test_TestCmd.cs" />
+    <Compile Include="Send\SendAtlasScheduleInsert.cs" />
+    <Compile Include="Send\SendAtlasScheduleSelect.cs" />
     <Compile Include="Send\SendBackpackGoodsInsert.cs" />
     <Compile Include="Send\SendFriendInsert.cs" />
     <Compile Include="Send\SendFriendListSelect.cs" />

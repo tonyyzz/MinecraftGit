@@ -18,8 +18,8 @@ namespace Minecraft.Config
 		/// </summary>
 		public static string PlayerInfo = "PlayerInfo";
 		/// <summary>
-		/// 玩家基地
+		/// 大地图进度
 		/// </summary>
-		public static string Playerbase = "Playerbase";
+		public static string AtlasSchedule = "AtlasSchedule";
 	}
 }

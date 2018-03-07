@@ -69,6 +69,10 @@
     <Compile Include="mysql\FriendModel.cs" />
     <Compile Include="mysql\_GoodsModel.cs" />
     <Compile Include="mysql\PlayerbasisModel.cs" />
+    <Compile Include="ReqResp\AtlasScheduleInsertReq.cs" />
+    <Compile Include="ReqResp\AtlasScheduleInsertResp.cs" />
+    <Compile Include="ReqResp\AtlasScheduleSelectReq.cs" />
+    <Compile Include="ReqResp\AtlasScheduleSelectResp.cs" />
     <Compile Include="ReqResp\BackpackGoodsInsertReq.cs" />
     <Compile Include="ReqResp\BackpackGoodsInsertResp.cs" />
     <Compile Include="ReqResp\base\BaseReq.cs" />

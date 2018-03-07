@@ -55,6 +55,10 @@ namespace Minecraft.Config
 		/// 好友
 		/// </summary>
 		Friend,
+		/// <summary>
+		/// 大地图进度信息
+		/// </summary>
+		AtlasSchedule,
 	}
 
 	/// <summary>
@@ -115,5 +119,13 @@ namespace Minecraft.Config
 		/// 朋友列表查询
 		/// </summary>
 		Friend_FriendListSelect,
+		/// <summary>
+		/// 大地图进度信息插入
+		/// </summary>
+		AtlasSchedule_AtlasScheduleInsert,
+		/// <summary>
+		/// 大地图信息查询
+		/// </summary>
+		AtlasSchedule_AtlasScheduleSelect,
 	}
 }

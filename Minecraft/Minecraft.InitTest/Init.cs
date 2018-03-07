@@ -22,7 +22,7 @@ namespace Minecraft.InitTest
 			InitPlayerbasis();
 			InitGoods();
 			InitFriend();
-			InsertFriendData();
+			//InsertFriendData();
 			Console.WriteLine("数据初始化完成！");
 		}
 

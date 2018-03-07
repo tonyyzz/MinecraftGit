@@ -24,6 +24,11 @@ namespace Minecraft.ServerHall.Cmd
 		private SecondCommand defSecondCommand = SecondCommand.Furniture_FurnitureInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
+			if (!session.minecraftSessionInfo.IsLogin)
+			{
+				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
+				return;
+			}
 			var req = requestInfo.GetRequestObj<FurnitureInsertReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{

@@ -19,8 +19,7 @@ namespace Minecraft.ServerHall
 				TextEncoding = CommonConfig.DefEncoding.WebName,
 				Port = 2017,
 				DisableSessionSnapshot = true,
-				MaxConnectionNumber = 60000,
-				 
+				MaxConnectionNumber = 5000,
 			};
 			//Setup the appServer
 			//if (!appServer.Setup(2012)) //Setup with listening port
