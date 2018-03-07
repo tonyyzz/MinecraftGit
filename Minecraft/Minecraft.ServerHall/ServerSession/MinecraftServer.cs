@@ -97,7 +97,7 @@ namespace Minecraft.ServerHall
 		{
 			base.ExecuteCommand(session, requestInfo);
 			(MainCommand mainCommand, SecondCommand secondCommand) = ProtocolHelper.GetCommand(requestInfo.Key);
-			//Console.WriteLine($"正在执行的命令：时间：{DateTime.Now.ToStr()} IPAddress:{session.RemoteEndPoint} 主协议：{mainCommand.ToString()} 次协议：{secondCommand.ToString()}");
+			Console.WriteLine($"正在执行的命令：时间：{DateTime.Now.ToStr()} IPAddress:{session.RemoteEndPoint} 主协议：{mainCommand.ToString()} 次协议：{secondCommand.ToString()}");
 		}
 	}
 }

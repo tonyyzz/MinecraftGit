@@ -16,13 +16,15 @@ namespace Minecraft.ConnTest
 		{
 			Console.WriteLine("--------------【Minecraft客户端】---------------");
 
-			for (int i = 1; i <= 1000; i++)
-			{
-				ThreadPool.QueueUserWorkItem(o =>
-				{
-					ClientStart.Start();
-				});
-			}
+			//for (int i = 1; i <= 10; i++)
+			//{
+			//	ThreadPool.QueueUserWorkItem(o =>
+			//	{
+			//		ClientStart.Start();
+			//	});
+			//}
+
+			ClientStart.Start();
 			Console.ReadKey();
 		}
 	}

@@ -80,7 +80,7 @@ namespace Minecraft.ConnTest
 						(MainCommand mainCommand, SecondCommand secondCommand) = ProtocolHelper.GetCommand(protocolStr);
 
 						//▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲输出协议传输信息▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
-						//ComManager.ConsoleWriteResp(mainCommand, secondCommand, respStr);
+						ComManager.ConsoleWriteResp(mainCommand, secondCommand, respStr);
 
 						// 加载程序集(dll文件地址)，使用Assembly类
 						var execName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
