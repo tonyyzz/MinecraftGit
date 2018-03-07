@@ -16,7 +16,7 @@ namespace Minecraft.ConnTest
 		{
 			Console.WriteLine("--------------【Minecraft客户端】---------------");
 
-			for (int i = 1; i <= 100; i++)
+			for (int i = 1; i <= 1000; i++)
 			{
 				ThreadPool.QueueUserWorkItem(o =>
 				{

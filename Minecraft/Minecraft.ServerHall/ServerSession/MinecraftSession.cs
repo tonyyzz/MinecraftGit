@@ -37,7 +37,7 @@ namespace Minecraft.ServerHall
 			//Console.WriteLine($"安全协议：{this.SecureProtocol.ToString()}");
 
 			var sessions = this.AppServer.GetAllSessions().ToList();
-			Console.WriteLine($"当前连接数量：{sessions.Count()}");
+			//Console.WriteLine($"当前连接数量：{sessions.Count()}");
 
 			//ip,address,sessionID
 			// this.SessionID

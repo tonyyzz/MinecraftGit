@@ -29,10 +29,12 @@ namespace Minecraft.ConnTest.Receive
 					{
 						//连接成功
 						//登录操作
-						//ComManager.Send(socketClient, () =>
-						//{
-						//	return SendPlyerLogin.GetReq();
-						//});
+
+
+						ComManager.Send(socketClient, () =>
+						{
+							return SendTestCmd.GetReq();
+						});
 					}
 					break;
 				case RespLevelEnum.Warn:
