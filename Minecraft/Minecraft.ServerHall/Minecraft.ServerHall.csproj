@@ -93,6 +93,7 @@
     <Compile Include="Cmd\HeartData.cs" />
     <Compile Include="Cmd\PlyerLogin.cs" />
     <Compile Include="Cmd\_TestCmd.cs" />
+    <Compile Include="CSVConfig.cs" />
     <Compile Include="Ext\StringRequestInfoExt.cs" />
     <Compile Include="Memory\MemoryDataManager.cs" />
     <Compile Include="Memory\MemorySystemManager.cs" />
@@ -112,6 +113,12 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Config\log4net.config" />
+    <None Include="csvfile\Mod_Furniture.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="csvfile\Mod_Items.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace Minecraft.ConnTest
 		{
 #if DEBUG //本地测试
 			string ipStr = "127.0.0.1";
-			int port = 2017;
+			int port = 2018;
 #elif MINECRAFT_LAN //局域网测试
 			string ipStr = "192.168.0.137";
 			int port = 2017;

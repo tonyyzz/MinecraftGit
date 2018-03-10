@@ -62,6 +62,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="csv\Mod_Furniture.cs" />
+    <Compile Include="csv\Mod_Items.cs" />
     <Compile Include="mongodb\BaseEntity.cs" />
     <Compile Include="mongodb\MongoDbTestModel.cs" />
     <Compile Include="mysql\AtlasscheduleModel.cs" />

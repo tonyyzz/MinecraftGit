@@ -13,11 +13,19 @@ namespace Minecraft.ServerHall
 	{
 		public static void Do()
 		{
+#if DEBUG //本地测试
+			int port = 2018;
+#elif MINECRAFT_LAN //局域网测试
+			int port = 2017;
+#else //线上测试
+			int port = 2017;
+#endif
+
 			var appServer = new MinecraftServer() ;
 			ServerConfig serverConfig = new ServerConfig
 			{
 				TextEncoding = CommonConfig.DefEncoding.WebName,
-				Port = 2017,
+				Port = port,
 				DisableSessionSnapshot = true,
 				MaxConnectionNumber = 5000,
 			};

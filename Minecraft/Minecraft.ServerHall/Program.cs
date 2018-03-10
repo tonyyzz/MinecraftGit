@@ -34,6 +34,10 @@ namespace Minecraft.ServerHall
 				return;
 			}
 
+			CSVConfig.Install();
+
+			var itemsList = CSVConfig.itemsList;
+
 
 			//ServerThreadPoolTest.Start();
 

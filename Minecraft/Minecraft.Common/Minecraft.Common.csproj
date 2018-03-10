@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AHelper\CookieHelper.cs" />
+    <Compile Include="AHelper\CsvHelper.cs" />
     <Compile Include="AHelper\EncryptHelper.cs" />
     <Compile Include="AHelper\DateTimeHelper.cs" />
     <Compile Include="AHelper\EnumHelper.cs" />
