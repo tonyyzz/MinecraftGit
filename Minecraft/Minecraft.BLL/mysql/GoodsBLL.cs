@@ -1,4 +1,6 @@
-﻿using Minecraft.DALMySql;
+﻿using Minecraft.CacheRedis;
+using Minecraft.Config;
+using Minecraft.DALMySql;
 using Minecraft.Model;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ namespace Minecraft.BLL.mysql
 {
 	public class GoodsBLL
 	{
+		private static RedisHelper redisHelper = new RedisHelper();
 		/// <summary>
 		/// 向goods表插入数据（分表插入，如果不存在表，则先建立表，并将表名称缓存起来）
 		/// </summary>
@@ -25,9 +28,22 @@ namespace Minecraft.BLL.mysql
 		{
 			return GoodsDAL.GetFirstOrDefault(playerId, goodsId);
 		}
-		public static List<GoodsModel> GetListAll(int playerId)
+		public static List<GoodsModel> GetListAll(int playerId, int belongsTo, out bool fromCache)
 		{
-			return GoodsDAL.GetListAll(playerId);
+			fromCache = false;
+			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Playerbasis, playerId.ToString(), belongsTo.ToString());
+			var list = redisHelper.StringGet<List<GoodsModel>>(redisKey);
+			if (list != null)
+			{
+				fromCache = true;
+				return list;
+			}
+			else
+			{
+				list = GoodsDAL.GetListAll(playerId, belongsTo);
+				redisHelper.StringSet(redisKey, list, CommonConfig.DefRedisExpiry);
+				return list;
+			}
 		}
 	}
 }

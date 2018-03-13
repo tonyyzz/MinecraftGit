@@ -13,14 +13,22 @@ namespace Minecraft.Config
 		public static string Minecraft_MySqlDBConnStr = ConfigurationHelper.GetConnStr("Minecraft_MySql_Debug");
 		public static string Minecraft_MongoDBConnStr = ConfigurationHelper.GetConnStr("Minecraft_MongoDB_Debug");
 		public static string Minecraft_RedisConnStr = ConfigurationHelper.GetConnStr("Minecraft_Redis_Debug");
-#elif MINECRAFT_LAN //局域网测试
+		public static bool IsConsoleWrite = ConfigurationHelper.GetAppSettingStr("IsConsoleWrite_Debug") == "1" ? true : false;
+#elif MINECRAFT_LAN //windows局域网测试
 		public static string Minecraft_MySqlDBConnStr = ConfigurationHelper.GetConnStr("Minecraft_MySql_Minecraft_LAN");
 		public static string Minecraft_MongoDBConnStr = ConfigurationHelper.GetConnStr("Minecraft_MongoDB_Minecraft_LAN");
 		public static string Minecraft_RedisConnStr = ConfigurationHelper.GetConnStr("Minecraft_Redis_Minecraft_LAN");
-#else //线上测试
+		public static bool IsConsoleWrite = ConfigurationHelper.GetAppSettingStr("IsConsoleWrite_Minecraft_LAN") == "1" ? true : false;
+#elif LINUX_LAN //linux局域网测试
+		public static string Minecraft_MySqlDBConnStr = ConfigurationHelper.GetConnStr("Minecraft_MySql_Linux_LAN");
+		public static string Minecraft_MongoDBConnStr = ConfigurationHelper.GetConnStr("Minecraft_MongoDB_Linux_LAN");
+		public static string Minecraft_RedisConnStr = ConfigurationHelper.GetConnStr("Minecraft_Redis_Linux_LAN");
+		public static bool IsConsoleWrite = ConfigurationHelper.GetAppSettingStr("IsConsoleWrite_Linux_LAN") == "1" ? true : false;
+#else //（不使用，只用来做模板）
 		public static string Minecraft_MySqlDBConnStr = ConfigurationHelper.GetConnStr("Minecraft_MySql_Release");
 		public static string Minecraft_MongoDBConnStr = ConfigurationHelper.GetConnStr("Minecraft_MongoDB_Release");
 		public static string Minecraft_RedisConnStr = ConfigurationHelper.GetConnStr("Minecraft_Redis_Release");
+		public static bool IsConsoleWrite = ConfigurationHelper.GetAppSettingStr("IsConsoleWrite_Release") == "1" ? true : false;
 #endif
 
 		public static string HeartDataReqSecretKey = ConfigurationHelper.GetAppSettingStr("HeartDataReqSecretKey");

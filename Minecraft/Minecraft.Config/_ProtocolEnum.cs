@@ -1,70 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Minecraft.Config
+﻿namespace Minecraft.Config
 {
 	public static class ProtocolLen
 	{
 		/// <summary>
-		/// 主协议长度
+		/// 协议长度
 		/// </summary>
-		public const int Main = 3;
-		/// <summary>
-		/// 次协议长度
-		/// </summary>
-		public const int Second = 5;
+		public const int Length = 8;
 	}
 
 	/// <summary>
-	/// 主协议
+	/// 协议
 	/// </summary>
-	public enum MainCommand
-	{
-		/// <summary>
-		/// 测试
-		/// </summary>
-		Test = 1,
-		/// <summary>
-		/// 心跳包
-		/// </summary>
-		Heart,
-		/// <summary>
-		/// 连接
-		/// </summary>
-		Conn,
-		/// <summary>
-		/// 处理
-		/// </summary>
-		Handle,
-		/// <summary>
-		/// 玩家
-		/// </summary>
-		Player,
-		/// <summary>
-		/// 背包
-		/// </summary>
-		Backpack,
-		/// <summary>
-		/// 家具
-		/// </summary>
-		Furniture,
-		/// <summary>
-		/// 好友
-		/// </summary>
-		Friend,
-		/// <summary>
-		/// 大地图进度信息
-		/// </summary>
-		AtlasSchedule,
-	}
-
-	/// <summary>
-	/// 次协议
-	/// </summary>
-	public enum SecondCommand
+	public enum EnumCommand
 	{
 		/// <summary>
 		/// 测试
@@ -105,6 +52,10 @@ namespace Minecraft.Config
 		/// 背包物品插入
 		/// </summary>
 		Backpack_BackpackGoodsInsert,
+		/// <summary>
+		/// 背包物品查询
+		/// </summary>
+		Backpack_BackpackGoodsSelect,
 
 
 		/// <summary>

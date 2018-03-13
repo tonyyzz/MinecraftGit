@@ -1,4 +1,5 @@
 ﻿using Minecraft.DALMySql;
+using Minecraft.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Minecraft.BLL
 		{
 			return BaseDAL.TruncateTable(model);
 		}
-		public static T GetSingleOrDefault<T, V>(T model, (string key, V value) keyValue) where T : class
+		public static T GetSingleOrDefault<T, V>(T model, KeyValue<V> keyValue) where T : class
 		{
 			return BaseDAL.GetSingleOrDefault(model, keyValue);
 		}

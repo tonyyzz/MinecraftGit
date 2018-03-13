@@ -15,12 +15,13 @@ namespace Minecraft.CacheRedis
 			try
 			{
 				RedisHelper redisHelper = new RedisHelper();
-				redisHelper.StringGet<string>(RedisKeyConfig.Test + 1);
+				string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Test, 1.ToString());
+				redisHelper.StringGet<string>(redisKey);
 				canStart = true;
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-
+				Console.WriteLine("【redis】异常：" + ex.ToString());
 			}
 			return canStart;
 		}

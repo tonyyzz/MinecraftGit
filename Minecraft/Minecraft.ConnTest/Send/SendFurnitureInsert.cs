@@ -10,15 +10,18 @@ namespace Minecraft.ConnTest.Send
 {
 	public class SendFurnitureInsert
 	{
-		public static MainCommand mainCommand = MainCommand.Furniture;
-		public static SecondCommand secondCommand = SecondCommand.Furniture_FurnitureInsert;
-		public static (MainCommand, SecondCommand, FurnitureInsertReq) GetReq()
+		public static EnumCommand command = EnumCommand.Furniture_FurnitureInsert;
+		public static CommandReq<FurnitureInsertReq> GetReq()
 		{
 			var req = new FurnitureInsertReq()
 			{
 				PlayerId = 1
 			};
-			return (mainCommand, secondCommand, req);
+			return new CommandReq<FurnitureInsertReq>
+			{
+				Command = command,
+				Req = req
+			};
 		}
 	}
 }

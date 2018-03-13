@@ -16,23 +16,22 @@ namespace Minecraft.ServerHall.Cmd
 		{
 			get
 			{
-				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+				return ProtocolHelper.GetProtocolStr(defCommand);
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.Furniture;
-		private SecondCommand defSecondCommand = SecondCommand.Furniture_FurnitureInsert;
+		private EnumCommand defCommand = EnumCommand.Furniture_FurnitureInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			if (!session.minecraftSessionInfo.IsLogin)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
 				return;
 			}
 			var req = requestInfo.GetRequestObj<FurnitureInsertReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 
@@ -43,7 +42,7 @@ namespace Minecraft.ServerHall.Cmd
 			{
 				PlayerId = req.PlayerId
 			};
-			session.Send(defMainCommand, defSecondCommand, resp);
+			session.Send(defCommand, resp);
 		}
 	}
 }

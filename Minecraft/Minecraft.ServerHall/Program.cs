@@ -1,4 +1,6 @@
 ﻿using Minecraft.BLL;
+using Minecraft.Config;
+using Minecraft.Config.ipConst;
 using Minecraft.ServerHall.ServerThreadPool;
 using System;
 using System.Collections.Generic;
@@ -14,8 +16,9 @@ namespace Minecraft.ServerHall
 	{
 		static void Main(string[] args)
 		{
-
+			Console.ForegroundColor = ConsoleColor.Yellow;
 			Console.WriteLine("--------------【Minecraft服务器】---------------");
+			Console.ResetColor();
 
 			#region 数据监测以及初始化
 			Stopwatch stopwatch = new Stopwatch();
@@ -35,9 +38,7 @@ namespace Minecraft.ServerHall
 			}
 
 			CSVConfig.Install();
-
-			var itemsList = CSVConfig.itemsList;
-
+			IpConstConfig.Init();
 
 			//ServerThreadPoolTest.Start();
 

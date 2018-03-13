@@ -1,8 +1,9 @@
 ﻿namespace Minecraft.Model.ReqResp
 {
+	[System.Serializable]
 	public class FriendInsertResp:BaseResp
 	{
-		public int PlayerId { get; set; }
-		public int FriendId { get; set; }
+		public int PlayerId;
+		public int FriendId;
 	}
 }

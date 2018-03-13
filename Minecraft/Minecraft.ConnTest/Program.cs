@@ -14,7 +14,9 @@ namespace Minecraft.ConnTest
 	{
 		static void Main(string[] args)
 		{
+			Console.ForegroundColor = ConsoleColor.Yellow;
 			Console.WriteLine("--------------【Minecraft客户端】---------------");
+			Console.ResetColor();
 
 			//for (int i = 1; i <= 10; i++)
 			//{

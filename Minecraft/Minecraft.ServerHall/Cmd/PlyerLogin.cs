@@ -2,7 +2,6 @@
 using Minecraft.BLL.mysql;
 using Minecraft.Config;
 using Minecraft.Model.ReqResp;
-using Minecraft.ServerHall.Memory;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -22,24 +21,23 @@ namespace Minecraft.ServerHall.Cmd
 		{
 			get
 			{
-				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+				return ProtocolHelper.GetProtocolStr(defCommand);
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.Player;
-		private SecondCommand defSecondCommand = SecondCommand.Player_PlayerLogin;
+		private EnumCommand defCommand = EnumCommand.Player_PlayerLogin;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			var req = requestInfo.GetRequestObj<PlayerLoginReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 			var player = PlayerbasisBLL.GetSingleOrDefault(req.PlayerId, out bool fromCache);
 			if (player == null)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "信息不存在" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "信息不存在" });
 				return;
 			}
 
@@ -52,7 +50,7 @@ namespace Minecraft.ServerHall.Cmd
 			//暂定
 			var resp = player.JsonSerialize().JsonDeserialize<PlayerLoginResp>();
 
-			session.Send(defMainCommand, defSecondCommand, resp);
+			session.Send(defCommand, resp);
 		}
 	}
 }

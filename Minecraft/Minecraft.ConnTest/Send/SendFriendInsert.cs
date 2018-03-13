@@ -10,15 +10,18 @@ namespace Minecraft.ConnTest.Send
 {
 	public class SendFriendInsert
 	{
-		public static MainCommand mainCommand = MainCommand.Friend;
-		public static SecondCommand secondCommand = SecondCommand.Friend_FriendInsert;
-		public static (MainCommand, SecondCommand, FriendInsertReq) GetReq()
+		public static EnumCommand command = EnumCommand.Friend_FriendInsert;
+		public static CommandReq<FriendInsertReq> GetReq()
 		{
 			var req = new FriendInsertReq()
 			{
 				FriendId = 2
 			};
-			return (mainCommand, secondCommand, req);
+			return new CommandReq<FriendInsertReq>
+			{
+				Command = command,
+				Req = req
+			};
 		}
 	}
 }

@@ -10,14 +10,17 @@ namespace Minecraft.ConnTest.Send
 {
 	public class SendAtlasScheduleSelect
 	{
-		public static MainCommand mainCommand = MainCommand.AtlasSchedule;
-		public static SecondCommand secondCommand = SecondCommand.AtlasSchedule_AtlasScheduleSelect;
-		public static (MainCommand, SecondCommand, AtlasScheduleSelectReq) GetReq()
+		public static EnumCommand command = EnumCommand.AtlasSchedule_AtlasScheduleSelect;
+		public static CommandReq<AtlasScheduleSelectReq> GetReq()
 		{
 			var req = new AtlasScheduleSelectReq()
 			{
 			};
-			return (mainCommand, secondCommand, req);
+			return new CommandReq<AtlasScheduleSelectReq>
+			{
+				Command = command,
+				Req = req
+			};
 		}
 	}
 }

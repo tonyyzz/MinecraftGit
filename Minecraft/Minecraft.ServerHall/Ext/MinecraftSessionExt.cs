@@ -12,13 +12,11 @@ namespace Minecraft.ServerHall
 	public static class MinecraftSessionExt
 	{
 		public static void Send<T>(this MinecraftSession session,
-			MainCommand mainCommand,
-			SecondCommand secondCommand,
+			EnumCommand command,
 			T obj) where T : BaseResp
 		{
-			string protocolStr = ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
+			string protocolStr = ProtocolHelper.GetProtocolStr(command);
 			session.Send(protocolStr + SeparatorConfig.Transfer + obj.JsonSerialize());
-
 			ThreadPool.QueueUserWorkItem(o =>
 			{
 				var t = o as BaseResp;

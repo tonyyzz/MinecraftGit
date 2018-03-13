@@ -1,7 +1,9 @@
 ﻿using Minecraft.BLL;
 using Minecraft.BLL.mysql;
 using Minecraft.Config;
+using Minecraft.Config.ipConst;
 using Minecraft.Model.ReqResp;
+using Minecraft.Test.TestFolder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,7 +27,12 @@ namespace Minecraft.Test
 			//var name = nameof(platwr);
 			// name = nameof(gg.PlayerId);
 
-			var d = CommonConfig.GetTablePostfix(10000, 10000);
+			//var d = CommonConfig.GetTablePostfix(10000, 10000);
+
+			//var dict= IpConstConfig.GetConstConfigDict();
+			Console.WriteLine("测试");
+			DbServerConnCheckTest.Do();
+			Console.ReadKey();
 		}
 
 	}

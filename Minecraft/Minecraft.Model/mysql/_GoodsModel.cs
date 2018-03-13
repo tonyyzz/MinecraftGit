@@ -15,7 +15,7 @@ namespace Minecraft.Model
 			GoodsId = "";
 			PlayerId = 0;
 			BelongsTo = 0;
-			GoodsItemId = 0;
+			GoodsItemId = "";
 			GoodsPosition = 0;
 			WastageValue = 0;
 		}
@@ -34,7 +34,7 @@ namespace Minecraft.Model
 		/// <summary>
 		/// 物品ItemId（相同属性的两个物品，其ItemId相同）（可能来自配置表）
 		/// </summary>
-		public int GoodsItemId { get; set; }
+		public string GoodsItemId { get; set; }
 		/// <summary>
 		/// 物品位置（从0开始，背包中从左到右，由上至下的顺序，而装备中是从上到下，再从左到右的顺序）
 		/// </summary>

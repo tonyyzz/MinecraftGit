@@ -10,15 +10,18 @@ namespace Minecraft.ConnTest.Send
 {
 	public class SendHeartData
 	{
-		public static MainCommand mainCommand = MainCommand.Heart;
-		public static SecondCommand secondCommand = SecondCommand.Heart_HeartData;
-		public static (MainCommand, SecondCommand, HeartDataReq) GetReq()
+		public static EnumCommand command = EnumCommand.Heart_HeartData;
+		public static CommandReq<HeartDataReq> GetReq()
 		{
 			var req = new HeartDataReq()
 			{
 				StrEncrypted = EncryptHelper.Encrypt(MinecraftConfiguration.HeartDataReqSecretKey + " " + DateTime.Now.Ticks)
 			};
-			return (mainCommand, secondCommand, req);
+			return new CommandReq<HeartDataReq>
+			{
+				Command = command,
+				Req = req
+			};
 		}
 	}
 }

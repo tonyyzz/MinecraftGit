@@ -15,23 +15,22 @@ namespace Minecraft.ServerHall.Cmd
 		{
 			get
 			{
-				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+				return ProtocolHelper.GetProtocolStr(defCommand);
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.AtlasSchedule;
-		private SecondCommand defSecondCommand = SecondCommand.AtlasSchedule_AtlasScheduleInsert;
+		private EnumCommand defCommand = EnumCommand.AtlasSchedule_AtlasScheduleInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			if (!session.minecraftSessionInfo.IsLogin)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
 				return;
 			}
 			var req = requestInfo.GetRequestObj<AtlasScheduleInsertReq>(session);
 			if (req == null)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 
@@ -46,7 +45,7 @@ namespace Minecraft.ServerHall.Cmd
 			var flag = AtlasScheduleBLL.InsertSuccess(atlasscheduleModel);
 			if (!flag)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "操作失败" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "操作失败" });
 				return;
 			}
 
@@ -54,7 +53,7 @@ namespace Minecraft.ServerHall.Cmd
 			var resp = new AtlasScheduleInsertResp
 			{
 			};
-			session.Send(defMainCommand, defSecondCommand, resp);
+			session.Send(defCommand, resp);
 		}
 	}
 }

@@ -19,12 +19,11 @@ namespace Minecraft.ServerHall.Cmd
 		{
 			get
 			{
-				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+				return ProtocolHelper.GetProtocolStr(defCommand);
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.Heart;
-		private SecondCommand defSecondCommand = SecondCommand.Heart_HeartData;
+		private EnumCommand defCommand = EnumCommand.Heart_HeartData;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			var req = requestInfo.GetRequestObj<HeartDataReq>(session);
@@ -76,7 +75,7 @@ namespace Minecraft.ServerHall.Cmd
 				return;
 			}
 			//心跳包合法
-			session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "心跳包" });
+			session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "心跳包" });
 		}
 	}
 }

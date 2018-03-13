@@ -9,15 +9,18 @@ namespace Minecraft.ConnTest.Send
 {
 	public class SendBackpackGoodsInsert
 	{
-		public static MainCommand mainCommand = MainCommand.Backpack;
-		public static SecondCommand secondCommand = SecondCommand.Backpack_BackpackGoodsInsert;
-		public static (MainCommand, SecondCommand, BackpackGoodsInsertReq) GetReq()
+		public static EnumCommand command = EnumCommand.Backpack_BackpackGoodsInsert;
+		public static CommandReq<BackpackGoodsInsertReq> GetReq()
 		{
 			var req = new BackpackGoodsInsertReq()
 			{
 				PlayerId = 1
 			};
-			return (mainCommand, secondCommand, req);
+			return new CommandReq<BackpackGoodsInsertReq>
+			{
+				Command = command,
+				Req = req
+			};
 		}
 	}
 }

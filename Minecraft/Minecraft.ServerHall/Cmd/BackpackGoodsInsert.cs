@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Minecraft.BLL.mysql;
 using Minecraft.Config;
+using Minecraft.Config.Memory;
 using Minecraft.Model;
 using Minecraft.Model.ReqResp;
 using SuperSocket.SocketBase.Command;
@@ -18,23 +19,22 @@ namespace Minecraft.ServerHall.Cmd
 		{
 			get
 			{
-				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+				return ProtocolHelper.GetProtocolStr(defCommand);
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.Backpack;
-		private SecondCommand defSecondCommand = SecondCommand.Backpack_BackpackGoodsInsert;
+		private EnumCommand defCommand = EnumCommand.Backpack_BackpackGoodsInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			if (!session.minecraftSessionInfo.IsLogin)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
 				return;
 			}
 			var req = requestInfo.GetRequestObj<BackpackGoodsInsertReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 
@@ -43,14 +43,14 @@ namespace Minecraft.ServerHall.Cmd
 				GoodsId = StringHelper.GetGuidStr(),
 				PlayerId = req.PlayerId,
 				BelongsTo = 1,
-				GoodsItemId = 1,
+				GoodsItemId = "1",
 				GoodsPosition = 0,
 				WastageValue = 100
 			};
-			var flag = GoodsBLL.InsertSuccessForSplitTable(goodsModel, Memory.MemorySystemManager.goodsTableNameCacheList);
+			var flag = GoodsBLL.InsertSuccessForSplitTable(goodsModel, MemorySystemManager.goodsTableNameCacheList);
 			if (!flag)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "goods分表插入操作失败" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "goods分表插入操作失败" });
 				return;
 			}
 
@@ -58,7 +58,7 @@ namespace Minecraft.ServerHall.Cmd
 			{
 				PlayerId = req.PlayerId
 			};
-			session.Send(defMainCommand, defSecondCommand, resp);
+			session.Send(defCommand, resp);
 		}
 	}
 }

@@ -17,6 +17,7 @@ namespace Minecraft.BLL
 		public static void StartDBServerCheck(out bool canStartAll)
 		{
 			Console.WriteLine("正在检查数据库连接状态...");
+			Console.ForegroundColor = ConsoleColor.Yellow;
 			canStartAll = true;
 			//启动mysql
 			var canStartMysql = StartDALMySql.StartMySqlCheck();
@@ -39,6 +40,7 @@ namespace Minecraft.BLL
 				Console.WriteLine("redis 连接失败");
 				canStartAll = false;
 			}
+			Console.ResetColor();
 		}
 	}
 }

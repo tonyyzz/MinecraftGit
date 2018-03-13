@@ -44,7 +44,7 @@ namespace System
 			{
 				TEnum t = (TEnum)arrays.GetValue(i);
 				FieldInfo fieldInfo = t.GetType().GetField(t.ToString());
-				var desc = obj.ToString();
+				var desc = t.ToString();
 				object[] attribArray = fieldInfo.GetCustomAttributes(false);
 				if (attribArray.Count() > 0)
 				{

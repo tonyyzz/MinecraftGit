@@ -83,12 +83,12 @@ namespace Minecraft.DALMySql
 		protected static T GetSingleOrDefaultWithTablePrefix<T, V>(T model, int keyId,
 			string tableNamePrefix,
 			string submeterLenStr,
-			(string key, V value) keyValue) where T : class
+			KeyValue<V> keyValue) where T : class
 		{
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue.key}={GetTypeValueStr(keyValue.value)} limit 1";
+				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue.Key}={GetTypeValueStr(keyValue.Value)} limit 1";
 				return Conn.QueryFirstOrDefault<T>(sql);
 			}
 		}
@@ -96,12 +96,27 @@ namespace Minecraft.DALMySql
 		protected static List<T> GetListAllWithTablePrefix<T, V>(T model, int keyId,
 			string tableNamePrefix,
 			string submeterLenStr,
-			(string key, V value) keyValue) where T : class
+			KeyValue<V> keyValue) where T : class
 		{
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue.key}={GetTypeValueStr(keyValue.value)}";
+				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue.Key}={GetTypeValueStr(keyValue.Value)}";
+				return Conn.Query<T>(sql).ToList();
+			}
+		}
+
+		protected static List<T> GetListAllWithTablePrefix<T, V,U>(T model, int keyId,
+			string tableNamePrefix,
+			string submeterLenStr,
+			KeyValue<V> keyValue1,
+			KeyValue<U> keyValue2
+			) where T : class
+		{
+			using (var Conn = GetConn())
+			{
+				Conn.Open();
+				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue1.Key}={GetTypeValueStr(keyValue1.Value)} and {keyValue2.Key}={GetTypeValueStr(keyValue2.Value)}";
 				return Conn.Query<T>(sql).ToList();
 			}
 		}

@@ -12,11 +12,11 @@ namespace Minecraft.ConnTest
 	public class ComManager
 	{
 		public static void Send<T>(Socket socketClient,
-			Func<(MainCommand, SecondCommand, T)> func) where T : BaseReq
+			Func<CommandReq<T>> func) where T : BaseReq
 		{
-			var (mainCommand, secondCommand, req) = func();
-			var protocolStr = ProtocolHelper.GetProtocolStr(mainCommand, secondCommand);
-			string cont = req.JsonSerialize();
+			var commandReq = func();
+			var protocolStr = ProtocolHelper.GetProtocolStr(commandReq.Command);
+			string cont = commandReq.Req.JsonSerialize();
 			var sendContent = EncryptHelper.Encrypt(cont);
 			var buffter = Encoding.UTF8.GetBytes($"{protocolStr} {sendContent}##");
 			socketClient.Send(buffter);
@@ -25,12 +25,21 @@ namespace Minecraft.ConnTest
 		/// 输出协议信息
 		/// </summary>
 		/// <param name="mainCommand"></param>
-		/// <param name="secondCommand"></param>
+		/// <param name="command"></param>
 		/// <param name="respStr"></param>
-		public static void ConsoleWriteResp(MainCommand mainCommand, SecondCommand secondCommand, string respStr)
+		public static void ConsoleWriteResp(EnumCommand command, string respStr)
 		{
 			var resp = respStr.JsonDeserialize<BaseResp>();
-			Console.WriteLine($"时间：{DateTime.Now.ToStr()} 主协议：{mainCommand.ToString()} 次协议：{secondCommand.ToString()} 【响应消息级别：{resp.RespLevel.ToString()}】 响应字符串：{respStr}");
+
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("-------------------------------------------------------");
+			Console.WriteLine($"接收返回的数据：（时间：{DateTime.Now.ToStr()}）");
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine($"	协议：{command.ToString()}");
+			Console.WriteLine($"	响应消息级别：{resp.RespLevel.ToString()}");
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
+			Console.WriteLine($"	响应字符串：{respStr}");
+			Console.ResetColor();
 		}
 	}
 }

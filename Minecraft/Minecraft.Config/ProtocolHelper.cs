@@ -9,10 +9,9 @@ namespace Minecraft.Config
 {
 	public class ProtocolHelper
 	{
-		public static string GetProtocolStr(MainCommand mainCommand, SecondCommand secondCommand)
+		public static string GetProtocolStr(EnumCommand secondCommand)
 		{
-			return $"{((int)mainCommand).ToString().PadLeft(ProtocolLen.Main, '0')}" +
-				   $"{((int)secondCommand).ToString().PadLeft(ProtocolLen.Second, '0')}";
+			return ((int)secondCommand).ToString().PadLeft(ProtocolLen.Length, '0');
 
 		}
 
@@ -21,17 +20,9 @@ namespace Minecraft.Config
 		/// </summary>
 		/// <param name="protocolStr"></param>
 		/// <returns></returns>
-		public static (MainCommand, SecondCommand) GetCommand(string protocolStr)
+		public static EnumCommand GetCommand(string protocolStr)
 		{
-			var mainStr = protocolStr.Substring(0, ProtocolLen.Main);
-			var secondStr = protocolStr.Substring(ProtocolLen.Main);
-
-			int mainInt = Convert.ToInt32(mainStr);
-			int secondInt = Convert.ToInt32(secondStr);
-
-			MainCommand mainCommand = (MainCommand)mainInt;
-			SecondCommand secondCommand = (SecondCommand)secondInt;
-			return (mainCommand, secondCommand);
+			return (EnumCommand)Convert.ToInt32(protocolStr);
 		}
 	}
 }

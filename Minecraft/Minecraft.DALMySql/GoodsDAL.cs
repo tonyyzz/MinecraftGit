@@ -70,16 +70,17 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 			return GetSingleOrDefaultWithTablePrefix(model, playerId,
 				TablePrefixConfig.Goods,
 				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
-				(nameof(model.GoodsId), goodsId));
+				new KeyValue<string> { Key = nameof(model.GoodsId), Value = goodsId });
 		}
-		
-		public static List<GoodsModel> GetListAll(int playerId)
+
+		public static List<GoodsModel> GetListAll(int playerId, int belongsTo)
 		{
 			var model = new GoodsModel();
-			return GetListAllWithTablePrefix(model,playerId,
+			return GetListAllWithTablePrefix(model, playerId,
 				TablePrefixConfig.Goods,
 				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
-				(nameof(model.PlayerId), playerId));
+				new KeyValue<int> { Key = nameof(model.PlayerId), Value = playerId },
+				new KeyValue<int> { Key = nameof(model.BelongsTo), Value = belongsTo });
 		}
 	}
 }

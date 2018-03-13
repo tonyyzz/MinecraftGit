@@ -14,14 +14,16 @@ namespace Minecraft.BLL.mysql
 		private static RedisHelper redisHelper = new RedisHelper();
 		public static bool InsertSuccess(AtlasscheduleModel model)
 		{
-			redisHelper.StringSet(RedisKeyConfig.AtlasSchedule + model.PlayerId, model, CommonConfig.DefRedisExpiry);
+			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.AtlasSchedule, model.PlayerId.ToString());
+			redisHelper.StringSet(redisKey, model, CommonConfig.DefRedisExpiry);
 			return BaseBLL.InsertSuccess(model);
 		}
 
 		public static AtlasscheduleModel GetSingleOrDefault(int playerId, out bool fromCache)
 		{
 			fromCache = false;
-			var cacheModel = redisHelper.StringGet<AtlasscheduleModel>(RedisKeyConfig.AtlasSchedule + playerId);
+			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.AtlasSchedule, playerId.ToString());
+			var cacheModel = redisHelper.StringGet<AtlasscheduleModel>(redisKey);
 			if (cacheModel != null)
 			{
 				fromCache = true;
@@ -30,8 +32,8 @@ namespace Minecraft.BLL.mysql
 			else
 			{
 				var model = new AtlasscheduleModel();
-				model = GetSingleOrDefault(model, (nameof(model.PlayerId), playerId));
-				redisHelper.StringSet(RedisKeyConfig.AtlasSchedule + playerId, model, CommonConfig.DefRedisExpiry);
+				model = GetSingleOrDefault(model, new KeyValue<int> { Key = nameof(model.PlayerId), Value = playerId });
+				redisHelper.StringSet(redisKey, model, CommonConfig.DefRedisExpiry);
 				return model;
 			}
 		}

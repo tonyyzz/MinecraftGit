@@ -13,37 +13,36 @@ namespace Minecraft.ServerHall.Cmd
 		{
 			get
 			{
-				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+				return ProtocolHelper.GetProtocolStr(defCommand);
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.AtlasSchedule;
-		private SecondCommand defSecondCommand = SecondCommand.AtlasSchedule_AtlasScheduleSelect;
+		private EnumCommand defCommand = EnumCommand.AtlasSchedule_AtlasScheduleSelect;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			if (!session.minecraftSessionInfo.IsLogin)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
 				return;
 			}
 			var req = requestInfo.GetRequestObj<AtlasScheduleSelectReq>(session);
 			if (req == null)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 
 			var model = AtlasScheduleBLL.GetSingleOrDefault(session.minecraftSessionInfo.player.PlayerId, out bool fromCache);
 			if (model == null)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "不存在" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "不存在" });
 				return;
 			}
 
 			var resp = new AtlasScheduleSelectResp
 			{
 			};
-			session.Send(defMainCommand, defSecondCommand, resp);
+			session.Send(defCommand, resp);
 		}
 	}
 }

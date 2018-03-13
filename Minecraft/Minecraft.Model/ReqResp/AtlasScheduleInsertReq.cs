@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Minecraft.Model.ReqResp
 {
+	[System.Serializable]
 	public class AtlasScheduleInsertReq : BaseReq
 	{
 	}

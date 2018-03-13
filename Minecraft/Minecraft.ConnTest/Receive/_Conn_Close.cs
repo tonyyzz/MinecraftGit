@@ -7,7 +7,7 @@ namespace Minecraft.ConnTest.Receive
 {
 	public class Conn_Close
 	{
-		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
+		public void Execute(Socket socketClient, EnumCommand command, string respStr)
 		{
 			var resp = respStr.JsonDeserialize<BaseResp>();
 			if (resp == null)

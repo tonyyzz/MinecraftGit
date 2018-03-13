@@ -3,6 +3,8 @@ using Minecraft.Model.ReqResp;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Minecraft.ServerHall.Cmd
 {
@@ -15,23 +17,22 @@ namespace Minecraft.ServerHall.Cmd
 		{
 			get
 			{
-				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+				return ProtocolHelper.GetProtocolStr(defCommand);
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.Test;
-		private SecondCommand defSecondCommand = SecondCommand.Test_TestCmd;
+		private EnumCommand defCommand = EnumCommand.Test_TestCmd;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
-			if (!session.minecraftSessionInfo.IsLogin)
-			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
-				return;
-			}
+			//if (!session.minecraftSessionInfo.IsLogin)
+			//{
+			//	session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
+			//	return;
+			//}
 			var req = requestInfo.GetRequestObj<TestReq>(session);
 			if (req == null || req.PlayerId <= 0)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 
@@ -42,7 +43,7 @@ namespace Minecraft.ServerHall.Cmd
 			{
 				PlayerId = req.PlayerId
 			};
-			session.Send(defMainCommand, defSecondCommand, resp);
+			session.Send(defCommand, resp);
 		}
 	}
 }

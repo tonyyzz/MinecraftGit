@@ -8,6 +8,7 @@ using Minecraft.Config;
 using Minecraft.Model;
 using Minecraft.Model.ReqResp;
 using Minecraft.BLL.mysql;
+using Minecraft.Config.ipConst;
 
 namespace Minecraft.ServerHall
 {
@@ -20,8 +21,26 @@ namespace Minecraft.ServerHall
 
 		protected override void OnSessionStarted()
 		{
+			this.Logger.Info($"进入连接：{this.RemoteEndPoint.ToString()}");
 			//进入连接
-			this.Send(MainCommand.Conn, SecondCommand.Conn_Success, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "Welcome to SuperSocket Minecraft Server" });
+			if (MinecraftConfiguration.IsConsoleWrite)
+			{
+				string ipUserNameTipStr = IpConstConfig.GetIpUserNameTipStr(this.RemoteEndPoint.Address.ToString());
+				if (!ipUserNameTipStr.IsNullOrWhiteSpace())
+				{
+					Console.ForegroundColor = ConsoleColor.Gray;
+				}
+				else
+				{
+					Console.ForegroundColor = ConsoleColor.DarkYellow;
+				}
+				Console.WriteLine("-------------------------------------------------------");
+				Console.WriteLine($"▲▲▲有客户端进入（时间：{DateTime.Now.ToStr()}）");
+				Console.WriteLine($"IP地址：{this.RemoteEndPoint.ToString()}{ipUserNameTipStr}");
+				Console.WriteLine($"	当前在线人数：{this.AppServer.GetAllSessions().Count()}");
+				Console.ResetColor();
+			}
+			this.Send(EnumCommand.Conn_Success, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "Welcome to SuperSocket Minecraft Server" });
 
 			//Console.WriteLine("");
 			//Console.WriteLine($"远程IP端口：{this.RemoteEndPoint.Address.ToString()}:{this.RemoteEndPoint.Port}");
@@ -46,8 +65,24 @@ namespace Minecraft.ServerHall
 
 		protected override void OnSessionClosed(CloseReason reason)
 		{
-
 			//断开连接
+			if (MinecraftConfiguration.IsConsoleWrite)
+			{
+				string ipUserNameTipStr = IpConstConfig.GetIpUserNameTipStr(this.RemoteEndPoint.Address.ToString());
+				if (!ipUserNameTipStr.IsNullOrWhiteSpace())
+				{
+					Console.ForegroundColor = ConsoleColor.DarkGray;
+				}
+				else
+				{
+					Console.ForegroundColor = ConsoleColor.DarkMagenta;
+				}
+				Console.WriteLine("-------------------------------------------------------");
+				Console.WriteLine($"---客户端断开连接（时间：{DateTime.Now.ToStr()}）");
+				Console.WriteLine($"IP地址：{this.RemoteEndPoint.ToString()}{ipUserNameTipStr}");
+				Console.WriteLine($"	当前在线人数：{this.AppServer.GetAllSessions().Count()}");
+				Console.ResetColor();
+			}
 
 			if (minecraftSessionInfo.IsLogin)
 			{
@@ -56,7 +91,7 @@ namespace Minecraft.ServerHall
 			}
 			//add you logics which will be executed after the session is closed
 			//base.OnSessionClosed(reason);
-			this.Send(MainCommand.Conn, SecondCommand.Conn_Close, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "断开连接的通知" });
+			this.Send(EnumCommand.Conn_Close, new BaseResp { RespLevel = RespLevelEnum.Success, Msg = "断开连接的通知" });
 
 
 			//var sessions = this.AppServer.GetAllSessions().ToList();
@@ -76,13 +111,19 @@ namespace Minecraft.ServerHall
 
 		protected override void HandleException(Exception e)
 		{
-			this.Send(MainCommand.Handle, SecondCommand.Handle_HandleException, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = e.Message });
+			string exceptionStr = $"服务器错误：{e.ToString()}";
+			this.Logger.Fatal(exceptionStr);
+			Console.WriteLine(exceptionStr);
+			this.Send(EnumCommand.Handle_HandleException, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = exceptionStr });
 		}
 
 		protected override void HandleUnknownRequest(StringRequestInfo requestInfo)
 		{
-			this.Send(MainCommand.Handle, SecondCommand.Handle_HandleUnknownRequest, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = $"Unknow request：{requestInfo.Key}" });
+			if (MinecraftConfiguration.IsConsoleWrite)
+			{
+				Console.WriteLine($"时间：{DateTime.Now.ToStr()} 客户端未知请求：{requestInfo.Key}");
+			}
+			this.Send(EnumCommand.Handle_HandleUnknownRequest, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = $"Unknow request：{requestInfo.Key}" });
 		}
-
 	}
 }

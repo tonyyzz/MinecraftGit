@@ -31,12 +31,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Linux_LAN|AnyCPU'">
+    <OutputPath>bin\Linux_LAN\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,12 +58,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Minecraft.BLL\Minecraft.BLL.csproj">
       <Project>{b6d99a0e-5aeb-42c1-98b4-be32bb16caa8}</Project>
       <Name>Minecraft.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Minecraft.Common\Minecraft.Common.csproj">
+      <Project>{464cd133-6ff3-408e-9d53-934e14776072}</Project>
+      <Name>Minecraft.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Minecraft.Config\Minecraft.Config.csproj">
       <Project>{ec058aee-1e8d-4a14-9b91-50167a01153b}</Project>

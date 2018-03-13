@@ -1,8 +1,8 @@
 ﻿using Minecraft.BLL.mysql;
 using Minecraft.Config;
+using Minecraft.Config.Memory;
 using Minecraft.Model;
 using Minecraft.Model.ReqResp;
-using Minecraft.ServerHall.Memory;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -15,23 +15,22 @@ namespace Minecraft.ServerHall.Cmd
 		{
 			get
 			{
-				return ProtocolHelper.GetProtocolStr(defMainCommand, defSecondCommand);
+				return ProtocolHelper.GetProtocolStr(defCommand);
 			}
 		}
 
-		private MainCommand defMainCommand = MainCommand.Friend;
-		private SecondCommand defSecondCommand = SecondCommand.Friend_FriendInsert;
+		private EnumCommand defCommand = EnumCommand.Friend_FriendInsert;
 		public override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			if (!session.minecraftSessionInfo.IsLogin)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "未登录" });
 				return;
 			}
 			var req = requestInfo.GetRequestObj<FriendInsertReq>(session);
 			if (req == null || req.FriendId <= 0)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "参数错误" });
 				return;
 			}
 			FriendModel friendModel = new FriendModel
@@ -44,7 +43,7 @@ namespace Minecraft.ServerHall.Cmd
 			var flag = FriendBLL.InsertSuccessForSplitTable(friendModel, MemorySystemManager.friendTableNameCacheList);
 			if (!flag)
 			{
-				session.Send(defMainCommand, defSecondCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "friend分表插入操作失败" });
+				session.Send(defCommand, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = "friend分表插入操作失败" });
 				return;
 			}
 
@@ -54,7 +53,7 @@ namespace Minecraft.ServerHall.Cmd
 				PlayerId = friendModel.PlayerId,
 				FriendId = friendModel.FriendId,
 			};
-			session.Send(defMainCommand, defSecondCommand, resp);
+			session.Send(defCommand, resp);
 		}
 	}
 }

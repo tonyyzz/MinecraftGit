@@ -47,13 +47,19 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Linux_LAN|AnyCPU'">
+    <OutputPath>bin\Linux_LAN\</OutputPath>
+    <DefineConstants>TRACE;LINUX_LAN</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,23 +68,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandReq.cs" />
     <Compile Include="CommonConfig.cs" />
+    <Compile Include="csvfile\_CSVConfig.cs" />
+    <Compile Include="ipConst\IpConstConfig.cs" />
+    <Compile Include="Memory\MemoryDataManager.cs" />
+    <Compile Include="Memory\MemorySystemManager.cs" />
     <Compile Include="MinecraftConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeparatorConfig.cs" />
-    <Compile Include="_ProtocolEnum.cs" />
     <Compile Include="ProtocolHelper.cs" />
+    <Compile Include="RedisKeyHelper.cs" />
+    <Compile Include="SeparatorConfig.cs" />
     <Compile Include="RedisKeyConfig.cs" />
     <Compile Include="TablePrefixConfig.cs" />
+    <Compile Include="_ProtocolEnum.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Minecraft.Common\Minecraft.Common.csproj">
       <Project>{464cd133-6ff3-408e-9d53-934e14776072}</Project>
       <Name>Minecraft.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Minecraft.Model\Minecraft.Model.csproj">
+      <Project>{d89518f5-88e7-4b0e-ab9d-86589f429176}</Project>
+      <Name>Minecraft.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Content Include="csvfile\Mod_Furniture.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csvfile\Mod_Items.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ipConst\ipConfig.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,15 +13,18 @@ namespace Minecraft.ConnTest.Send
 	/// </summary>
 	public class SendTestCmd
 	{
-		public static MainCommand mainCommand = MainCommand.Test;
-		public static SecondCommand secondCommand = SecondCommand.Test_TestCmd;
-		public static (MainCommand, SecondCommand, TestReq) GetReq()
+		public static EnumCommand command = EnumCommand.Test_TestCmd;
+		public static CommandReq<TestReq> GetReq()
 		{
 			var req = new TestReq()
 			{
 				PlayerId = 1
 			};
-			return (mainCommand, secondCommand, req);
+			return new CommandReq<TestReq>
+			{
+				Command = command,
+				Req = req
+			};
 		}
 	}
 }

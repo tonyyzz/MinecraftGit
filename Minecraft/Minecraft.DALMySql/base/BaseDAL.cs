@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Minecraft.Config;
 using System.Reflection;
+using Minecraft.Model;
 
 namespace Minecraft.DALMySql
 {
@@ -78,12 +79,12 @@ namespace Minecraft.DALMySql
 		/// <param name="tableName"></param>
 		/// <param name="keyValue"></param>
 		/// <returns></returns>
-		public static T GetSingleOrDefault<T, V>(T model, (string key, V value) keyValue) where T : class
+		public static T GetSingleOrDefault<T, V>(T model, KeyValue<V> keyValue) where T : class
 		{
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				string sql = $"select * from {GetTableNameByModelName(model)} where {keyValue.key}={GetTypeValueStr(keyValue.value)} limit 1";
+				string sql = $"select * from {GetTableNameByModelName(model)} where {keyValue.Key}={GetTypeValueStr(keyValue.Value)} limit 1";
 				return Conn.QueryFirstOrDefault<T>(sql);
 			}
 		}

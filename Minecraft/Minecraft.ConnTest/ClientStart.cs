@@ -15,30 +15,75 @@ namespace Minecraft.ConnTest
 		/// <summary>
 		/// 启动一个客户端
 		/// </summary>
-		public static void Start()
+		public static void Start(Socket socketClient = null, bool isReConn = false)
 		{
 #if DEBUG //本地测试
 			string ipStr = "127.0.0.1";
 			int port = 2018;
-#elif MINECRAFT_LAN //局域网测试
+#elif MINECRAFT_LAN //windows局域网测试
 			string ipStr = "192.168.0.137";
 			int port = 2017;
-#else //线上测试
+#elif LINUX_LAN //linux局域网测试
+			string ipStr = "192.168.0.112";
+			int port = 2017;
+#else //（不使用，只用来做模板）
 			string ipStr = "192.168.0.137";
 			int port = 2017;
 #endif
-
+			bool hasException = false;
 			IPAddress ip = IPAddress.Parse(ipStr);
 			IPEndPoint point = new IPEndPoint(ip, port);
-			var socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-			//进行连接
-			socketClient.Connect(point);
-			//不停的接收服务器端发送的消息
-			Thread thread = new Thread(Receive)
+			if (socketClient == null)
 			{
-				IsBackground = true
-			};
-			thread.Start(socketClient);
+				socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+			}
+			try
+			{
+				//进行连接
+				//socketClient.Connect(point);
+				if (!isReConn)
+				{
+					Console.WriteLine("连接...");
+				}
+				else
+				{
+					Console.WriteLine("客户端重连...");
+				}
+				//socketClient.Connect(point);
+				socketClient.BeginConnect(point, (rs) =>
+				{
+				}, null);
+			}
+			catch (SocketException ex)
+			{
+				//Thread.Sleep(3000);
+				//Console.WriteLine($"1：{ex.ToString()}");
+				//Console.WriteLine("客户端重连...");
+				////socketClient.Disconnect(true);
+				//socketClient.Dispose();
+				//socketClient = null;
+				//ClientStart.Start(socketClient);
+				hasException = true;
+			}
+			catch (Exception ex)
+			{
+				//Thread.Sleep(1000);
+				//Console.WriteLine($"2：{ex.ToString()}");
+				//Console.WriteLine("客户端重连...");
+				//socketClient.Dispose();
+				//socketClient = null;
+				//ClientStart.Start(socketClient);
+				hasException = true;
+			}
+			if (!hasException)
+			{
+				//不停的接收服务器端发送的消息
+				Thread thread = new Thread(Receive)
+				{
+					IsBackground = true
+				};
+				thread.Start(socketClient);
+			}
 		}
 
 		private static void Receive(object o)
@@ -46,18 +91,17 @@ namespace Minecraft.ConnTest
 			var socketClient = o as Socket;
 			while (true)
 			{
-				//获取发送过来的消息
-				byte[] buffer = new byte[1024 * 1024 * 2];
-				var effective = socketClient.Receive(buffer);
-				if (effective == 0)
-				{
-					break;
-				}
-				var str = Encoding.UTF8.GetString(buffer, 0, effective);
+				Thread.Sleep(1);
 				try
 				{
-					//Console.WriteLine("元数据：" + str);
-
+					//获取发送过来的消息
+					byte[] buffer = new byte[1024 * 1024 * 2];
+					var effective = socketClient.Receive(buffer);
+					if (effective == 0)
+					{
+						break;
+					}
+					var str = Encoding.UTF8.GetString(buffer, 0, effective);
 					//黏包情况处理（用结束符分割处理）
 					var strs = str.Split(new String[] { SeparatorConfig.StickyBag }, StringSplitOptions.RemoveEmptyEntries);
 					if (strs.Count() >= 2)
@@ -77,16 +121,16 @@ namespace Minecraft.ConnTest
 						//接收
 						//解析枚举
 
-						(MainCommand mainCommand, SecondCommand secondCommand) = ProtocolHelper.GetCommand(protocolStr);
+						EnumCommand command = ProtocolHelper.GetCommand(protocolStr);
 
 						//▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲输出协议传输信息▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
-						ComManager.ConsoleWriteResp(mainCommand, secondCommand, respStr);
+						ComManager.ConsoleWriteResp(command, respStr);
 
 						// 加载程序集(dll文件地址)，使用Assembly类
 						var execName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName);
 						Assembly assembly = Assembly.LoadFile(execName);
 
-						string className = "Minecraft.ConnTest.Receive." + secondCommand.ToString();
+						string className = "Minecraft.ConnTest.Receive." + command.ToString();
 
 						//获取类型，参数（名称空间+类）   
 						Type type = assembly.GetType(className);
@@ -99,26 +143,36 @@ namespace Minecraft.ConnTest
 						}
 
 						//设置Show_Str方法中的参数类型，Type[]类型；如有多个参数可以追加多个   
-						Type[] params_type = new Type[4];
+						Type[] params_type = new Type[3];
 						params_type[0] = typeof(Socket);
-						params_type[1] = typeof(MainCommand);
-						params_type[2] = typeof(SecondCommand);
-						params_type[3] = typeof(string);
+						params_type[1] = typeof(EnumCommand);
+						params_type[2] = typeof(string);
 
 						//设置Show_Str方法中的参数值；如有多个参数可以追加多个   
-						Object[] params_obj = new Object[4];
+						Object[] params_obj = new Object[3];
 						params_obj[0] = socketClient;
-						params_obj[1] = mainCommand;
-						params_obj[2] = secondCommand;
-						params_obj[3] = respStr;
+						params_obj[1] = command;
+						params_obj[2] = respStr;
 
 						//执行Show_Str方法   
 						object value = type.GetMethod("Execute", params_type).Invoke(instance, params_obj);
-
-
-
 					}
 					//Console.WriteLine("---------------------------");
+				}
+				catch (System.InvalidOperationException ex)
+				{
+					Thread.Sleep(1000);
+				}
+				catch (System.Net.Sockets.SocketException ex)
+				{
+					Console.ForegroundColor = ConsoleColor.Magenta;
+					Console.WriteLine("服务器已经关闭！！！");
+					Console.ResetColor();
+					Thread.Sleep(1000);
+					socketClient.Dispose();
+					socketClient = null;
+					ClientStart.Start(socketClient, true);
+					break;
 				}
 				catch (Exception ex)
 				{

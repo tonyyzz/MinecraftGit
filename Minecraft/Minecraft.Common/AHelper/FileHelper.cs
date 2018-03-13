@@ -26,12 +26,12 @@ namespace System
 			}
 		}
 		/// <summary>
-		/// 文件读取
+		/// 文件读取（只读取一行）
 		/// </summary>
 		/// <param name="path"></param>
 		/// <param name="encoding"></param>
 		/// <returns></returns>
-		public static string Read(string path, Encoding encoding)
+		public static string ReadLine(string path, Encoding encoding)
 		{
 			string str = "";
 			using (StreamReader sr = new StreamReader(path, encoding))

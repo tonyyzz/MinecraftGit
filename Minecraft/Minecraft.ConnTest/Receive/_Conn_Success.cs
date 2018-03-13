@@ -16,7 +16,7 @@ namespace Minecraft.ConnTest.Receive
 	/// </summary>
 	public class Conn_Success
 	{
-		public void Execute(Socket socketClient, MainCommand mainCommand, SecondCommand secondCommand, string respStr)
+		public void Execute(Socket socketClient, EnumCommand command, string respStr)
 		{
 			var resp = respStr.JsonDeserialize<BaseResp>();
 			if (resp == null)
@@ -29,11 +29,9 @@ namespace Minecraft.ConnTest.Receive
 					{
 						//连接成功
 						//登录操作
-
-
 						ComManager.Send(socketClient, () =>
 						{
-							return SendTestCmd.GetReq();
+							return SendPlyerLogin.GetReq();
 						});
 					}
 					break;

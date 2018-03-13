@@ -18,9 +18,9 @@ namespace Minecraft.DALMongoDb
 				mg.QueryOne("1");
 				canStart = true;
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-
+				Console.WriteLine("【mongodb】异常：" + ex.ToString());
 			}
 			return canStart;
 		}

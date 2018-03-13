@@ -7,38 +7,12 @@ using SuperSocket.SocketBase.Config;
 using SuperSocket.SocketBase.Protocol;
 using SuperSocket.Facility.Protocol;
 using Minecraft.Config;
+using Minecraft.Config.ipConst;
 
 namespace Minecraft.ServerHall
 {
 	public class MinecraftServer : AppServer<MinecraftSession>
 	{
-
-		//自定义协议
-		//public TelnetServer()
-		//: base(new CommandLineReceiveFilterFactory(Encoding.UTF8,new BasicRequestInfoParser(":",",")))
-		//{
-
-		//}
-
-		//public TelnetServer()
-		//: base(new CommandLineReceiveFilterFactory(Encoding.UTF8))
-		//{
-
-		//}
-
-
-		//public TelnetServer()
-		//: base(new CountSpliterReceiveFilterFactory((byte)'#', 8))
-		//{
-
-		//}
-
-		//固定请求大小协议
-		//public TelnetServer()
-		//: base(new DefaultReceiveFilterFactory<MyReceiveFilter, StringRequestInfo>()) //使用默认的接受过滤器工厂 (DefaultReceiveFilterFactory)
-		//{
-
-		//}
 		//结束符协议
 		public MinecraftServer()
 		: base(new TerminatorReceiveFilterFactory(SeparatorConfig.Protocol))
@@ -96,8 +70,28 @@ namespace Minecraft.ServerHall
 		protected override void ExecuteCommand(MinecraftSession session, StringRequestInfo requestInfo)
 		{
 			base.ExecuteCommand(session, requestInfo);
-			(MainCommand mainCommand, SecondCommand secondCommand) = ProtocolHelper.GetCommand(requestInfo.Key);
-			Console.WriteLine($"正在执行的命令：时间：{DateTime.Now.ToStr()} IPAddress:{session.RemoteEndPoint} 主协议：{mainCommand.ToString()} 次协议：{secondCommand.ToString()}");
+			EnumCommand command = ProtocolHelper.GetCommand(requestInfo.Key);
+
+			if (MinecraftConfiguration.IsConsoleWrite)
+			{
+				string ipUserNameTipStr = IpConstConfig.GetIpUserNameTipStr(session.RemoteEndPoint.Address.ToString());
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("-------------------------------------------------------");
+				Console.WriteLine($"正在执行命令：（时间：{DateTime.Now.ToStr()}）");
+				if (!ipUserNameTipStr.IsNullOrWhiteSpace())
+				{
+					Console.ForegroundColor = ConsoleColor.Green;
+				}
+				else
+				{
+					Console.ForegroundColor = ConsoleColor.Magenta;
+				}
+				Console.WriteLine($"	IP地址：{session.RemoteEndPoint}{ipUserNameTipStr}");
+				Console.ForegroundColor = ConsoleColor.Green;
+				Console.WriteLine($"	协议：{command.ToString()}");
+				Console.WriteLine($"	当前在线人数：{session.AppServer.GetAllSessions().Count()}");
+				Console.ResetColor();
+			}
 		}
 	}
 }

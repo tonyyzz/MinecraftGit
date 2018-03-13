@@ -19,7 +19,7 @@ namespace Minecraft.DALMySql
 		{
 
 			string tableName = GetTableNameWithTablePrefix(playerId,
-				TablePrefixConfig.Friend, 
+				TablePrefixConfig.Friend,
 				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen);
 
 			//  "+ tableName + @"
@@ -27,7 +27,7 @@ namespace Minecraft.DALMySql
 			string sql = @"
 
 /*==============================================================*/
-/* Table: "+ tableName + @"                                                */
+/* Table: " + tableName + @"                                                */
 /*==============================================================*/
 create table " + tableName + @"
 (
@@ -64,7 +64,7 @@ alter table " + tableName + @" comment '好友表';
 			return GetListAllWithTablePrefix(model, playerId,
 				TablePrefixConfig.Friend,
 				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen,
-				(nameof(model.PlayerId), playerId));
+				new KeyValue<int> { Key = nameof(model.PlayerId), Value = playerId });
 		}
 	}
 }

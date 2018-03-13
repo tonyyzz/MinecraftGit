@@ -17,7 +17,8 @@ namespace Minecraft.BLL.mysql
 		public static PlayerbasisModel GetSingleOrDefault(int playerId, out bool fromCache)
 		{
 			fromCache = false;
-			var cacheModel = redisHelper.StringGet<PlayerbasisModel>(RedisKeyConfig.Playerbasis + playerId);
+			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Playerbasis, playerId.ToString());
+			var cacheModel = redisHelper.StringGet<PlayerbasisModel>(redisKey);
 			if (cacheModel != null)
 			{
 				fromCache = true;
@@ -26,15 +27,16 @@ namespace Minecraft.BLL.mysql
 			else
 			{
 				var model = new PlayerbasisModel();
-				model = GetSingleOrDefault(model, (nameof(model.PlayerId), playerId));
-				redisHelper.StringSet(RedisKeyConfig.Playerbasis + playerId, model, CommonConfig.DefRedisExpiry);
+				model = GetSingleOrDefault(model, new KeyValue<int> { Key = nameof(model.PlayerId), Value = playerId });
+				redisHelper.StringSet(redisKey, model, CommonConfig.DefRedisExpiry);
 				return model;
 			}
 		}
 
 		public static bool Update(PlayerbasisModel model)
 		{
-			redisHelper.StringSet(RedisKeyConfig.Playerbasis + model.PlayerId, model, CommonConfig.DefRedisExpiry);
+			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Playerbasis, model.PlayerId.ToString());
+			redisHelper.StringSet(redisKey, model, CommonConfig.DefRedisExpiry);
 			return Update(model, nameof(model.PlayerId));
 		}
 	}
