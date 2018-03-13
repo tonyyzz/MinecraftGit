@@ -23,7 +23,7 @@ namespace Minecraft.RedisTest
 
 			//var theReq = redisHelper.StringGet<TestReq>(RedisKeyConfig.Test + req.PlayerId);
 
-			redisHelper.StringOptTest();
+			//redisHelper.StringOptTest();
 
 		}
 	}
