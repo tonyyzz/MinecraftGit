@@ -1,0 +1,14 @@
+cd /home/tonyyzz/Minecraft.ServerHall/Linux_LAN
+mono Minecraft.ServerHall.exe
+
+cd /home/tonyyzz/Minecraft.ConnTest/Linux_LAN
+mono Minecraft.ConnTest.exe
+
+cd /home/tonyyzz/Minecraft.CSRedisTest
+mono Minecraft.CSRedisTest.exe
+
+cd /home/tonyyzz/RedisDemo
+mono RedisDemo.exe
+
+cd /home/tonyyzz/Minecraft.ServiceStackRedisTest
+mono Minecraft.ServiceStackRedisTest.exe
