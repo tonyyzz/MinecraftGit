@@ -59,5 +59,10 @@ namespace Minecraft.CacheRedis
 			return client.Get<T>(AddKeyPrefix(key));
 		}
 
+		public int PublishMessage(string toChannel, string message)
+		{
+			return client.PublishMessage(toChannel, message);
+		}
+
 	}
 }
