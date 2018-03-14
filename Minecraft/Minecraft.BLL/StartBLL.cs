@@ -3,6 +3,7 @@ using Minecraft.DALMongoDb;
 using Minecraft.DALMySql;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +15,14 @@ namespace Minecraft.BLL
 		/// <summary>
 		/// 数据库服务器启动检查
 		/// </summary>
-		public static void StartDBServerCheck(out bool canStartAll)
+		public static void StartDBServerCheck()
 		{
 			Console.WriteLine("正在检查数据库连接状态...");
 			Console.ForegroundColor = ConsoleColor.Yellow;
-			canStartAll = true;
+			bool canStartAll = true;
+
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
 			//启动mysql
 			var canStartMysql = StartDALMySql.StartMySqlCheck();
 			if (!canStartMysql)
@@ -41,6 +45,23 @@ namespace Minecraft.BLL
 				canStartAll = false;
 			}
 			Console.ResetColor();
+
+			stopwatch.Stop();
+			if (canStartAll)
+			{
+				Console.ForegroundColor = ConsoleColor.Green;
+				Console.WriteLine("数据库连接测试：所有数据库启动连接成功！");
+				Console.ResetColor();
+			}
+			else
+			{
+				Console.WriteLine($"数据库连接检查所花时间为：{stopwatch.Elapsed.TotalSeconds.ToString("0.00")} s");
+				//Console.WriteLine("按任意键退出");
+				while (true)
+				{
+					Console.ReadKey();
+				}
+			}
 		}
 	}
 }

@@ -20,31 +20,13 @@ namespace Minecraft.ServerHall
 			Console.WriteLine("--------------【Minecraft服务器】---------------");
 			Console.ResetColor();
 
-			#region 数据监测以及初始化
-			Stopwatch stopwatch = new Stopwatch();
-			stopwatch.Start();
-			StartBLL.StartDBServerCheck(out bool canStartAll);
-			stopwatch.Stop();
-			if (canStartAll)
-			{
-				Console.ForegroundColor = ConsoleColor.Green;
-				Console.WriteLine("数据库连接测试：所有数据库启动连接成功！");
-				Console.ResetColor();
-			}
-			else
-			{
-				Console.WriteLine($"数据库连接检查所花时间为：{stopwatch.Elapsed.TotalSeconds.ToString("0.00")} s");
-				Console.WriteLine("按任意键退出");
-				Console.ReadKey();
-				return;
-			}
+			StartBLL.StartDBServerCheck();
 
 			CSVConfig.Install();
 			IpConstConfig.Init();
 
 			//ServerThreadPoolTest.Start();
 
-			#endregion
 
 			//服务器最后启动
 			MinecraftServerStart.Do();

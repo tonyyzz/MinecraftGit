@@ -12,21 +12,7 @@ namespace Minecraft.Test.TestFolder
 	{
 		public static void Do()
 		{
-			Stopwatch stopwatch = new Stopwatch();
-			stopwatch.Start();
-			StartBLL.StartDBServerCheck(out bool canStartAll);
-			stopwatch.Stop();
-			if (canStartAll)
-			{
-				Console.WriteLine("数据库连接测试：所有数据库启动连接成功！");
-			}
-			else
-			{
-				Console.WriteLine($"数据库连接检查所花时间为：{stopwatch.Elapsed.TotalSeconds.ToString("0.00")} s");
-				Console.WriteLine("按任意键退出");
-				Console.ReadKey();
-				return;
-			}
+			StartBLL.StartDBServerCheck();
 			Console.WriteLine("连接成功");
 		}
 	}
