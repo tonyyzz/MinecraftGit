@@ -8,6 +8,7 @@ using MongoDB.Driver;
 using System.Configuration;
 using Minecraft.Config;
 using Minecraft.Model;
+using System.Text.RegularExpressions;
 
 namespace Minecraft.DALMongoDb
 {
@@ -32,8 +33,23 @@ namespace Minecraft.DALMongoDb
 				{
 					if (db == null)
 					{
-						var client = new MongoClient(connStr);
+						Match match = Regex.Match(connStr, @"((\d+\.){3}\d+)\:(\d+)");
+						if (!match.Success)
+						{
+							throw new Exception("mongodb连接字符串匹配错误");
+						}
+						var host = match.Groups[1].Value;
+						var port = Convert.ToInt32(match.Groups[3].Value);
+						var timeoutTimeSpan = new TimeSpan(0, 0, 3);
+						var client = new MongoClient(new MongoClientSettings()
+						{
+							ConnectTimeout = timeoutTimeSpan,
+							SocketTimeout = timeoutTimeSpan,
+							ServerSelectionTimeout = timeoutTimeSpan, //真正的连接超时，上面两个不起作用
+							Server = new MongoServerAddress(host, port)
+						});
 						db = client.GetDatabase(dbName);
+
 					}
 				}
 			}

@@ -32,7 +32,7 @@ namespace Minecraft.CacheRedis
 			var port = Convert.ToInt32(strs[1]);
 			client = new RedisClient(host, port)
 			{
-				ConnectTimeout = 5000,
+				ConnectTimeout = 3000, //貌似不起作用
 			};
 		}
 		public RedisHelper()

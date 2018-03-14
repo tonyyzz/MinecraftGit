@@ -109,12 +109,12 @@ namespace Minecraft.ServerHall
 			return str + SeparatorConfig.StickyBag;
 		}
 
-		protected override void HandleException(Exception e)
+		protected override void HandleException(Exception ex)
 		{
-			string exceptionStr = $"服务器错误：{e.ToString()}";
+			string exceptionStr = $"服务器错误：{ex.ToString()}";
 			this.Logger.Fatal(exceptionStr);
 			Console.WriteLine(exceptionStr);
-			this.Send(EnumCommand.Handle_HandleException, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = exceptionStr });
+			this.Send(EnumCommand.Handle_HandleException, new BaseResp { RespLevel = RespLevelEnum.Error, Msg = ex.Message });
 		}
 
 		protected override void HandleUnknownRequest(StringRequestInfo requestInfo)
