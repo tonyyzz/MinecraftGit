@@ -27,7 +27,9 @@ namespace Minecraft.ServerHall
 			stopwatch.Stop();
 			if (canStartAll)
 			{
+				Console.ForegroundColor = ConsoleColor.Green;
 				Console.WriteLine("数据库连接测试：所有数据库启动连接成功！");
+				Console.ResetColor();
 			}
 			else
 			{
