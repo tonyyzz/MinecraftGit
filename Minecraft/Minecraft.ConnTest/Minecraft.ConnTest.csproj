@@ -81,12 +81,12 @@
     <Compile Include="Receive\Backpack_BackpackGoodsSelect.cs" />
     <Compile Include="Receive\Friend_FriendInsert.cs" />
     <Compile Include="Receive\Friend_FriendListSelect.cs" />
+    <Compile Include="Receive\Player_PlayerLogin.cs" />
     <Compile Include="Receive\_Conn_Close.cs" />
     <Compile Include="Receive\Furniture_FurnitureInsert.cs" />
     <Compile Include="Receive\Heart_HeartData.cs" />
     <Compile Include="Receive\_Handle_HandleException.cs" />
     <Compile Include="Receive\_Handle_HandleUnknownRequest.cs" />
-    <Compile Include="Receive\Player_PlayerLogin.cs" />
     <Compile Include="Receive\_Conn_Success.cs" />
     <Compile Include="Receive\_Test_TestCmd.cs" />
     <Compile Include="Send\SendAtlasScheduleInsert.cs" />
