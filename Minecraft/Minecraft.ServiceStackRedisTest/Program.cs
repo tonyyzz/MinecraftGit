@@ -1,7 +1,7 @@
 ﻿using Minecraft.CacheRedis;
 using Minecraft.Config;
+using Minecraft.ServiceStackRedisTest.t;
 using RedisTools;
-using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace Minecraft.ServiceStackRedisTest
 		static void Main(string[] args)
 		{
 			Console.WriteLine("serviceStack.Redis测试");
-			PubSub.Do();
+			ServiceStackTest.Do();
 			Console.ReadKey();
 		}
 

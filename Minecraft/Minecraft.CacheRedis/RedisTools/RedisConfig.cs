@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using Minecraft.Config;
+
 namespace RedisTools
 {
     /// <summary>
@@ -23,7 +25,7 @@ namespace RedisTools
                     {
                         if (_redisConfig == null)
                         {
-                            _redisConfig = (RedisConfig)System.Configuration.ConfigurationManager.GetSection("RedisTools");
+                            _redisConfig = (RedisConfig)ConfigurationManager.GetSection(MinecraftConfiguration.Minecraft_RedisToolsSectionName);
                         }
                     }
                 }
