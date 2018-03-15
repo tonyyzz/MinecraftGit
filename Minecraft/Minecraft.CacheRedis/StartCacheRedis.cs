@@ -35,7 +35,9 @@ namespace Minecraft.CacheRedis
                     //设置哨兵  sentinel
                     //RedisSentinel
 
+                    //-------------------------------
                     //▲百度搜索：redis 哨兵 主从 集群 
+                    //-------------------------------
 
                     //RedisSentinelResolver
                     // SentinelInfo
