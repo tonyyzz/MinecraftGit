@@ -30,13 +30,14 @@ namespace RedisTools
                     {
                         var writeServerList = RedisConfig.Current.WriteServerList.Split(',');
                         var readServerList = RedisConfig.Current.ReadServerList.Split(',');
-
+                       // ServiceStack.Redis.RedisConfig.VerifyMasterConnections = false;
                         _pooled = new PooledRedisClientManager(writeServerList, readServerList,
                                          new RedisClientManagerConfig
                                          {
                                              MaxWritePoolSize = RedisConfig.Current.MaxWritePoolSize,
                                              MaxReadPoolSize = RedisConfig.Current.MaxReadPoolSize,
                                              AutoStart = RedisConfig.Current.AutoStart,
+                                             
                                          });
                     };
                 }

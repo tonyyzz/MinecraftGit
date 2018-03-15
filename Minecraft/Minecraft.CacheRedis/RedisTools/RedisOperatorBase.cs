@@ -1,4 +1,5 @@
-﻿using ServiceStack.Redis;
+﻿using Minecraft.CacheRedis;
+using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,23 @@ namespace RedisTools
 		private bool _isDispose = false;
 		public RedisOperatorBase()
 		{
-			Redis = RedisClientManager.GetClient();
+			//try
+			//{
+			//	Redis = RedisClientManager.GetClient();
+			//}
+			//finally
+			//{
+			//	Redis.Dispose();
+			//}
+			try
+			{
+				Redis = (RedisClient)RedisProvider.Provider.GetClient();
+				// Do stuff
+			}
+			finally
+			{
+				Redis.Dispose();
+			}
 
 		}
 		public void Dispose()
