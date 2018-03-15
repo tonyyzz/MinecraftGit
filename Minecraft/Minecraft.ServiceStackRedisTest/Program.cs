@@ -1,4 +1,5 @@
-﻿using Minecraft.Config;
+﻿using Minecraft.CacheRedis;
+using Minecraft.Config;
 using RedisTools;
 using ServiceStack.Redis;
 using System;
@@ -20,14 +21,16 @@ namespace Minecraft.ServiceStackRedisTest
 			{
 				Console.WriteLine("选择的是发布");
 				Pub();
-				using (IRedisClient publisher = new RedisClient("127.0.0.1", 6379))
+
+				RedisHelper redisHelper = new RedisHelper();
+
+
+				for (int i = 1; i <= 50; i++)
 				{
-					for (int i = 1; i <= 50; i++)
-					{
-						publisher.PublishMessage("channel-1", string.Format("这是我发送的第{0}消息!", i));
-						Thread.Sleep(200);
-					}
+					redisHelper.PublishMessage("channel-1", string.Format("这是我发送的第{0}消息!", i));
+					Thread.Sleep(200);
 				}
+
 			}
 			else
 			{
