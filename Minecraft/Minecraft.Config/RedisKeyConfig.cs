@@ -16,7 +16,7 @@ namespace Minecraft.Config
 		/// <summary>
 		/// 玩家基础信息
 		/// </summary>
-		public static string Playerbasis = "Playerbasis";
+		public static string Playerbasis = "Tes";
 		/// <summary>
 		/// 大地图进度
 		/// </summary>
