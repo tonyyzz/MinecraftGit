@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RedisCacheHelper.cs" />
-    <Compile Include="RedisConfig.cs" />
+    <Compile Include="RedisPubSubConfig.cs" />
     <Compile Include="RedisCacheHelperBase.cs" />
     <Compile Include="RedisSingleCacheHelper.cs" />
     <Compile Include="RedisPubSubProvider.cs" />
