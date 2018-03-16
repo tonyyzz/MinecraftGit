@@ -45,4 +45,3 @@ namespace Minecraft.ServiceStackRedisTest.t
 		}
 	}
 }
- 
