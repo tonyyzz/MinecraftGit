@@ -11,7 +11,7 @@ namespace Minecraft.BLL.mysql
 {
 	public class AtlasScheduleBLL : BaseBLL
 	{
-		private static RedisSingleCacheHelper redisCacheHelper = new RedisSingleCacheHelper();
+		private static RedisCacheHelper redisCacheHelper = new RedisCacheHelper();
 		public static bool InsertSuccess(AtlasscheduleModel model)
 		{
 			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.AtlasSchedule, model.PlayerId.ToString());

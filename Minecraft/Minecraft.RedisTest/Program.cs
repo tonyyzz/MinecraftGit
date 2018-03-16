@@ -14,7 +14,7 @@ namespace Minecraft.RedisTest
 	{
 		static void Main(string[] args)
 		{
-			RedisSingleCacheHelper redisCacheHelper = new RedisSingleCacheHelper();
+			RedisCacheHelper redisCacheHelper = new RedisCacheHelper();
 			TestReq req = new TestReq
 			{
 				PlayerId = 1,

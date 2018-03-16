@@ -13,7 +13,7 @@ namespace Minecraft.BLL.mysql
 {
 	public class PlayerbasisBLL : BaseBLL
 	{
-		private static RedisSingleCacheHelper redisCacheHelper = new RedisSingleCacheHelper();
+		private static RedisCacheHelper redisCacheHelper = new RedisCacheHelper();
 		public static PlayerbasisModel GetSingleOrDefault(int playerId, out bool fromCache)
 		{
 			fromCache = false;
