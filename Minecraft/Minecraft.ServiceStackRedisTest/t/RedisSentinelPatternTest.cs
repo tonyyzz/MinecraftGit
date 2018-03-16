@@ -11,12 +11,12 @@ namespace Minecraft.ServiceStackRedisTest.t
 {
 	public class RedisSentinelPatternTest
 	{
-		public static void  Do()
+		public static void Do()
 		{
 			RedisSentinelCacheHelper redisSentinelCacheHelper = new RedisSentinelCacheHelper();
 			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Playerbasis, 1.ToString());
 
-			redisSentinelCacheHelper.StringSet(redisKey, new TestResp { PlayerId = 1 });
+			redisSentinelCacheHelper.StringSet(redisKey, new TestResp { PlayerId = 1 }, CommonConfig.DefRedisExpiry);
 			var res = redisSentinelCacheHelper.StringGet<TestResp>(redisKey);
 			Console.WriteLine(res.JsonSerialize());
 		}

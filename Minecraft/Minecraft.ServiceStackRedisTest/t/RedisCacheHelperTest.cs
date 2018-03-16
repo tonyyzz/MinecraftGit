@@ -16,7 +16,7 @@ namespace Minecraft.ServiceStackRedisTest.t
 			RedisCacheHelper redisCacheHelper = new RedisCacheHelper();
 			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Playerbasis, 1.ToString());
 
-			redisCacheHelper.StringSet(redisKey, new TestResp { PlayerId = 1 });
+			redisCacheHelper.StringSet(redisKey, new TestResp { PlayerId = 1 }, CommonConfig.DefRedisExpiry);
 			var res = redisCacheHelper.StringGet<TestResp>(redisKey);
 			Console.WriteLine(res.JsonSerialize());
 		}

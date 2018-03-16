@@ -31,7 +31,7 @@ namespace Minecraft.BLL.mysql
 		public static List<GoodsModel> GetListAll(int playerId, int belongsTo, out bool fromCache)
 		{
 			fromCache = false;
-			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Playerbasis, playerId.ToString(), belongsTo.ToString());
+			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Goods, playerId.ToString(), belongsTo.ToString());
 			var list = redisCacheHelper.StringGet<List<GoodsModel>>(redisKey);
 			if (list != null)
 			{

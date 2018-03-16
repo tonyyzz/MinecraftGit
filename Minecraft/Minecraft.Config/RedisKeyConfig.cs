@@ -18,6 +18,10 @@ namespace Minecraft.Config
 		/// </summary>
 		public static string Playerbasis = "Playerbasis";
 		/// <summary>
+		/// 玩家物品信息
+		/// </summary>
+		public static string Goods = "Goods";
+		/// <summary>
 		/// 大地图进度
 		/// </summary>
 		public static string AtlasSchedule = "AtlasSchedule";
