@@ -12,7 +12,7 @@ namespace Minecraft.BLL.mysql
 {
 	public class GoodsBLL
 	{
-		private static RedisHelper redisHelper = new RedisHelper();
+		private static RedisCacheHelper redisCacheHelper = new RedisCacheHelper();
 		/// <summary>
 		/// 向goods表插入数据（分表插入，如果不存在表，则先建立表，并将表名称缓存起来）
 		/// </summary>
@@ -32,7 +32,7 @@ namespace Minecraft.BLL.mysql
 		{
 			fromCache = false;
 			string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Playerbasis, playerId.ToString(), belongsTo.ToString());
-			var list = redisHelper.StringGet<List<GoodsModel>>(redisKey);
+			var list = redisCacheHelper.StringGet<List<GoodsModel>>(redisKey);
 			if (list != null)
 			{
 				fromCache = true;
@@ -41,7 +41,7 @@ namespace Minecraft.BLL.mysql
 			else
 			{
 				list = GoodsDAL.GetListAll(playerId, belongsTo);
-				redisHelper.StringSet(redisKey, list, CommonConfig.DefRedisExpiry);
+				redisCacheHelper.StringSet(redisKey, list, CommonConfig.DefRedisExpiry);
 				return list;
 			}
 		}

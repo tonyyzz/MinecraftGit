@@ -30,13 +30,13 @@ namespace Minecraft.BLL
 				Console.WriteLine("mysql 数据库连接失败");
 				canStartAll = false;
 			}
-			//启动mongoDB
-			var canStartMongoDb = StartDALMongoDb.StartMongoDbCheck();
-			if (!canStartMongoDb)
-			{
-				Console.WriteLine("MongoDb 数据库连接失败");
-				canStartAll = false;
-			}
+			////启动mongoDB
+			//var canStartMongoDb = StartDALMongoDb.StartMongoDbCheck();
+			//if (!canStartMongoDb)
+			//{
+			//	Console.WriteLine("MongoDb 数据库连接失败");
+			//	canStartAll = false;
+			//}
 			//启动redis
 			var canStartRedis = StartCacheRedis.StartCacheRedisCheck();
 			if (!canStartRedis)
