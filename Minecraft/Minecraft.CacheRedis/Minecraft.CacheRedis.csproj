@@ -97,14 +97,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="base\RedisCacheHelper.cs" />
-    <Compile Include="base\RedisProvider.cs" />
-    <Compile Include="base\RedisPubSubHelper.cs" />
+    <Compile Include="RedisCacheHelper.cs" />
+    <Compile Include="RedisConfig.cs" />
+    <Compile Include="RedisCacheHelperBase.cs" />
+    <Compile Include="RedisSingleCacheHelper.cs" />
+    <Compile Include="RedisPubSubProvider.cs" />
+    <Compile Include="RedisPubSubHelper.cs" />
+    <Compile Include="RedisSentinelCacheHelper.cs" />
+    <Compile Include="RedisSentinelCacheProvider.cs" />
+    <Compile Include="RedisSingleCacheProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedisTools\HashOperator.cs" />
     <Compile Include="RedisTools\RedisClientManager.cs" />
     <Compile Include="RedisTools\RedisConfig.cs" />
-    <Compile Include="base\RedisHelper_ServiceStack_Redis_Pool.cs" />
     <Compile Include="RedisTools\RedisOperatorBase.cs" />
     <Compile Include="StartCacheRedis.cs" />
   </ItemGroup>

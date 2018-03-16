@@ -46,6 +46,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="t\PubSub.cs" />
+    <Compile Include="t\RedisCacheHelperTest.cs" />
+    <Compile Include="t\RedisSentinelPatternTest.cs" />
     <Compile Include="t\ServiceStackTest.cs" />
   </ItemGroup>
   <ItemGroup>

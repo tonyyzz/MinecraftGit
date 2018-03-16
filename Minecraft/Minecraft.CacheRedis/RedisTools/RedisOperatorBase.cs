@@ -16,21 +16,22 @@ namespace RedisTools
 		{
 			//try
 			//{
-			Redis = RedisClientManager.GetClient();
+			//Redis = RedisClientManager.GetClient();
 			//}
 			//finally
 			//{
 			//	Redis.Dispose();
 			//}
-			//try
-			//{
-			//	Redis = (RedisClient)RedisProvider.Provider.GetClient();
-			//	// Do stuff
-			//}
-			//finally
-			//{
-			//	Redis.Dispose();
-			//}
+
+			try
+			{
+				Redis = (RedisClient)RedisPubSubProvider.Provider.GetClient();
+				// Do stuff
+			}
+			finally
+			{
+				Redis.Dispose();
+			}
 
 		}
 		public void Dispose()

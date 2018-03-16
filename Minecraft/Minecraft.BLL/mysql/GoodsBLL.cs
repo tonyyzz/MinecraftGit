@@ -12,7 +12,7 @@ namespace Minecraft.BLL.mysql
 {
 	public class GoodsBLL
 	{
-		private static RedisCacheHelper redisCacheHelper = new RedisCacheHelper();
+		private static RedisSingleCacheHelper redisCacheHelper = new RedisSingleCacheHelper();
 		/// <summary>
 		/// 向goods表插入数据（分表插入，如果不存在表，则先建立表，并将表名称缓存起来）
 		/// </summary>

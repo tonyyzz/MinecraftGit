@@ -16,7 +16,7 @@ namespace Minecraft.CacheRedis
 			bool canStart = false;
 			try
 			{
-				RedisCacheHelper redisCacheHelper = new RedisCacheHelper();
+				RedisSentinelCacheHelper redisCacheHelper = new RedisSentinelCacheHelper();
 
 
 				//思路：getset使用单个redis，pubsub使用redis集群
@@ -43,12 +43,11 @@ namespace Minecraft.CacheRedis
 				// SentinelInfo
 
 
-				redisCacheHelper.FlushAll();
 				string redisKey = RedisKeyHelper.GetRedisKeyName(RedisKeyConfig.Test, 1.ToString());
 
 				redisCacheHelper.StringSet(redisKey, new TestResp { PlayerId = 1 });
 
-				//   var res = redisHelper.StringGet<TestResp>(redisKey);
+				var res = redisCacheHelper.StringGet<TestResp>(redisKey);
 
 				canStart = true;
 			}

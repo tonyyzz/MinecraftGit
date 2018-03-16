@@ -13,14 +13,11 @@ namespace Minecraft.ServiceStackRedisTest
 {
 	class Program
 	{
-		static int port = 6382;
 		static void Main(string[] args)
 		{
 			Console.WriteLine("serviceStack.Redis测试");
-			ServiceStackTest.Do();
+			RedisCacheHelperTest.Do();
 			Console.ReadKey();
 		}
-
-		
 	}
 }
