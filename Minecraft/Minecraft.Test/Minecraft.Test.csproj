@@ -78,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestFolder\DbServerConnCheckTest.cs" />
     <Compile Include="TestFolder\EncraptTest.cs" />
+    <Compile Include="TestFolder\JsonFileTest.cs" />
     <Compile Include="TestFolder\JsonSerializeTest.cs" />
     <Compile Include="TestFolder\Test.cs" />
   </ItemGroup>

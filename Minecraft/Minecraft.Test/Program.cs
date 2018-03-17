@@ -32,7 +32,7 @@ namespace Minecraft.Test
 
 			//var dict= IpConstConfig.GetConstConfigDict();
 			Console.WriteLine("测试");
-			EncraptTest.Do();
+			JsonFileTest.Do();
 			Console.ReadKey();
 		}
 

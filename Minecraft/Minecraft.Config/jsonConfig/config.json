@@ -1,0 +1,136 @@
+{
+	/*加解密 密钥（与前端商定）*/
+	"EncryptKey": "Oyea",
+	/*连接字符串*/
+	"ConnectionString": {
+		"Debug": {
+
+			"mySql": "server=127.0.0.1;user=root;database=minecraft;port=3306;password=;Charset=utf8;",
+			"mongoDB": "mongodb://127.0.0.1:27017",
+			"redis": "127.0.0.1:6379"
+		},
+		"Minecraft_LAN": {
+			"mySql": "server=192.168.0.137;user=root;database=minecraft;port=3306;password=123456;Charset=utf8;",
+			"mongoDB": "mongodb://192.168.0.137:27017",
+			"redis": "192.168.0.137:6379"
+		},
+		"Linux_LAN": {
+			"mySql": "server=192.168.0.137;user=root;database=minecraft;port=3306;password=123456;Charset=utf8;",
+			"mongoDB": "mongodb://192.168.0.137:27017",
+			"redis": "192.168.0.137:6379"
+		},
+		"Release": {
+			"mySql": "server=192.168.0.137;user=root;database=minecraft;port=3306;password=123456;Charset=utf8;",
+			"mongoDB": "mongodb://192.168.0.137:27017",
+			"redis": "192.168.0.137:6379"
+		}
+	},
+	/*是否控制台输出信息（用于连接和命令执行上）*/
+	"IsConsoleWrite": {
+		"Debug": true,
+		"Minecraft_LAN": true,
+		"Linux_LAN": true,
+		"Release": false
+	},
+	/*心跳包*/
+	"HeartData": {
+		/*请求密钥*/
+		"ReqSecretKey": "$5*!26",
+		/*SecretKey+" "+时间戳   并且加密后，在服务器解密后的时间相差必须在60分钟之内（假设该值设置为60（单位：分钟））*/
+		"ReqTimeFrame": 60
+	},
+	"Redis": {
+		/*缓存前缀key*/
+		"CachePrefixKey": "minecraft",
+		/*redis cache 模式（1：单个redis，2：sentinel哨兵模式）*/
+		"CachePattern": 1,
+		/*哨兵模式（用于cache）*/
+		"SentinelPattern": {
+			"MasterName": "mymaster",
+			/*redis cache 哨兵模式 的 哨兵host列表*/
+			"SentinelHosts": {
+				"Debug": "127.0.0.1:16379,127.0.0.1:16383,127.0.0.1:16384",
+				"Minecraft_LAN": "192.168.0.137:16379,192.168.0.137:16383,192.168.0.137:16384",
+				"Linux_LAN": "192.168.0.137:16379,192.168.0.137:16383,192.168.0.137:16384",
+				"Release": "192.168.0.137:16379,192.168.0.137:16383,192.168.0.137:16384"
+			},
+			/*集群模式（用于pubsub）*/
+			"ColonyPattern": {
+				"Debug": {
+					/*可写的Redis链接地址*/
+					"WriteServerList": "127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382",
+					/*可读的Redis链接地址*/
+					"ReadServerList": "127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382",
+					/*最大写链接数*/
+					"MaxWritePoolSize": 6000,
+					/*最大读链接数*/
+					"MaxReadPoolSize": 6000,
+					/*自动重启*/
+					"AutoStart": true,
+					/*本地缓存到期时间，单位:秒*/
+					"LocalCacheTime": 36000,
+					/*是否记录日志,该设置仅用于排查redis运行时出现的问题,如redis工作正常,请关闭该项*/
+					"RecordeLog": false
+				},
+				"Minecraft_LAN": {
+					/*可写的Redis链接地址*/
+					"WriteServerList": "192.168.0.137:6380,192.168.0.137:6381,192.168.0.137:6382",
+					/*可读的Redis链接地址*/
+					"ReadServerList": "192.168.0.137:6380,192.168.0.137:6381,192.168.0.137:6382",
+					/*最大写链接数*/
+					"MaxWritePoolSize": 6000,
+					/*最大读链接数*/
+					"MaxReadPoolSize": 6000,
+					/*自动重启*/
+					"AutoStart": true,
+					/*本地缓存到期时间，单位:秒*/
+					"LocalCacheTime": 36000,
+					/*是否记录日志,该设置仅用于排查redis运行时出现的问题,如redis工作正常,请关闭该项*/
+					"RecordeLog": false
+				},
+				"Linux_LAN": {
+					/*可写的Redis链接地址*/
+					"WriteServerList": "127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382",
+					/*可读的Redis链接地址*/
+					"ReadServerList": "127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382",
+					/*最大写链接数*/
+					"MaxWritePoolSize": 6000,
+					/*最大读链接数*/
+					"MaxReadPoolSize": 6000,
+					/*自动重启*/
+					"AutoStart": true,
+					/*本地缓存到期时间，单位:秒*/
+					"LocalCacheTime": 36000,
+					/*是否记录日志,该设置仅用于排查redis运行时出现的问题,如redis工作正常,请关闭该项*/
+					"RecordeLog": false
+				},
+				"Release": {
+					/*可写的Redis链接地址*/
+					"WriteServerList": "127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382",
+					/*可读的Redis链接地址*/
+					"ReadServerList": "127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382",
+					/*最大写链接数*/
+					"MaxWritePoolSize": 6000,
+					/*最大读链接数*/
+					"MaxReadPoolSize": 6000,
+					/*自动重启*/
+					"AutoStart": true,
+					/*本地缓存到期时间，单位:秒*/
+					"LocalCacheTime": 36000,
+					/*是否记录日志,该设置仅用于排查redis运行时出现的问题,如redis工作正常,请关闭该项*/
+					"RecordeLog": false
+				}
+			}
+		}
+	},
+	"MongoDB": {
+		"DBName": "minecraft"
+	},
+	"Mysql": {
+		"SubmeterLen": {
+			/*根据玩家Id进行分表的长度（一旦确定后不能再更改）（比如：如果值为10000，则表示PlayerId范围从1到10000的数据存到表名为【Goods_10000】的数据表中，PlayerId从10001到20000的数据存到表名为【Goods_20000】的数据表中）*/
+			"GoodsTable": 10000,
+			"FriendTable": 10000
+		}
+	}
+}

@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="CommandReq.cs" />
     <Compile Include="CommonConfig.cs" />
+    <Compile Include="jsonConfig\JsonConfig.cs" />
     <Compile Include="csvfile\_CSVConfig.cs" />
     <Compile Include="ipConst\IpConstConfig.cs" />
     <Compile Include="Memory\MemoryDataManager.cs" />
@@ -107,6 +108,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ipConst\ipConfig.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="jsonConfig\config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
