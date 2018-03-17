@@ -3,6 +3,7 @@ using Minecraft.BLL.mysql;
 using Minecraft.Config;
 using Minecraft.Config.ipConst;
 using Minecraft.Model.ReqResp;
+using Minecraft.ServiceStackRedisTest.t;
 using Minecraft.Test.TestFolder;
 using System;
 using System.Collections.Generic;

@@ -19,7 +19,12 @@ namespace System
 		/// <returns></returns>
 		public static string GetConnStr(string str)
 		{
-			return ConfigurationManager.ConnectionStrings[str] != null ? ConfigurationManager.ConnectionStrings[str].ToString() : "";
+			var theStr = ConfigurationManager.ConnectionStrings[str] != null ? ConfigurationManager.ConnectionStrings[str].ToString() : "";
+			if (theStr.IsNullOrWhiteSpace())
+			{
+				throw new Exception("ConnectionStrings不能为空，请更新配置文件");
+			}
+			return theStr;
 		}
 
 		/// <summary>
@@ -29,7 +34,12 @@ namespace System
 		/// <returns></returns>
 		public static string GetAppSettingStr(string str)
 		{
-			return ConfigurationManager.AppSettings[str] ?? "";
+			var theStr = ConfigurationManager.AppSettings[str] ?? "";
+			if (theStr.IsNullOrWhiteSpace())
+			{
+				throw new Exception("AppSettings不能为空，请更新配置文件");
+			}
+			return theStr;
 		}
 	}
 }

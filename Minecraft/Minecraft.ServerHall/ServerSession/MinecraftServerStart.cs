@@ -29,10 +29,9 @@ namespace Minecraft.ServerHall
 				TextEncoding = CommonConfig.DefEncoding.WebName,
 				Port = port,
 				DisableSessionSnapshot = true,
-				MaxConnectionNumber = 5000,
-				//DefaultSendBufferSize=1024*1024*2
-				SendBufferSize = 1024 * 1024 * 20,
-				ReceiveBufferSize = 1024 * 100,
+				MaxConnectionNumber = 8000,
+				SendBufferSize = 1024 * 1024 * 2,//（该字段应该表示客户端发送过来的最大字节长度）
+				ReceiveBufferSize = 1024 * 200, //(该字段应该表示客户端接收的最大字节数，最大为1024 * 412，不然会启动失败)
 			};
 			//Setup the appServer
 			//if (!appServer.Setup(2012)) //Setup with listening port
