@@ -30,21 +30,14 @@ namespace Minecraft.Config
 
 
 
+
 		public class Rootobject
 		{
-			public Connectionstring ConnectionString { get; set; }
 			public bool IsConsoleWrite { get; set; }
 			public Heartdata HeartData { get; set; }
-			public Redis Redis { get; set; }
-			public Mongodb MongoDB { get; set; }
 			public Mysql Mysql { get; set; }
-		}
-
-		public class Connectionstring
-		{
-			public string mySql { get; set; }
-			public string mongoDB { get; set; }
-			public string redis { get; set; }
+			public Mongodb MongoDB { get; set; }
+			public Redis Redis { get; set; }
 		}
 
 		public class Heartdata
@@ -53,8 +46,27 @@ namespace Minecraft.Config
 			public int ReqTimeFrame { get; set; }
 		}
 
+		public class Mysql
+		{
+			public string ConnectionString { get; set; }
+			public Submeterlen SubmeterLen { get; set; }
+		}
+
+		public class Submeterlen
+		{
+			public int GoodsTable { get; set; }
+			public int FriendTable { get; set; }
+		}
+
+		public class Mongodb
+		{
+			public string ConnectionString { get; set; }
+			public string DBName { get; set; }
+		}
+
 		public class Redis
 		{
+			public string ConnectionString { get; set; }
 			public string CachePrefixKey { get; set; }
 			public int CachePattern { get; set; }
 			public Sentinelpattern SentinelPattern { get; set; }
@@ -78,21 +90,6 @@ namespace Minecraft.Config
 			public bool RecordeLog { get; set; }
 		}
 
-		public class Mongodb
-		{
-			public string DBName { get; set; }
-		}
-
-		public class Mysql
-		{
-			public Submeterlen SubmeterLen { get; set; }
-		}
-
-		public class Submeterlen
-		{
-			public int GoodsTable { get; set; }
-			public int FriendTable { get; set; }
-		}
 
 
 

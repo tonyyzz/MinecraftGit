@@ -1,10 +1,4 @@
 {
-	/*连接字符串*/
-	"ConnectionString": {
-		"mySql": "server=192.168.0.137;user=root;database=minecraft;port=3306;password=123456;Charset=utf8;",
-		"mongoDB": "mongodb://192.168.0.137:27017",
-		"redis": "192.168.0.137:6379"
-	},
 	/*是否控制台输出信息（用于连接和命令执行上）*/
 	"IsConsoleWrite": false,
 	/*心跳包*/
@@ -14,7 +8,20 @@
 		/*SecretKey+" "+时间戳   并且加密后，在服务器解密后的时间相差必须在60分钟之内（假设该值设置为60（单位：分钟））*/
 		"ReqTimeFrame": 60
 	},
+	"Mysql": {
+		"ConnectionString": "server=192.168.0.137;user=root;database=minecraft;port=3306;password=123456;Charset=utf8;",
+		"SubmeterLen": {
+			/*根据玩家Id进行分表的长度（一旦确定后不能再更改）（比如：如果值为10000，则表示PlayerId范围从1到10000的数据存到表名为【Goods_10000】的数据表中，PlayerId从10001到20000的数据存到表名为【Goods_20000】的数据表中）*/
+			"GoodsTable": 10000,
+			"FriendTable": 10000
+		}
+	},
+	"MongoDB": {
+		"ConnectionString": "mongodb://192.168.0.137:27017",
+		"DBName": "minecraft"
+	},
 	"Redis": {
+		"ConnectionString": "192.168.0.137:6379",
 		/*缓存前缀key*/
 		"CachePrefixKey": "minecraft",
 		/*redis cache 模式（1：单个redis，2：sentinel哨兵模式）*/
@@ -41,16 +48,6 @@
 			"LocalCacheTime": 36000,
 			/*是否记录日志,该设置仅用于排查redis运行时出现的问题,如redis工作正常,请关闭该项*/
 			"RecordeLog": false
-		}
-	},
-	"MongoDB": {
-		"DBName": "minecraft"
-	},
-	"Mysql": {
-		"SubmeterLen": {
-			/*根据玩家Id进行分表的长度（一旦确定后不能再更改）（比如：如果值为10000，则表示PlayerId范围从1到10000的数据存到表名为【Goods_10000】的数据表中，PlayerId从10001到20000的数据存到表名为【Goods_20000】的数据表中）*/
-			"GoodsTable": 10000,
-			"FriendTable": 10000
 		}
 	}
 }

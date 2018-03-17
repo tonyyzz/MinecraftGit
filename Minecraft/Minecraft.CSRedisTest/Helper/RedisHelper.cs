@@ -30,7 +30,7 @@ redisHelper.StringSet(redisKey, model, CommonConfig.DefRedisExpiry);
 		private static CSRedis.RedisClient client;
 		static RedisHelper()
 		{
-			ConnectionString = JsonConfig.Value.ConnectionString.redis;// MinecraftConfiguration.Minecraft_RedisConnStr;
+			ConnectionString = JsonConfig.Value.Redis.ConnectionString;// MinecraftConfiguration.Minecraft_RedisConnStr;
 			DefaultKey = JsonConfig.Value.Redis.CachePrefixKey;// MinecraftConfiguration.Minecraft_RedisDefaultKey;
 			var strs = ConnectionString.Split(':');
 			var host = strs[0];

@@ -24,7 +24,7 @@ namespace Minecraft.DALMySql
 				//string psw = ib.IniReadValue("sql", "psw");
 				//var connStr = string.Format(@"server={0};user={1};database={2};port={3};password={4};Charset=utf8;",
 				//	ip, "root", "gostop", port, psw);
-				return JsonConfig.Value.ConnectionString.mySql;// MinecraftConfiguration.Minecraft_MySqlDBConnStr;
+				return JsonConfig.Value.Mysql.ConnectionString;// MinecraftConfiguration.Minecraft_MySqlDBConnStr;
 			}
 		}
 		private static IDbConnection _conn = new MySqlConnection(_connStr);
