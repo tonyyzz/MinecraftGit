@@ -80,7 +80,6 @@
     <Compile Include="TestFolder\EncraptTest.cs" />
     <Compile Include="TestFolder\JsonFileTest.cs" />
     <Compile Include="TestFolder\JsonSerializeTest.cs" />
-    <Compile Include="TestFolder\Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
