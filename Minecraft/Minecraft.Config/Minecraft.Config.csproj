@@ -78,7 +78,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProtocolHelper.cs" />
     <Compile Include="RedisKeyHelper.cs" />
-    <Compile Include="SeparatorConfig.cs" />
+    <Compile Include="SeparatorConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="RedisKeyConfig.cs" />
     <Compile Include="TablePrefixConfig.cs" />
     <Compile Include="_ProtocolEnum.cs">

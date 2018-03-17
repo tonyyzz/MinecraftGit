@@ -76,8 +76,8 @@ namespace Minecraft.ServerHall
 			{
 				string ipUserNameTipStr = IpConstConfig.GetIpUserNameTipStr(session.RemoteEndPoint.Address.ToString());
 				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.WriteLine("-------------------------------------------------------");
-				Console.WriteLine($"正在执行命令：（时间：{DateTime.Now.ToStr()}）");
+				Console.WriteLine("---------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+				Console.Write($"正在执行命令：（时间：{DateTime.Now.ToStr()}）");
 				if (!ipUserNameTipStr.IsNullOrWhiteSpace())
 				{
 					Console.ForegroundColor = ConsoleColor.Green;
@@ -86,10 +86,11 @@ namespace Minecraft.ServerHall
 				{
 					Console.ForegroundColor = ConsoleColor.Magenta;
 				}
-				Console.WriteLine($"	IP地址：{session.RemoteEndPoint}{ipUserNameTipStr}");
+				Console.Write($"	IP地址：{session.RemoteEndPoint}{ipUserNameTipStr}");
 				Console.ForegroundColor = ConsoleColor.Green;
-				Console.WriteLine($"	协议：{command.ToString()}");
-				Console.WriteLine($"	当前在线人数：{session.AppServer.GetAllSessions().Count()}");
+				Console.Write($"	当前在线人数：{session.AppServer.GetAllSessions().Count()}");
+				Console.WriteLine($"		协议：{command.ToString()}");
+				
 				Console.ResetColor();
 			}
 		}

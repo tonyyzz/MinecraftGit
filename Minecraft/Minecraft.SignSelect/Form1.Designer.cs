@@ -50,14 +50,14 @@
 			// 
 			this.tbxSignStr.Location = new System.Drawing.Point(78, 22);
 			this.tbxSignStr.Name = "tbxSignStr";
-			this.tbxSignStr.Size = new System.Drawing.Size(142, 21);
+			this.tbxSignStr.Size = new System.Drawing.Size(193, 21);
 			this.tbxSignStr.TabIndex = 1;
 			this.tbxSignStr.Text = "00001001";
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(19, 187);
+			this.label3.Location = new System.Drawing.Point(33, 133);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(59, 12);
 			this.label3.TabIndex = 3;
@@ -66,7 +66,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(31, 120);
+			this.label4.Location = new System.Drawing.Point(31, 95);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(65, 12);
 			this.label4.TabIndex = 4;
@@ -74,7 +74,7 @@
 			// 
 			// btnSelect
 			// 
-			this.btnSelect.Location = new System.Drawing.Point(226, 20);
+			this.btnSelect.Location = new System.Drawing.Point(288, 20);
 			this.btnSelect.Name = "btnSelect";
 			this.btnSelect.Size = new System.Drawing.Size(75, 23);
 			this.btnSelect.TabIndex = 5;
@@ -84,9 +84,9 @@
 			// 
 			// tbxCmd
 			// 
-			this.tbxCmd.Location = new System.Drawing.Point(84, 184);
+			this.tbxCmd.Location = new System.Drawing.Point(98, 130);
 			this.tbxCmd.Name = "tbxCmd";
-			this.tbxCmd.Size = new System.Drawing.Size(247, 21);
+			this.tbxCmd.Size = new System.Drawing.Size(265, 21);
 			this.tbxCmd.TabIndex = 7;
 			this.tbxCmd.MouseEnter += new System.EventHandler(this.tbxSecondCmd_MouseEnter);
 			// 
@@ -105,7 +105,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.ClientSize = new System.Drawing.Size(380, 242);
+			this.ClientSize = new System.Drawing.Size(400, 173);
 			this.Controls.Add(this.lblInfo);
 			this.Controls.Add(this.tbxCmd);
 			this.Controls.Add(this.btnSelect);

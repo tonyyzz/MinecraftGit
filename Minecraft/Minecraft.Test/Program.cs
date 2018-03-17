@@ -31,7 +31,7 @@ namespace Minecraft.Test
 
 			//var dict= IpConstConfig.GetConstConfigDict();
 			Console.WriteLine("测试");
-			JsonSerializeTest.Do();
+			EncraptTest.Do();
 			Console.ReadKey();
 		}
 

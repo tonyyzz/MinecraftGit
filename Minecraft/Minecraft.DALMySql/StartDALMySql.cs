@@ -21,7 +21,7 @@ namespace Minecraft.DALMySql
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine("【mysql】异常：" + ex.ToString());
+				Console.WriteLine("【mysql】异常1111：" + ex.ToString());
 			}
 			return canStart;
 		}

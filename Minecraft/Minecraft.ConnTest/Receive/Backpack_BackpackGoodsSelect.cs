@@ -20,7 +20,11 @@ namespace Minecraft.ConnTest.Receive
 			{
 				case RespLevelEnum.Success:
 					{
-						
+						Thread.Sleep(1000);
+						ComManager.Send(socketClient, () =>
+						{
+							return SendBackpackGoodsSelect.GetReq();
+						});
 					}
 					break;
 				case RespLevelEnum.Warn:

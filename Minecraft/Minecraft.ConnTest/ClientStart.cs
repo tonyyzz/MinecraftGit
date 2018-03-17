@@ -56,10 +56,10 @@ namespace Minecraft.ConnTest
 			}
 			catch (SocketException ex)
 			{
-				//Thread.Sleep(3000);
-				//Console.WriteLine($"1：{ex.ToString()}");
-				//Console.WriteLine("客户端重连...");
-				////socketClient.Disconnect(true);
+				//Thread.Sleep(1000);
+				Console.WriteLine($"1：{ex.ToString()}");
+				Console.WriteLine("客户端重连...");
+				//socketClient.Disconnect(true);
 				//socketClient.Dispose();
 				//socketClient = null;
 				//ClientStart.Start(socketClient);
@@ -68,8 +68,8 @@ namespace Minecraft.ConnTest
 			catch (Exception ex)
 			{
 				//Thread.Sleep(1000);
-				//Console.WriteLine($"2：{ex.ToString()}");
-				//Console.WriteLine("客户端重连...");
+				Console.WriteLine($"2：{ex.ToString()}");
+				Console.WriteLine("客户端重连...");
 				//socketClient.Dispose();
 				//socketClient = null;
 				//ClientStart.Start(socketClient);

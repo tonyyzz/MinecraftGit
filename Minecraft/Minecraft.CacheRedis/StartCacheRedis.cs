@@ -53,7 +53,7 @@ namespace Minecraft.CacheRedis
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine("【redis】异常：" + ex.ToString());
+				Console.WriteLine("【redis】异常23323：" + ex.ToString());
 			}
 			return canStart;
 		}

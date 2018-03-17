@@ -34,9 +34,9 @@ namespace Minecraft.ServerHall
 				{
 					Console.ForegroundColor = ConsoleColor.DarkYellow;
 				}
-				Console.WriteLine("-------------------------------------------------------");
-				Console.WriteLine($"▲▲▲有客户端进入（时间：{DateTime.Now.ToStr()}）");
-				Console.WriteLine($"IP地址：{this.RemoteEndPoint.ToString()}{ipUserNameTipStr}");
+				Console.WriteLine("---------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+				Console.Write($"->->->有新客户端进入（时间：{DateTime.Now.ToStr()}）");
+				Console.Write($"IP地址：{this.RemoteEndPoint.ToString()}{ipUserNameTipStr}");
 				Console.WriteLine($"	当前在线人数：{this.AppServer.GetAllSessions().Count()}");
 				Console.ResetColor();
 			}
@@ -77,9 +77,9 @@ namespace Minecraft.ServerHall
 				{
 					Console.ForegroundColor = ConsoleColor.DarkMagenta;
 				}
-				Console.WriteLine("-------------------------------------------------------");
-				Console.WriteLine($"---客户端断开连接（时间：{DateTime.Now.ToStr()}）");
-				Console.WriteLine($"IP地址：{this.RemoteEndPoint.ToString()}{ipUserNameTipStr}");
+				Console.WriteLine("---------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+				Console.Write($"<-<-<-客户端断开连接（时间：{DateTime.Now.ToStr()}）");
+				Console.Write($"IP地址：{this.RemoteEndPoint.ToString()}{ipUserNameTipStr}");
 				Console.WriteLine($"	当前在线人数：{this.AppServer.GetAllSessions().Count()}");
 				Console.ResetColor();
 			}

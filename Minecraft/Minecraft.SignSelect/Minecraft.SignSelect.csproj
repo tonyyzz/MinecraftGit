@@ -42,7 +42,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Minecraft_LAN|AnyCPU'">
-    <OutputPath>..\..\..\doc\客户端ADN服务器共享\SignSelect\Minecraft_LAN\</OutputPath>
+    <OutputPath>..\..\客户端ADN服务器共享\Minecraft_LAN\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>

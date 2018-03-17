@@ -40,7 +40,7 @@ namespace Minecraft.ServerHall.Cmd
 
 
 			var resp = new TestResp
-			{
+			{                                        
 				PlayerId = req.PlayerId
 			};
 			session.Send(defCommand, resp);

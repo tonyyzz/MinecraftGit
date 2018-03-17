@@ -62,6 +62,8 @@
 		/// 家具插入
 		/// </summary>
 		Furniture_FurnitureInsert,
+
+
 		/// <summary>
 		/// 好友信息插入
 		/// </summary>
@@ -70,6 +72,8 @@
 		/// 朋友列表查询
 		/// </summary>
 		Friend_FriendListSelect,
+
+
 		/// <summary>
 		/// 大地图进度信息插入
 		/// </summary>

@@ -69,6 +69,53 @@ namespace System
 		}
 		#endregion
 
+		/// <summary> 
+		/// DES加密 
+		/// </summary>
+		public static string DESEncrypt(string value)
+		{
+			
+
+			byte[] keyArray = Encoding.UTF8.GetBytes(encryptKey);
+			byte[] toEncryptArray = Encoding.UTF8.GetBytes(value);
+
+			DESCryptoServiceProvider rDel = new DESCryptoServiceProvider();
+			rDel.Key = keyArray;
+			rDel.Mode = CipherMode.ECB;
+			rDel.Padding = PaddingMode.PKCS7;
+
+			ICryptoTransform cTransform = rDel.CreateEncryptor();
+			byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+
+			return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+		}
+
+		/// <summary> 
+		/// DES解密 
+		/// </summary>
+		public static string DESDecrypt(string value)
+		{
+			try
+			{
+				byte[] keyArray = Encoding.UTF8.GetBytes(encryptKey);
+				byte[] toEncryptArray = Convert.FromBase64String(value);
+
+				DESCryptoServiceProvider rDel = new DESCryptoServiceProvider();
+				rDel.Key = keyArray;
+				rDel.Mode = CipherMode.ECB;
+				rDel.Padding = PaddingMode.PKCS7;
+
+				ICryptoTransform cTransform = rDel.CreateDecryptor();
+				byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+
+				return Encoding.UTF8.GetString(resultArray);
+			}
+			catch
+			{
+				return string.Empty;
+			}
+		}
+
 		//加密
 		public static void Encrypt(byte[] byteArray, int offset, int len)
 		{

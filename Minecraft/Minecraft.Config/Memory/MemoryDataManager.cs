@@ -12,23 +12,23 @@ namespace Minecraft.Config.Memory
 	/// </summary>
 	public class MemoryDataManager
 	{
-		/// <summary>
-		/// 玩家基础数据
-		/// </summary>
-		private static List<PlayerbasisModel> playerbasisList = new List<PlayerbasisModel>();
+		///// <summary>
+		///// 玩家基础数据
+		///// </summary>
+		//private static List<PlayerbasisModel> playerbasisList = new List<PlayerbasisModel>();
 
 
-		public static void UpdatePlayerbasis(PlayerbasisModel playerbasisModel)
-		{
-			var playerbasis = playerbasisList.FirstOrDefault(m => m.PlayerId == playerbasisModel.PlayerId);
-			if (playerbasis != null)
-			{
-				playerbasis = playerbasisModel;
-			}
-			else
-			{
-				playerbasisList.Add(playerbasisModel);
-			}
-		}
+		//public static void UpdatePlayerbasis(PlayerbasisModel playerbasisModel)
+		//{
+		//	var playerbasis = playerbasisList.FirstOrDefault(m => m.PlayerId == playerbasisModel.PlayerId);
+		//	if (playerbasis != null)
+		//	{
+		//		playerbasis = playerbasisModel;
+		//	}
+		//	else
+		//	{
+		//		playerbasisList.Add(playerbasisModel);
+		//	}
+		//}
 	}
 }

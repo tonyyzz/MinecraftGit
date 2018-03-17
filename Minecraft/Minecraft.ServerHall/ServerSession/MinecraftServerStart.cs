@@ -23,14 +23,16 @@ namespace Minecraft.ServerHall
 			int port = 2017;
 #endif
 
-			var appServer = new MinecraftServer() ;
+			var appServer = new MinecraftServer();
 			ServerConfig serverConfig = new ServerConfig
 			{
 				TextEncoding = CommonConfig.DefEncoding.WebName,
 				Port = port,
 				DisableSessionSnapshot = true,
 				MaxConnectionNumber = 5000,
-				 
+				//DefaultSendBufferSize=1024*1024*2
+				SendBufferSize = 1024 * 1024 * 20,
+				ReceiveBufferSize = 1024 * 100,
 			};
 			//Setup the appServer
 			//if (!appServer.Setup(2012)) //Setup with listening port

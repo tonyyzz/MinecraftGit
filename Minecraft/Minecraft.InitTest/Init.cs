@@ -148,7 +148,7 @@ namespace Minecraft.InitTest
 						Count = random.Next(11),
 					};
 					var totalCount = itemList.Where(m => m.GoodsItemId == backpackItem.GoodsItemId).Sum(m => m.Count) + backpackItem.Count;
-					if (totalCount <= 20)
+					if (totalCount <= 2)
 					{
 						itemList.Add(backpackItem);
 					}

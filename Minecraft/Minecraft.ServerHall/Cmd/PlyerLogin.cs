@@ -49,7 +49,6 @@ namespace Minecraft.ServerHall.Cmd
 
 			//暂定
 			var resp = player.JsonSerialize().JsonDeserialize<PlayerLoginResp>();
-
 			session.Send(defCommand, resp);
 		}
 	}

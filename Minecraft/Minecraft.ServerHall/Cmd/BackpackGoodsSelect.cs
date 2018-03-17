@@ -35,7 +35,6 @@ namespace Minecraft.ServerHall.Cmd
 				return;
 			}
 			var goodsModelList = GoodsBLL.GetListAll(session.minecraftSessionInfo.player.PlayerId, 1, out bool fromCache);
-
 			var goodsList = new List<GoodsInfo>();
 			if (goodsModelList != null && goodsModelList.Any())
 			{
@@ -57,6 +56,7 @@ namespace Minecraft.ServerHall.Cmd
 			{
 				goodsList = goodsList
 			};
+			Console.WriteLine($"resp:  {resp.JsonSerialize()}");
 			session.Send(defCommand, resp);
 		}
 	}
