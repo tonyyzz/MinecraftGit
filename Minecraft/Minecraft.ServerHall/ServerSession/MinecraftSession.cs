@@ -23,7 +23,9 @@ namespace Minecraft.ServerHall
 		{
 			this.Logger.Info($"进入连接：{this.RemoteEndPoint.ToString()}");
 			//进入连接
-			if (MinecraftConfiguration.IsConsoleWrite)
+			if (
+				JsonConfig.Value.IsConsoleWrite //MinecraftConfiguration.IsConsoleWrite
+				)
 			{
 				string ipUserNameTipStr = IpConstConfig.GetIpUserNameTipStr(this.RemoteEndPoint.Address.ToString());
 				if (!ipUserNameTipStr.IsNullOrWhiteSpace())
@@ -66,7 +68,9 @@ namespace Minecraft.ServerHall
 		protected override void OnSessionClosed(CloseReason reason)
 		{
 			//断开连接
-			if (MinecraftConfiguration.IsConsoleWrite)
+			if (
+				JsonConfig.Value.IsConsoleWrite//MinecraftConfiguration.IsConsoleWrite
+				)
 			{
 				string ipUserNameTipStr = IpConstConfig.GetIpUserNameTipStr(this.RemoteEndPoint.Address.ToString());
 				if (!ipUserNameTipStr.IsNullOrWhiteSpace())
@@ -119,7 +123,9 @@ namespace Minecraft.ServerHall
 
 		protected override void HandleUnknownRequest(StringRequestInfo requestInfo)
 		{
-			if (MinecraftConfiguration.IsConsoleWrite)
+			if (
+				JsonConfig.Value.IsConsoleWrite//MinecraftConfiguration.IsConsoleWrite
+				)
 			{
 				Console.WriteLine($"时间：{DateTime.Now.ToStr()} 客户端未知请求：{requestInfo.Key}");
 			}

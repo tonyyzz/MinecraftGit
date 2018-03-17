@@ -15,15 +15,16 @@ namespace Minecraft.CacheRedis
 			try
 			{
 				RedisSentinel redisSentinel = new RedisSentinel(
-					MinecraftConfiguration.Minecraft_Redis_SentinelHosts,
-					MinecraftConfiguration.Minecraft_Redis_SentinelPattern_MasterName);
+					JsonConfig.Value.Redis.SentinelPattern.SentinelHosts.Split(',').ToList(),// MinecraftConfiguration.Minecraft_Redis_SentinelHosts,
+					JsonConfig.Value.Redis.SentinelPattern.MasterName //    MinecraftConfiguration.Minecraft_Redis_SentinelPattern_MasterName
+				);
 				var manager = redisSentinel.Start() as PooledRedisClientManager;
 				var client = manager.GetClient();
 				return client;
 			}
 			catch (TimeoutException ex)
 			{
-				Console.WriteLine("连接超时  "+ex.ToString());
+				Console.WriteLine("连接超时  " + ex.ToString());
 				return null;
 			}
 			catch (Exception ex)

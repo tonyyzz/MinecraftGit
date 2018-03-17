@@ -14,7 +14,7 @@ namespace System
 	public class EncryptHelper
 	{
 		//private static string encryptKey = "Oyea";    //定义密钥  
-		private static string encryptKey = ConfigurationHelper.GetAppSettingStr("EncryptKey");    //定义密钥  
+		private static string encryptKey =  ConfigurationHelper.GetAppSettingStr("EncryptKey");    //定义密钥  
 		#region 加密字符串  
 		/// <summary> 
 		/// 加密字符串   

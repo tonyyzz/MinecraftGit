@@ -13,6 +13,7 @@ namespace Minecraft.Test.TestFolder
 		public static void Do()
 		{
 			var jsonConfigVal = JsonConfig.Value;
+			Console.WriteLine(jsonConfigVal.JsonSerialize());
 		}
 	}
 

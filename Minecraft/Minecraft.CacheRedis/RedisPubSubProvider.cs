@@ -8,20 +8,21 @@ using System.Threading.Tasks;
 
 namespace Minecraft.CacheRedis
 {
+	using Minecraft.Config;
 	using RedisTools;
 	public class RedisPubSubProvider
 	{
 		private PooledRedisClientManager Pool { get; set; }
 		private RedisPubSubProvider()
 		{
-			var writeServerList = RedisPubSubConfig.Current.WriteServerList.Split(',');
-			var readServerList = RedisPubSubConfig.Current.ReadServerList.Split(',');
+			var writeServerList = JsonConfig.Value.Redis.ColonyPattern.WriteServerList.Split('.');// RedisPubSubConfig.Current.WriteServerList.Split(',');
+			var readServerList = JsonConfig.Value.Redis.ColonyPattern.ReadServerList.Split('.');// RedisPubSubConfig.Current.ReadServerList.Split(',');
 			Pool = new PooledRedisClientManager(writeServerList, readServerList,
 				new RedisClientManagerConfig
 				{
-					MaxWritePoolSize = RedisPubSubConfig.Current.MaxWritePoolSize,
-					MaxReadPoolSize = RedisPubSubConfig.Current.MaxReadPoolSize,
-					AutoStart = RedisPubSubConfig.Current.AutoStart,
+					MaxWritePoolSize = JsonConfig.Value.Redis.ColonyPattern.MaxWritePoolSize,// RedisPubSubConfig.Current.MaxWritePoolSize,
+					MaxReadPoolSize = JsonConfig.Value.Redis.ColonyPattern.MaxReadPoolSize,// RedisPubSubConfig.Current.MaxReadPoolSize,
+					AutoStart = JsonConfig.Value.Redis.ColonyPattern.AutoStart,//RedisPubSubConfig.Current.AutoStart,
 				});
 		}
 

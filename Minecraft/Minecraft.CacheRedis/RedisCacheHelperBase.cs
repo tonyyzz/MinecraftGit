@@ -16,7 +16,7 @@ namespace Minecraft.CacheRedis
 
 		public RedisCacheHelperBase()
 		{
-			DefaultKey = MinecraftConfiguration.Minecraft_RedisDefaultKey;
+			DefaultKey = JsonConfig.Value.Redis.CachePrefixKey;// MinecraftConfiguration.Minecraft_RedisDefaultKey;
 		}
 
 		private static string AddKeyPrefix(string key)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Minecraft.Config
 {
-	public class MinecraftConfiguration
+	public class MinecraftConfiguration1
 	{
 #if DEBUG //本地测试
 		public static string Minecraft_MySqlDBConnStr = ConfigurationHelper.GetConnStr("Minecraft_MySql_Debug");

@@ -26,10 +26,10 @@ namespace Minecraft.DALMySql
 			List<string> tableNameCacheList,
 			int keyId,
 			string tableNamePrefix,
-			string submeterLenStr,
+			int submeterLen,
 			Func<int, string> createTableSqlFunc) where T : class
 		{
-			if (AddTableSuccess(keyId, tableNameCacheList, tableNamePrefix, submeterLenStr, createTableSqlFunc))
+			if (AddTableSuccess(keyId, tableNameCacheList, tableNamePrefix, submeterLen, createTableSqlFunc))
 			{
 				using (var Conn = GetConn())
 				{
@@ -38,7 +38,7 @@ namespace Minecraft.DALMySql
 					var names = string.Join(",", propKeys.ToArray());
 					var values = string.Join(",", propKeys.ToList().ConvertAll(m => "@" + m).ToArray());
 					string sql = string.Format(@"insert into {0}({1}) values({2});",
-						GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr),
+						GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLen),
 						names,
 						values);
 					return Conn.Execute(sql, model) > 0;
@@ -82,33 +82,33 @@ namespace Minecraft.DALMySql
 		/// <returns></returns>
 		protected static T GetSingleOrDefaultWithTablePrefix<T, V>(T model, int keyId,
 			string tableNamePrefix,
-			string submeterLenStr,
+			int submeterLen,
 			KeyValue<V> keyValue) where T : class
 		{
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue.Key}={GetTypeValueStr(keyValue.Value)} limit 1";
+				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLen)} where {keyValue.Key}={GetTypeValueStr(keyValue.Value)} limit 1";
 				return Conn.QueryFirstOrDefault<T>(sql);
 			}
 		}
 
 		protected static List<T> GetListAllWithTablePrefix<T, V>(T model, int keyId,
 			string tableNamePrefix,
-			string submeterLenStr,
+			int submeterLen,
 			KeyValue<V> keyValue) where T : class
 		{
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue.Key}={GetTypeValueStr(keyValue.Value)}";
+				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLen)} where {keyValue.Key}={GetTypeValueStr(keyValue.Value)}";
 				return Conn.Query<T>(sql).ToList();
 			}
 		}
 
 		protected static List<T> GetListAllWithTablePrefix<T, V,U>(T model, int keyId,
 			string tableNamePrefix,
-			string submeterLenStr,
+			int submeterLen,
 			KeyValue<V> keyValue1,
 			KeyValue<U> keyValue2
 			) where T : class
@@ -116,7 +116,7 @@ namespace Minecraft.DALMySql
 			using (var Conn = GetConn())
 			{
 				Conn.Open();
-				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr)} where {keyValue1.Key}={GetTypeValueStr(keyValue1.Value)} and {keyValue2.Key}={GetTypeValueStr(keyValue2.Value)}";
+				string sql = $"select * from {GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLen)} where {keyValue1.Key}={GetTypeValueStr(keyValue1.Value)} and {keyValue2.Key}={GetTypeValueStr(keyValue2.Value)}";
 				return Conn.Query<T>(sql).ToList();
 			}
 		}
@@ -151,9 +151,8 @@ namespace Minecraft.DALMySql
 
 
 
-		protected static string GetTableNameWithTablePrefix(int keyId, string tableNamePrefix, string submeterLenStr)
+		protected static string GetTableNameWithTablePrefix(int keyId, string tableNamePrefix, int submeterLen)
 		{
-			var submeterLen = Convert.ToInt32(submeterLenStr);
 			string tableName = $"{tableNamePrefix}_{CommonConfig.GetTablePostfix(keyId, submeterLen)}";
 			return tableName;
 		}
@@ -167,10 +166,10 @@ namespace Minecraft.DALMySql
 		private static bool AddTableSuccess(int keyId,
 			List<string> tableNameList,
 			string tableNamePrefix,
-			string submeterLenStr,
+			int submeterLen,
 			Func<int, string> createTableSqlFunc)
 		{
-			string tableName = GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLenStr);
+			string tableName = GetTableNameWithTablePrefix(keyId, tableNamePrefix, submeterLen);
 			if (tableNameList.Any(m => m == tableName))
 			{
 				return true;

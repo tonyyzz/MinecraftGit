@@ -55,7 +55,9 @@ namespace Minecraft.ServerHall.Cmd
 			{
 				return;
 			}
-			if (strs[0] != MinecraftConfiguration.HeartDataReqSecretKey)
+			if (strs[0] != 
+			JsonConfig.Value.HeartData.ReqSecretKey//	MinecraftConfiguration.HeartDataReqSecretKey
+				)
 			{
 				return;
 			}
@@ -69,7 +71,7 @@ namespace Minecraft.ServerHall.Cmd
 			}
 			DateTime time = new DateTime(ticks);
 			var subMinuts = Convert.ToInt32(Math.Abs((DateTime.Now - time).TotalMinutes));
-			var HeartDataReqTimeFrameInt = Convert.ToInt32(MinecraftConfiguration.HeartDataReqTimeFrame);
+			var HeartDataReqTimeFrameInt = JsonConfig.Value.HeartData.ReqTimeFrame;// Convert.ToInt32(MinecraftConfiguration.HeartDataReqTimeFrame);
 			if (subMinuts > HeartDataReqTimeFrameInt)
 			{
 				return;

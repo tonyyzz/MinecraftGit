@@ -19,8 +19,8 @@ namespace Minecraft.CacheRedis
 		{
 			get
 			{
-				var pattern = Convert.ToInt32(MinecraftConfiguration.Minecraft_Redis_CachePattern);
-				return (EnumRedisCachePattern)pattern;
+				//var pattern = Convert.ToInt32(MinecraftConfiguration.Minecraft_Redis_CachePattern);
+				return (EnumRedisCachePattern)JsonConfig.Value.Redis.CachePattern; //pattern;
 			}
 		}
 

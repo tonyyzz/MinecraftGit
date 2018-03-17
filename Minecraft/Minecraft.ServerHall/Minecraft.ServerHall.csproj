@@ -143,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="_sql\sql.txt" />
+    <None Include="App_更换JsonConfig之前.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>

@@ -20,7 +20,8 @@ namespace Minecraft.DALMySql
 
 			string tableName = GetTableNameWithTablePrefix(playerId,
 				TablePrefixConfig.Friend,
-				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen);
+				JsonConfig.Value.Mysql.SubmeterLen.FriendTable// MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen
+				);
 
 			//  "+ tableName + @"
 
@@ -54,7 +55,7 @@ alter table " + tableName + @" comment '好友表';
 				friendTableNameCacheList,
 				model.PlayerId,
 				TablePrefixConfig.Friend,
-				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen,
+				JsonConfig.Value.Mysql.SubmeterLen.FriendTable,// MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen,
 				GetCreateFriendTableSql);
 		}
 
@@ -63,7 +64,7 @@ alter table " + tableName + @" comment '好友表';
 			var model = new FriendModel();
 			return GetListAllWithTablePrefix(model, playerId,
 				TablePrefixConfig.Friend,
-				MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen,
+			JsonConfig.Value.Mysql.SubmeterLen.FriendTable,//	MinecraftConfiguration.Minecraft_Mysql_FriendTable_SubmeterLen,
 				new KeyValue<int> { Key = nameof(model.PlayerId), Value = playerId });
 		}
 	}

@@ -18,7 +18,7 @@ namespace Minecraft.CacheRedis
 		{
 			try
 			{
-				ConnectionString = MinecraftConfiguration.Minecraft_RedisConnStr;
+				ConnectionString = JsonConfig.Value.ConnectionString.redis;// MinecraftConfiguration.Minecraft_RedisConnStr;
 				var strs = ConnectionString.Split(':');
 				var host = strs[0];
 				var port = Convert.ToInt32(strs[1]);

@@ -21,7 +21,8 @@ namespace Minecraft.DALMySql
 
 			string tableName = GetTableNameWithTablePrefix(keyId,
 				TablePrefixConfig.Goods,
-				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen);
+				JsonConfig.Value.Mysql.SubmeterLen.GoodsTable// MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen
+				);
 
 			//   " + tableName + @"
 
@@ -60,7 +61,7 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 				goodsTableNameCacheList,
 				model.PlayerId,
 				TablePrefixConfig.Goods,
-				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
+				JsonConfig.Value.Mysql.SubmeterLen.GoodsTable,// MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
 				GetCreateGoodsTableSql);
 		}
 
@@ -69,7 +70,7 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 			var model = new GoodsModel();
 			return GetSingleOrDefaultWithTablePrefix(model, playerId,
 				TablePrefixConfig.Goods,
-				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
+				JsonConfig.Value.Mysql.SubmeterLen.GoodsTable,// MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
 				new KeyValue<string> { Key = nameof(model.GoodsId), Value = goodsId });
 		}
 
@@ -78,7 +79,7 @@ alter table " + tableName + @" comment '物品（来自背包或者装备）（�
 			var model = new GoodsModel();
 			return GetListAllWithTablePrefix(model, playerId,
 				TablePrefixConfig.Goods,
-				MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
+			JsonConfig.Value.Mysql.SubmeterLen.GoodsTable,//	MinecraftConfiguration.Minecraft_Mysql_GoodsTable_SubmeterLen,
 				new KeyValue<int> { Key = nameof(model.PlayerId), Value = playerId },
 				new KeyValue<int> { Key = nameof(model.BelongsTo), Value = belongsTo });
 		}

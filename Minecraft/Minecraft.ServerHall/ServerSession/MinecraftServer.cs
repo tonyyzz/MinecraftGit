@@ -72,7 +72,9 @@ namespace Minecraft.ServerHall
 			base.ExecuteCommand(session, requestInfo);
 			EnumCommand command = ProtocolHelper.GetCommand(requestInfo.Key);
 
-			if (MinecraftConfiguration.IsConsoleWrite)
+			if (
+				JsonConfig.Value.IsConsoleWrite// MinecraftConfiguration.IsConsoleWrite
+				)
 			{
 				string ipUserNameTipStr = IpConstConfig.GetIpUserNameTipStr(session.RemoteEndPoint.Address.ToString());
 				Console.ForegroundColor = ConsoleColor.Yellow;
